@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Codezeo - Smart & Premium iOS Apps</title>
-  <meta name="description" content="Codezeo builds premium, privacy-first iOS apps. Simple subscriptions, real value." />
+  <title>CodeZeo - Smart & Premium iOS Apps</title>
+  <meta name="description" content="CodeZeo builds premium, privacy-first iOS apps, the apps that bring real value to the daily lives of our customers." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
@@ -58,6 +58,7 @@
     .nav-links a.active{ border-color:var(--line); background:rgba(255,255,255,.06) }
     .cta{ background:linear-gradient(135deg, var(--brand), var(--accent)); color:#051017; font-weight:800; border-radius:12px; padding:10px 14px }
 
+    /* ===== HERO ===== */
     header.hero{ padding:88px 0 56px; position:relative; overflow:hidden }
     .hero-grid{ display:grid; grid-template-columns:1.2fr .8fr; gap:38px; align-items:center }
     .kicker{ color:var(--muted); letter-spacing:.14em; text-transform:uppercase; font-size:12px; font-weight:700 }
@@ -68,8 +69,8 @@
     .btn:hover{ transform:translateY(-2px) }
     .btn.primary{ background:linear-gradient(135deg, var(--brand), var(--accent)); color:#051017; border:none }
 
-    /* ===== Premium Hero Figure (visible, small) ===== */
-    .hero-figure-wrap{ position:relative; max-width:300px; margin:0 auto }
+    /* ===== Premium hero figure (visible & animated) ===== */
+    .hero-figure-wrap{ position:relative; max-width:280px; margin:0 auto }
     .hero-figure{ position:relative; aspect-ratio:10/16; border-radius:28px; overflow:hidden; isolation:isolate }
     .device{
       position:relative; width:100%; height:100%; border-radius:28px; background:var(--bg-2);
@@ -79,42 +80,42 @@
     .device::before{
       content:""; position:absolute; inset:-1px; border-radius:28px;
       background:conic-gradient(from 0deg, var(--brand), var(--accent), var(--brand));
-      filter:saturate(130%); opacity:.85; animation:spin 18s linear infinite;
-      mask:linear-gradient(#000 0 0) subtract, radial-gradient(closest-side, transparent 95%, #000 96%);
-      -webkit-mask:linear-gradient(#000 0 0) subtract, radial-gradient(closest-side, transparent 95%, #000 96%);
+      filter:saturate(130%); opacity:.95; animation:spin 16s linear infinite;
+      mask:linear-gradient(#000 0 0) subtract, radial-gradient(closest-side, transparent 94%, #000 96%);
+      -webkit-mask:linear-gradient(#000 0 0) subtract, radial-gradient(closest-side, transparent 94%, #000 96%);
       mix-blend-mode:screen; pointer-events:none;
     }
     /* inner animated glow */
     .device::after{
       content:""; position:absolute; inset:2px; border-radius:26px;
       background:
-        radial-gradient(520px 320px at 80% 0%, rgba(121,230,255,.14), transparent 60%),
+        radial-gradient(520px 320px at 80% 0%, rgba(121,230,255,.16), transparent 60%),
         linear-gradient(160deg, rgba(255,255,255,.05), rgba(255,255,255,.02)),
-        conic-gradient(from 0deg, rgba(0,200,215,.10), rgba(40,60,80,.18), rgba(0,200,215,.10));
+        conic-gradient(from 0deg, rgba(0,200,215,.12), rgba(40,60,80,.18), rgba(0,200,215,.12));
       animation:spin 26s linear infinite reverse;
     }
     .notch{ position:absolute; top:8px; left:50%; transform:translateX(-50%); width:28%; height:10px; border-radius:0 0 10px 10px; background:rgba(0,0,0,.5); border:1px solid rgba(255,255,255,.06) }
     .badge-in{ position:absolute; left:12px; bottom:12px; padding:6px 10px; border-radius:999px; font-weight:700; font-size:12px; color:#051017; background:linear-gradient(135deg, var(--brand), var(--accent)); box-shadow:0 8px 22px rgba(0,0,0,.28) }
 
-    /* tiny “app tiles” */
+    /* app tiles */
     .scene{ position:absolute; inset:0; display:grid; place-items:center; }
     .tile{
-      position:absolute; width:72px; height:72px; border-radius:16px;
-      background:linear-gradient(135deg, rgba(121,230,255,.18), rgba(0,200,215,.14));
+      position:absolute; width:68px; height:68px; border-radius:16px;
+      background:linear-gradient(135deg, rgba(121,230,255,.2), rgba(0,200,215,.14));
       border:1px solid rgba(255,255,255,.12);
       box-shadow:0 10px 30px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.06);
       backdrop-filter:blur(8px);
-      animation:float 6.5s ease-in-out infinite;
+      animation:float 6s ease-in-out infinite;
     }
     .tile::after{
       content:""; position:absolute; inset:0; border-radius:inherit;
       background:linear-gradient(120deg, transparent 30%, rgba(255,255,255,.16) 48%, transparent 66%);
-      transform:translateX(-120%); animation:shimmer 5.5s ease-in-out infinite;
+      transform:translateX(-120%); animation:shimmer 5s ease-in-out infinite;
       mix-blend-mode:screen;
     }
-    .t1{ --tx:-96px; --ty:-18px; --rot:-6deg; }
-    .t2{ --tx:86px;  --ty:  8px; --rot: 8deg; }
-    .t3{ --tx:-10px; --ty:100px; --rot: 2deg; }
+    .t1{ --tx:-92px; --ty:-16px; --rot:-6deg; }
+    .t2{ --tx: 82px; --ty:  8px; --rot: 8deg; }
+    .t3{ --tx:-10px; --ty: 94px; --rot: 2deg; }
 
     @keyframes spin { to{ transform:rotate(360deg) } }
     @keyframes shimmer { 0%{ transform:translateX(-120%) } 50%{ transform:translateX(20%) } 100%{ transform:translateX(120%) } }
@@ -123,6 +124,7 @@
       50%{ transform:translate(calc(var(--tx) + 0px), calc(var(--ty) - 10px)) rotate(calc(var(--rot) + 2deg)); }
     }
 
+    /* ===== SECTIONS ===== */
     section{ padding:72px 0; border-top:1px solid var(--line) }
     h2{ font-size:32px; margin:0 0 14px }
 
@@ -131,9 +133,9 @@
     .card h3{ margin:10px 0 6px }
     .chip{ font-size:12px; color:var(--muted) }
 
-    /* smaller single app card – left aligned */
+    /* single app card – small & left aligned */
     .apps-grid{ grid-template-columns:1fr; max-width:340px; margin:0; justify-items:start }
-    .card.app{ width:260px }          /* overall card width */
+    .card.app{ width:240px }
     .shot{ border-radius:12px; background-size:cover; background-position:center; }
     .shot.square{ aspect-ratio:1/1; height:auto; }
 
@@ -151,7 +153,7 @@
     @media (max-width: 960px){
       .hero-grid{ grid-template-columns:1fr }
       h1{ font-size:40px }
-      .hero-figure-wrap{ max-width:260px }
+      .hero-figure-wrap{ max-width:240px }
     }
     @media (prefers-reduced-motion: reduce){
       *{ animation:none !important; transition:none !important }
@@ -160,11 +162,12 @@
   </style>
 </head>
 <body>
+  <!-- NAV -->
   <nav>
     <div class="container nav-inner">
       <div class="brand">
         <span class="logo-dot" aria-hidden="true"></span>
-        <span class="badge">Codezeo</span>
+        <span class="badge">CodeZeo</span>
       </div>
       <div class="nav-links">
         <a class="active" href="#home">Home</a>
@@ -175,19 +178,21 @@
     </div>
   </nav>
 
+  <!-- HERO -->
   <header id="home" class="hero">
     <div class="container hero-grid">
-      <div class="reveal">
+      <div>
         <div class="kicker">We build awesome apps</div>
         <h1>Premium iOS apps to optimize daily lives.</h1>
         <p class="lead">Clarity, performance and privacy. No clutter, no dark patterns. Just apps that respect your time.</p>
         <div class="buttons">
           <a class="btn primary" href="#apps">See Apps</a>
-          <a class="btn" href="#about">About Codezeo</a>
+          <a class="btn" href="#about">About CodeZeo</a>
         </div>
       </div>
 
-      <div class="glass hero-figure-wrap reveal" aria-hidden="true">
+      <!-- Animasyon görünür: reveal yok -->
+      <div class="glass hero-figure-wrap" aria-hidden="true">
         <div class="hero-figure" id="parallaxTarget">
           <div class="device">
             <span class="notch"></span>
@@ -203,28 +208,33 @@
     </div>
   </header>
 
+  <!-- APPS -->
   <section id="apps">
     <div class="container">
-      <h2 class="reveal">Apps</h2>
-      <p class="lead reveal" style="margin-bottom:18px">A curated, privacy-first toolkit — starting with Submia.</p>
+      <h2>Apps</h2>
+      <p class="lead" style="margin-bottom:18px">We're just getting started.</p>
 
       <div class="grid apps-grid">
-        <article class="card app reveal">
-          <div class="shot square" style="background-image:
-            linear-gradient(135deg, rgba(121,230,255,.12), rgba(103,228,179,.10)),
-            url('Submialogoclear.png');"></div>
-          <h3>Submia - Smart Subscription Tracker &amp; Reminder</h3>
-          <div class="chip">Finance • iOS</div>
-          <p>Stay in control of renewals with elegant reminders and zero-noise insights.</p>
-          <p><a class="btn" href="#" aria-label="Submia on the App Store">App Store</a></p>
+        <article class="card app" style="max-width: 260px; text-align: left;">
+        <div class="shot square" style="background-image:
+        linear-gradient(135deg, rgba(121,230,255,.12), rgba(103,228,179,.10)),
+        url('Submialogoclear.png'); background-size: cover; background-position: center;">
+        </div>
+        <h3>Submia - Smart Subscription Tracker &amp; Reminder</h3>
+        <div class="chip">Finance • iOS</div>
+        <p>Add your subscriptions, track every insight on one screen, get reminded before each renewal and save your money.</p>
+        <p style="margin-top: 14px;">
+        <a class="btn" href="#" aria-label="Submia on the App Store">App Store</a>
+        </p>
         </article>
       </div>
     </div>
   </section>
 
+  <!-- ABOUT -->
   <section id="about">
     <div class="container about">
-      <div class="reveal">
+      <div>
         <h2>About Us</h2>
         <p class="lead">
           CodeZeo is a London-based technology studio dedicated to crafting innovative, reliable, and privacy-first applications for a global audience.
@@ -240,14 +250,11 @@
           <li><strong>Data Privacy:</strong> We never sell or misuse your data. All analytics are anonymized and GDPR-compliant.</li>
           <li><strong>Support:</strong> Dedicated and responsive support team, contact us anytime at <a href="mailto:info@codezeo.com">info@codezeo.com</a>.</li>
         </ul>
-        <p>
-          At CodeZeo, we believe the best technology feels effortless. We combine elegant design with powerful performance, ensuring every interaction with our products is smooth, efficient, and enjoyable.
-          Whether you're an individual, a business, or a creative professional, our goal is to help you achieve more with less friction.
-        </p>
       </div>
     </div>
   </section>
 
+  <!-- FOOTER -->
   <footer>
     <div class="container row">
       <div class="legal">© <span id="year"></span> CodeZeo Ltd • All rights reserved</div>
@@ -258,9 +265,9 @@
   <script>
     const yearEl = document.getElementById('year'); if(yearEl){ yearEl.textContent = new Date().getFullYear(); }
 
+    // nav active + reveals
     const links = document.querySelectorAll('.nav-links a');
     const sections = [...document.querySelectorAll('header, section')];
-
     const navObserver = new IntersectionObserver((entries)=>{
       entries.forEach(e=>{
         if(e.isIntersecting){
@@ -281,6 +288,7 @@
     },{threshold:.12, rootMargin:'0px 0px -40px 0px'});
     revealEls.forEach(el=>revObs.observe(el));
 
+    // parallax (respects reduced motion)
     const target = document.getElementById('parallaxTarget');
     const preferReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if(target && !preferReduced){
