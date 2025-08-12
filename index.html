@@ -5,20 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>CodeZeo - Smart & Premium iOS Apps</title>
   <meta name="description" content="CodeZeo builds premium, privacy-first iOS apps, the apps that bring real value to the daily lives of our customers." />
+
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+
   <style>
     :root{
       --surface:#0f1220;
       --ink:#eaf0f8;
       --muted:#9aa6bd;
       --line:rgba(255,255,255,.08);
-      --brand:#00C8D7;
+      --brand:#00C8D7;   /* CodeZeo mavi */
       --brand-2:#283C50;
       --accent:#79e6ff;
-      --gold:#FFD60A; /* App Store altın tonu */
+      --gold:#FFD60A;    /* App Store altın tonu */
       --radius:16px;
       --shadow:0 10px 40px rgba(0,0,0,.35);
       --blur:14px;
@@ -58,9 +61,14 @@
     nav{ position:sticky; top:0; z-index:50; border-bottom:1px solid var(--line);
          background:rgba(10,13,20,.55); backdrop-filter:blur(10px) saturate(130%) }
     .nav-inner{ display:flex; align-items:center; justify-content:space-between; height:66px }
-    .brand{ display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:.02em }
-    .logo-dot{ width:12px; height:12px; border-radius:50%; background:linear-gradient(135deg, var(--brand), var(--accent));
-               box-shadow:0 0 24px rgba(121,230,255,.65) }
+    .brand{ display:flex; align-items:center; gap:10px }
+    .brand .badge{
+      font-family:'Poppins', sans-serif;
+      font-weight:600;
+      font-size:1.4rem;
+      letter-spacing:.5px;
+      color:var(--brand); /* #00C8D7 */
+    }
     .nav-links{ display:flex; gap:14px }
     .nav-links a{ padding:8px 12px; border-radius:12px; border:1px solid transparent; transition:all .25s ease }
     .nav-links a:hover{ border-color:var(--line); background:rgba(255,255,255,.04) }
@@ -146,8 +154,6 @@
     .shot{ border-radius:12px; background-size:cover; background-position:center; aspect-ratio:1/1 }
     .app-title{ font-size:18px; font-weight:800; line-height:1.2; margin:2px 0 0 }
     .app-meta{ display:flex; gap:8px; align-items:center; color:var(--muted); font-size:12px }
-    .stars{ display:inline-flex; gap:2px; }
-    .stars svg{ width:14px; height:14px; }
 
     /* ===== App Store button (solda logo+metin, sağda altın yıldızlar) ===== */
     .store-btn{
@@ -160,8 +166,8 @@
     }
     .store-btn:hover{ transform:translateY(-2px); background:rgba(255,255,255,.09); box-shadow:0 10px 28px rgba(0,0,0,.25) }
     .store-left{ display:flex; align-items:center; gap:12px; min-width:0; }
-    .store-icon{ width:28px; height:28px; flex:0 0 28px; display:block } /* büyütüldü */
-    .store-text{ line-height:1; display:flex; flex-direction:column; gap:4px }
+    .store-icon{ width:28px; height:28px; flex:0 0 28px; display:block } /* logo daha büyük */
+    .store-text{ line-height:1; display:flex; flex-direction:column; gap:4px } /* iki satır arasında boşluk */
     .store-small{ font-size:10px; letter-spacing:.08em; text-transform:uppercase; color:#666c7d; white-space:nowrap }
     .store-big{ font-size:14px; font-weight:800; white-space:nowrap }
 
@@ -202,9 +208,9 @@
   <!-- NAV -->
   <nav>
     <div class="container nav-inner">
-    <div class="brand">
-    <span class="badge">CodeZeo</span>
-    </div>
+      <div class="brand">
+        <span class="badge">CodeZeo</span>
+      </div>
 
       <div class="nav-links">
         <a class="active" href="#home">Home</a>
@@ -276,12 +282,11 @@
 
           <div class="app-meta">
             <span class="chip">Finance • iOS</span>
-
           </div>
 
-          <h3 class="app-title">Submia - Smart Subscription Tracker &amp; Reminder</h3>
+          <h3 class="app-title">Submia — Smart Subscription Tracker &amp; Reminder</h3>
 
-          <!-- App Store button: solda logo+metin, sağda altın yıldızlar -->
+          <!-- App Store button: solda logo+metin, sağda altın 5 yıldız -->
           <a class="store-btn" href="#" aria-label="Get Submia on the App Store">
             <span class="store-left">
               <svg class="store-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" fill="white" aria-hidden="true">
@@ -350,7 +355,7 @@
         </div>
       </div>
 
-      <!-- Tech Stack & Trust (no card, backgroundless) -->
+      <!-- Tech Stack & Trust (backgroundless) -->
       <div>
         <h3 style="margin:4px 0 8px">Tech Stack</h3>
         <ul class="list">
