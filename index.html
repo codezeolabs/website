@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Codezeo — Software for humans</title>
+  <meta name="description" content="Codezeo Ltd builds thoughtful, privacy‑respecting mobile apps. Simple subscriptions. Real value." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0b1020; /* deep blue */
+      --bg-2:#0d1428; /* card */
+      --brand:#61e4a6; /* mint */
+      --brand-2:#7cf0ff; /* aqua */
+      --text:#e9eef7; /* light */
+      --muted:#a7b0c4; /* muted */
+      --stroke:rgba(255,255,255,.08);
+      --radius:18px;
+      --shadow:0 10px 35px rgba(0,0,0,.35);
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;background:radial-gradient(1200px 900px at 80% -10%, rgba(124,240,255,.18), transparent 60%),
+                         radial-gradient(1200px 900px at -10% -10%, rgba(97,228,166,.16), transparent 60%),
+                         var(--bg); color:var(--text); font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif}
+    a{color:inherit;text-decoration:none}
+    .container{max-width:1100px;margin:0 auto;padding:20px}
+    /* NAV */
+    nav{position:sticky;top:0;background:rgba(13,20,40,.7);backdrop-filter:blur(10px);border-bottom:1px solid var(--stroke);z-index:20}
+    .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+    .brand{display:flex;gap:10px;align-items:center}
+    .badge{display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border:1px solid var(--stroke);border-radius:999px;font-weight:600;background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,0));}
+    .nav-links{display:flex;gap:18px}
+    .nav-links a{padding:8px 12px;border-radius:12px;border:1px solid transparent}
+    .nav-links a.active, .nav-links a:hover{border-color:var(--stroke);background:rgba(255,255,255,.04)}
+    .cta{background:linear-gradient(135deg, var(--brand), var(--brand-2)); color:#071018; padding:10px 16px; border-radius:12px; font-weight:800}
+    /* HERO */
+    .hero{padding:90px 0 70px; position:relative}
+    .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:36px;align-items:center}
+    .kicker{color:var(--muted);font-weight:600;letter-spacing:.12em;text-transform:uppercase}
+    h1{font-size:52px;line-height:1.05;margin:14px 0 10px;font-weight:900}
+    .lead{color:var(--muted);font-size:18px}
+    .hero-card{background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));border:1px solid var(--stroke);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
+    .mock{aspect-ratio:16/10;background:linear-gradient(135deg, rgba(124,240,255,.15), rgba(97,228,166,.1)), radial-gradient(650px 380px at 70% 40%, rgba(124,240,255,.18), transparent 60%), url('https://images.unsplash.com/photo-1557683316-973673baf926?q=80&w=1400&auto=format&fit=crop'); background-size:cover; background-position:center}
+    .buttons{display:flex;gap:12px;margin-top:22px}
+    .btn{padding:12px 16px;border-radius:12px;border:1px solid var(--stroke);background:rgba(255,255,255,.04);font-weight:700}
+    .btn.primary{background:linear-gradient(135deg, var(--brand), var(--brand-2));color:#071018;border:none}
+    .trust{display:flex;gap:24px;align-items:center;margin-top:28px;color:var(--muted);font-size:14px}
+    .pill{padding:6px 10px;border-radius:999px;border:1px solid var(--stroke)}
+    /* APPS */
+    section{padding:70px 0;border-top:1px solid var(--stroke)}
+    h2{font-size:32px;margin:0 0 24px}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .card{border:1px solid var(--stroke);background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));padding:18px;border-radius:16px}
+    .card h3{margin:8px 0 6px}
+    .chip{font-size:12px;color:var(--muted)}
+    .shot{height:160px;border-radius:12px;background:linear-gradient(135deg, rgba(124,240,255,.14), rgba(97,228,166,.12)), url('https://images.unsplash.com/photo-1531297484001-80022131f5a1?q=80&w=1400&auto=format&fit=crop'); background-size:cover;background-position:center}
+    /* ABOUT */
+    .about{display:grid;grid-template-columns:1.1fr .9fr;gap:24px}
+    .list li{margin:10px 0;color:var(--muted)}
+    /* FOOTER */
+    footer{padding:28px 0;color:var(--muted)}
+    footer .row{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--stroke);padding-top:20px}
+    .legal{font-size:13px}
+    /* RESPONSIVE */
+    @media (max-width: 900px){
+      .hero-grid, .about, .grid{grid-template-columns:1fr}
+      h1{font-size:40px}
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="container nav-inner">
+      <div class="brand">
+        <span class="badge">Codezeo Ltd</span>
+      </div>
+      <div class="nav-links">
+        <a class="active" href="#home">Home</a>
+        <a href="#apps">Apps</a>
+        <a href="#about">About Us</a>
+        <a class="cta" href="mailto:info@codezeo.com">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <header id="home" class="hero">
+    <div class="container hero-grid">
+      <div>
+        <div class="kicker">We build calm software</div>
+        <h1>Mobile apps that feel effortless.</h1>
+        <p class="lead">Subscription-based iOS apps designed for clarity, performance and privacy. No clutter, no dark patterns — just tools you enjoy using every day.</p>
+        <div class="buttons">
+          <a class="btn primary" href="#apps">See our apps</a>
+          <a class="btn" href="#about">About Codezeo</a>
+        </div>
+        <div class="trust">
+          <span class="pill">UK Registered • Company No: XXXXXXXX</span>
+          <span class="pill">Privacy-first</span>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="mock" role="img" aria-label="app previews"></div>
+      </div>
+    </div>
+  </header>
+
+  <section id="apps">
+    <div class="container">
+      <h2>Apps</h2>
+      <p class="lead">A curated set of focused tools. More coming soon.</p>
+      <div class="grid" aria-live="polite">
+        <!-- APP 1 -->
+        <article class="card">
+          <div class="shot"></div>
+          <h3>FocusFlow</h3>
+          <div class="chip">Productivity • iOS</div>
+          <p>Lightweight focus sessions with delightful haptics and clean stats. Sync via iCloud.</p>
+          <p><a class="btn" href="https://apps.apple.com/">App Store</a></p>
+        </article>
+        <!-- APP 2 -->
+        <article class="card">
+          <div class="shot" style="background-image:linear-gradient(135deg, rgba(97,228,166,.14), rgba(124,240,255,.12)), url('https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=1400&auto=format&fit=crop');"></div>
+          <h3>QuietHabits</h3>
+          <div class="chip">Wellness • iOS</div>
+          <p>Build small habits that stick. Gentle reminders, privacy‑respecting analytics.</p>
+          <p><a class="btn" href="https://apps.apple.com/">App Store</a></p>
+        </article>
+        <!-- APP 3 -->
+        <article class="card">
+          <div class="shot" style="background-image:linear-gradient(135deg, rgba(124,240,255,.14), rgba(97,228,166,.12)), url('https://images.unsplash.com/photo-1529336953121-ad5a0d43d0d5?q=80&w=1400&auto=format&fit=crop');"></div>
+          <h3>Snapshot Pro</h3>
+          <div class="chip">Utilities • iOS</div>
+          <p>Batch screenshots, annotate, and share in one tap. Made for indie developers.</p>
+          <p><a class="btn" href="https://apps.apple.com/">App Store</a></p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="container about">
+      <div>
+        <h2>About Us</h2>
+        <p class="lead">Codezeo Ltd is a UK‑registered software studio crafting small, purposeful apps. We believe the best software gets out of your way and respects your time and data.</p>
+        <ul class="list">
+          <li>Revenue model: simple monthly & yearly subscriptions.</li>
+          <li>Infrastructure: App Store + RevenueCat. Analytics: privacy‑friendly.</li>
+          <li>Support: <a href="mailto:info@codezeo.com">info@codezeo.com</a></li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3 style="margin-top:0">Company details</h3>
+        <p><strong>Legal name</strong> — Codezeo Ltd</p>
+        <p><strong>Company No</strong> — XXXXXXXX</p>
+        <p><strong>Registered office</strong> — 71‑75 Shelton Street, Covent Garden, London, WC2H 9JQ, UK</p>
+        <p><strong>Contact</strong> — <a href="mailto:info@codezeo.com">info@codezeo.com</a></p>
+        <p class="chip">© <span id="y"></span> Codezeo Ltd. All rights reserved.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container row">
+      <div class="legal">© <span id="year"></span> Codezeo Ltd • All rights reserved</div>
+      <div class="nav-links"><a href="#home">Home</a><a href="#apps">Apps</a><a href="#about">About</a></div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    document.getElementById('y').textContent = new Date().getFullYear();
+    // Active link on scroll
+    const links = document.querySelectorAll('.nav-links a');
+    const sections = [...document.querySelectorAll('header, section')];
+    const observer = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          links.forEach(l=>l.classList.remove('active'));
+          const id = e.target.getAttribute('id') || 'home';
+          const current = [...links].find(a=>a.getAttribute('href') === `#${id}`);
+          current && current.classList.add('active');
+        }
+      })
+    },{rootMargin:'-40% 0px -55% 0px', threshold:.01});
+    sections.forEach(s=>observer.observe(s));
+  </script>
+</body>
+</html>
