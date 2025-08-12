@@ -58,8 +58,8 @@
     .nav-links a.active{ border-color:var(--line); background:rgba(255,255,255,.06) }
     .cta{ background:linear-gradient(135deg, var(--brand), var(--accent)); color:#051017; font-weight:800; border-radius:12px; padding:10px 14px }
 
-    header.hero{ padding:88px 0 64px; position:relative; overflow:hidden }
-    .hero-grid{ display:grid; grid-template-columns:1.15fr .85fr; gap:38px; align-items:center }
+    header.hero{ padding:88px 0 56px; position:relative; overflow:hidden }
+    .hero-grid{ display:grid; grid-template-columns:1.2fr .8fr; gap:38px; align-items:center }
     .kicker{ color:var(--muted); letter-spacing:.14em; text-transform:uppercase; font-size:12px; font-weight:700 }
     h1{ font-size:52px; line-height:1.06; margin:.5rem 0 .6rem; font-weight:900 }
     .lead{ color:var(--muted); font-size:18px; max-width:52ch }
@@ -68,37 +68,39 @@
     .btn:hover{ transform:translateY(-2px) }
     .btn.primary{ background:linear-gradient(135deg, var(--brand), var(--accent)); color:#051017; border:none }
 
-    /* ===== Premium Hero Figure (small, software/apps themed) ===== */
+    /* ===== Premium Hero Figure (visible, small) ===== */
     .hero-figure-wrap{ position:relative; max-width:300px; margin:0 auto }
-    .hero-figure{ position:relative; aspect-ratio:10/16; border-radius:28px; overflow:hidden; pointer-events:none; isolation:isolate }
-    .device{ position:relative; width:100%; height:100%; border-radius:28px; background:var(--bg-2); }
-    /* rotating halo border */
-    .device::before{
-      content:""; position:absolute; inset:0; padding:1px; border-radius:28px;
-      background:conic-gradient(from 0deg, var(--brand), var(--accent), var(--brand));
-      -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-      -webkit-mask-composite:xor; mask-composite:exclude;
-      animation:borderSpin 20s linear infinite;
-      opacity:.95;
+    .hero-figure{ position:relative; aspect-ratio:10/16; border-radius:28px; overflow:hidden; isolation:isolate }
+    .device{
+      position:relative; width:100%; height:100%; border-radius:28px; background:var(--bg-2);
+      box-shadow:inset 0 0 0 1px rgba(255,255,255,.06), 0 10px 40px rgba(0,0,0,.35);
     }
-    /* inner subtle glow */
+    /* rotating gradient halo (border) */
+    .device::before{
+      content:""; position:absolute; inset:-1px; border-radius:28px;
+      background:conic-gradient(from 0deg, var(--brand), var(--accent), var(--brand));
+      filter:saturate(130%); opacity:.85; animation:spin 18s linear infinite;
+      mask:linear-gradient(#000 0 0) subtract, radial-gradient(closest-side, transparent 95%, #000 96%);
+      -webkit-mask:linear-gradient(#000 0 0) subtract, radial-gradient(closest-side, transparent 95%, #000 96%);
+      mix-blend-mode:screen; pointer-events:none;
+    }
+    /* inner animated glow */
     .device::after{
-      content:""; position:absolute; inset:2px; border-radius:27px;
+      content:""; position:absolute; inset:2px; border-radius:26px;
       background:
-        radial-gradient(520px 320px at 80% 0%, rgba(121,230,255,.12), transparent 60%),
-        linear-gradient(160deg, rgba(255,255,255,.06), rgba(255,255,255,.02)),
+        radial-gradient(520px 320px at 80% 0%, rgba(121,230,255,.14), transparent 60%),
+        linear-gradient(160deg, rgba(255,255,255,.05), rgba(255,255,255,.02)),
         conic-gradient(from 0deg, rgba(0,200,215,.10), rgba(40,60,80,.18), rgba(0,200,215,.10));
-      animation:innerShift 26s linear infinite;
+      animation:spin 26s linear infinite reverse;
     }
     .notch{ position:absolute; top:8px; left:50%; transform:translateX(-50%); width:28%; height:10px; border-radius:0 0 10px 10px; background:rgba(0,0,0,.5); border:1px solid rgba(255,255,255,.06) }
-    .badge-in{ position:absolute; left:12px; bottom:12px; padding:6px 10px; border-radius:999px; font-weight:700; font-size:12px; color:#051017;
-      background:linear-gradient(135deg, var(--brand), var(--accent)); box-shadow:0 8px 22px rgba(0,0,0,.28) }
+    .badge-in{ position:absolute; left:12px; bottom:12px; padding:6px 10px; border-radius:999px; font-weight:700; font-size:12px; color:#051017; background:linear-gradient(135deg, var(--brand), var(--accent)); box-shadow:0 8px 22px rgba(0,0,0,.28) }
 
-    /* app tiles */
+    /* tiny “app tiles” */
     .scene{ position:absolute; inset:0; display:grid; place-items:center; }
     .tile{
-      position:absolute; width:84px; height:84px; border-radius:16px;
-      background:linear-gradient(135deg, rgba(121,230,255,.18), rgba(0,200,215,.16));
+      position:absolute; width:72px; height:72px; border-radius:16px;
+      background:linear-gradient(135deg, rgba(121,230,255,.18), rgba(0,200,215,.14));
       border:1px solid rgba(255,255,255,.12);
       box-shadow:0 10px 30px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.06);
       backdrop-filter:blur(8px);
@@ -110,16 +112,15 @@
       transform:translateX(-120%); animation:shimmer 5.5s ease-in-out infinite;
       mix-blend-mode:screen;
     }
-    .tile.t1{ transform:translate(-110px, -20px) rotate(-6deg); animation-delay:.0s }
-    .tile.t2{ transform:translate(90px, 10px) rotate(8deg);    animation-delay:.8s }
-    .tile.t3{ transform:translate(-10px, 110px) rotate(2deg);  animation-delay:1.6s }
+    .t1{ --tx:-96px; --ty:-18px; --rot:-6deg; }
+    .t2{ --tx:86px;  --ty:  8px; --rot: 8deg; }
+    .t3{ --tx:-10px; --ty:100px; --rot: 2deg; }
 
-    @keyframes borderSpin { to{ transform:rotate(360deg) } }
-    @keyframes innerShift { to{ transform:rotate(360deg) } }
+    @keyframes spin { to{ transform:rotate(360deg) } }
     @keyframes shimmer { 0%{ transform:translateX(-120%) } 50%{ transform:translateX(20%) } 100%{ transform:translateX(120%) } }
     @keyframes float {
-      0%,100%{ transform:translate(var(--tx,0), var(--ty,0)) rotate(var(--rot,0deg)); }
-      50%{ transform:translate(calc(var(--tx,0) + 0px), calc(var(--ty,0) - 10px)) rotate(calc(var(--rot,0deg) + 2deg)); }
+      0%,100%{ transform:translate(var(--tx), var(--ty)) rotate(var(--rot)); }
+      50%{ transform:translate(calc(var(--tx) + 0px), calc(var(--ty) - 10px)) rotate(calc(var(--rot) + 2deg)); }
     }
 
     section{ padding:72px 0; border-top:1px solid var(--line) }
@@ -130,8 +131,9 @@
     .card h3{ margin:10px 0 6px }
     .chip{ font-size:12px; color:var(--muted) }
 
-    /* smaller single app card */
-    .apps-grid{ grid-template-columns:1fr; max-width:340px; margin:0 auto }
+    /* smaller single app card – left aligned */
+    .apps-grid{ grid-template-columns:1fr; max-width:340px; margin:0; justify-items:start }
+    .card.app{ width:260px }          /* overall card width */
     .shot{ border-radius:12px; background-size:cover; background-position:center; }
     .shot.square{ aspect-ratio:1/1; height:auto; }
 
@@ -149,7 +151,7 @@
     @media (max-width: 960px){
       .hero-grid{ grid-template-columns:1fr }
       h1{ font-size:40px }
-      .hero-figure-wrap{ max-width:280px }
+      .hero-figure-wrap{ max-width:260px }
     }
     @media (prefers-reduced-motion: reduce){
       *{ animation:none !important; transition:none !important }
@@ -190,9 +192,9 @@
           <div class="device">
             <span class="notch"></span>
             <div class="scene">
-              <div class="tile t1" style="--tx:-110px; --ty:-20px; --rot:-6deg;"></div>
-              <div class="tile t2" style="--tx:90px; --ty:10px; --rot:8deg;"></div>
-              <div class="tile t3" style="--tx:-10px; --ty:110px; --rot:2deg;"></div>
+              <div class="tile t1"></div>
+              <div class="tile t2"></div>
+              <div class="tile t3"></div>
             </div>
             <span class="badge-in">Premium Apps</span>
           </div>
@@ -207,7 +209,7 @@
       <p class="lead reveal" style="margin-bottom:18px">A curated, privacy-first toolkit — starting with Submia.</p>
 
       <div class="grid apps-grid">
-        <article class="card reveal">
+        <article class="card app reveal">
           <div class="shot square" style="background-image:
             linear-gradient(135deg, rgba(121,230,255,.12), rgba(103,228,179,.10)),
             url('Submialogoclear.png');"></div>
