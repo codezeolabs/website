@@ -2,12 +2,20 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>CodeZeo - Smart & Premium iOS Apps</title>
-  <meta name="description" content="CodeZeo builds premium, privacy-first iOS apps, the apps that bring real value to the daily lives of our customers." />
+  <meta name="description" content="CodeZeo builds premium, privacy-first iOS apps that bring real value to everyday life." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <meta name="theme-color" content="#0a0d14" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <!-- Social -->
+  <meta property="og:title" content="CodeZeo — Premium iOS Apps" />
+  <meta property="og:description" content="Clarity, performance, privacy. No clutter, no dark patterns." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="/og-codezeo.png" />
+  <meta name="color-scheme" content="light dark" />
   <style>
     :root{
       --bg:#0a0d14;
@@ -15,15 +23,15 @@
       --ink:#eaf0f8;
       --muted:#9aa6bd;
       --line:rgba(255,255,255,.08);
-      --brand:#00C8D7;
-      --brand-2:#283C50;
+      --brand:#00C8D7;   /* turquoise */
+      --brand-2:#283C50; /* night blue */
       --accent:#79e6ff;
       --radius:16px;
       --shadow:0 10px 40px rgba(0,0,0,.35);
       --blur:14px;
     }
     @media (prefers-color-scheme: light){
-      :root{ --bg:#f8fafc; --surface:#ffffff; --ink:#0b1324; --muted:#4b5a74; --line:rgba(0,0,0,.08) }
+      :root{ --bg:#f7fafc; --surface:#ffffff; --ink:#0b1324; --muted:#4b5a74; --line:rgba(0,0,0,.08) }
       .glass{ background:rgba(255,255,255,.6)!important; }
     }
 
@@ -39,109 +47,67 @@
     img{ display:block; max-width:100%; height:auto }
     .container{ max-width:1100px; margin:0 auto; padding:0 20px }
 
-    /* ===== Utility ===== */
+    /* ===== Utilities ===== */
+    .visually-hidden{ position:absolute!important; height:1px; width:1px; overflow:hidden; clip:rect(1px,1px,1px,1px); white-space:nowrap }
     .glass{
       background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
       border:1px solid var(--line); border-radius:var(--radius); backdrop-filter:blur(var(--blur)); -webkit-backdrop-filter:blur(var(--blur));
       box-shadow:var(--shadow);
     }
-    .text-grad{
-      background:linear-gradient(135deg, var(--brand), var(--accent));
-      -webkit-background-clip:text; background-clip:text; color:transparent;
-    }
+    .text-grad{ background:linear-gradient(135deg, var(--brand), var(--accent)); -webkit-background-clip:text; background-clip:text; color:transparent; }
 
     /* ===== NAV ===== */
     nav{ position:sticky; top:0; z-index:50; border-bottom:1px solid var(--line);
-         background:rgba(10,13,20,.55); backdrop-filter:blur(10px) saturate(130%) }
+         background:rgba(10,13,20,.55); backdrop-filter:blur(10px) saturate(130%); transition:background .3s ease, border-color .3s ease }
     .nav-inner{ display:flex; align-items:center; justify-content:space-between; height:66px }
     .brand{ display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:.02em }
-    .logo-dot{ width:12px; height:12px; border-radius:50%; background:linear-gradient(135deg, var(--brand), var(--accent));
-               box-shadow:0 0 24px rgba(121,230,255,.65) }
+    .logo-dot{ width:12px; height:12px; border-radius:50%; background:linear-gradient(135deg, var(--brand), var(--accent)); box-shadow:0 0 24px rgba(121,230,255,.65) }
     .nav-links{ display:flex; gap:14px }
     .nav-links a{ padding:8px 12px; border-radius:12px; border:1px solid transparent; transition:all .25s ease }
     .nav-links a:hover{ border-color:var(--line); background:rgba(255,255,255,.04) }
     .nav-links a.active{ border-color:var(--line); background:rgba(255,255,255,.06) }
     .cta{ background:linear-gradient(135deg, var(--brand), var(--accent)); color:#051017; font-weight:800; border-radius:12px; padding:10px 14px }
+    .scrolled{ background:rgba(10,13,20,.82) }
 
     /* ===== HERO ===== */
     header.hero{ padding:96px 0 64px; position:relative; overflow:hidden; }
-    /* subtle aurora bg (çok hafif) */
     .hero::before{
       content:""; position:absolute; inset:-20% -10% auto -10%; height:70%;
       background:
         radial-gradient(60% 60% at 20% 30%, rgba(0,200,215,.08), transparent 60%),
         radial-gradient(60% 60% at 80% 0%, rgba(40,60,80,.14), transparent 60%);
-      filter:blur(26px) saturate(120%); pointer-events:none;
-      animation:aurora 22s ease-in-out infinite;
+      filter:blur(26px) saturate(120%); pointer-events:none; animation:aurora 22s ease-in-out infinite;
     }
-    @keyframes aurora{
-      0%,100%{ transform:translateY(0) scale(1) }
-      50%{ transform:translateY(-3%) scale(1.02) }
-    }
+    @keyframes aurora{ 0%,100%{ transform:translateY(0) scale(1) } 50%{ transform:translateY(-3%) scale(1.02) } }
 
     .hero-grid{ display:grid; grid-template-columns:1.2fr .8fr; gap:38px; align-items:center }
     .kicker{ color:var(--muted); letter-spacing:.14em; text-transform:uppercase; font-size:12px; font-weight:700 }
     h1{ font-size:52px; line-height:1.06; margin:.5rem 0 .6rem; font-weight:900 }
     .lead{ color:var(--muted); font-size:18px; max-width:52ch }
     .buttons{ display:flex; gap:12px; margin-top:24px }
+
+    /* Animated gradient button */
+    @property --h { syntax: '<number>'; inherits: false; initial-value: 0; }
     .btn{ padding:12px 16px; border-radius:12px; border:1px solid var(--line); background:rgba(255,255,255,.04); font-weight:700; transition:transform .2s ease, box-shadow .2s ease }
     .btn:hover{ transform:translateY(-2px); box-shadow:0 10px 30px rgba(0,0,0,.25) }
-    .btn.primary{ background:linear-gradient(135deg, var(--brand), var(--accent)); color:#051017; border:none }
+    .btn.primary{ color:#051017; border:none; background: conic-gradient(from calc(var(--h)*1deg), var(--brand), var(--accent), var(--brand)); animation: spinHue 8s linear infinite }
+    @keyframes spinHue { to { --h: 360 } }
 
-    /* ===== BACKGROUNDLESS CODING FIGURE (RIGHT) ===== */
-    .hero-figure-code{
-      position:relative; width:100%; max-width:420px; margin:0 auto;
-      /* hiç arkaplan yok, kutu yok */
-      isolation:isolate; transition:transform .3s ease;
-    }
-    .code-canvas{
-      position:relative; width:100%; aspect-ratio:1/1; /* kare alan */
-    }
-    /* SVG çizgiler */
-    .code-svg{
-      position:absolute; inset:0; display:block;
-      filter:saturate(115%);
-    }
-    /* orbit eden token'lar */
+    /* ===== BACKGROUNDLESS CODE FIGURE ===== */
+    .hero-figure-code{ position:relative; width:100%; max-width:420px; margin:0 auto; isolation:isolate; transition:transform .3s ease; }
+    .code-canvas{ position:relative; width:100%; aspect-ratio:1/1; }
+    .code-svg{ position:absolute; inset:0; display:block; filter:saturate(115%); }
     .tokens{ position:absolute; inset:0; pointer-events:none; }
-    .tok{
-      position:absolute; left:50%; top:50%; transform-origin:0 0;
-      font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
-      font-size:12px; font-weight:700; letter-spacing:.02em;
-      color:var(--ink);
-      padding:6px 10px; border-radius:999px;
-      border:1px solid rgba(255,255,255,.28);
-      background:transparent; /* arkaplansız chip */
-      backdrop-filter:none; box-shadow:none; white-space:nowrap; opacity:.85;
-    }
+    .tok{ position:absolute; left:50%; top:50%; transform-origin:0 0; font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace; font-size:12px; font-weight:700; letter-spacing:.02em; color:var(--ink); padding:6px 10px; border-radius:999px; border:1px solid rgba(255,255,255,.28); background:transparent; backdrop-filter:none; box-shadow:none; white-space:nowrap; opacity:.85; }
     .t1{ transform:rotate(0deg) translateX(125px) rotate(0deg); animation:orbit1 12s linear infinite; }
     .t2{ transform:rotate(120deg) translateX(125px) rotate(-120deg); animation:orbit2 14s linear infinite reverse; }
     .t3{ transform:rotate(240deg) translateX(125px) rotate(-240deg); animation:orbit3 16s linear infinite; }
-
-    /* hafif çizgisel halkalar (arka plansız) */
-    .ring{
-      fill:none; stroke:url(#grad); stroke-opacity:.55; stroke-width:1;
-      stroke-dasharray:2 6;
-      animation:spin 28s linear infinite;
-    }
+    .ring{ fill:none; stroke:url(#grad); stroke-opacity:.55; stroke-width:1; stroke-dasharray:2 6; animation:spin 28s linear infinite; }
     .ring.r2{ stroke-opacity:.38; animation-duration:36s }
     .ring.r3{ stroke-opacity:.26; animation-duration:44s }
-
-    /* akış çizgileri */
-    .flow{
-      fill:none; stroke:url(#grad); stroke-width:1.6; stroke-linecap:round;
-      stroke-dasharray:10 14; opacity:.9;
-      animation:dash 9s linear infinite;
-    }
-    .flow.softer{
-      stroke-opacity:.6; stroke-width:1.2; stroke-dasharray:6 12; animation-duration:11s;
-    }
-
-    /* hafif hover eğimi */
-    @media (hover:hover){
-      .hero-figure-code:hover{ transform:perspective(900px) rotateX(3deg) rotateY(-5deg) }
-    }
-
+    .flow{ fill:none; stroke:url(#grad); stroke-width:1.6; stroke-linecap:round; stroke-dasharray:10 14; opacity:.9; animation:dash 9s linear infinite; }
+    .flow.softer{ stroke-opacity:.6; stroke-width:1.2; stroke-dasharray:6 12; animation-duration:11s; }
+    @media (hover:hover){ .hero-figure-code:hover{ transform:perspective(900px) rotateX(3deg) rotateY(-5deg) } }
     @keyframes dash{ to{ stroke-dashoffset:-240 } }
     @keyframes spin{ to{ transform:rotate(360deg) } }
     @keyframes orbit1{ to{ transform:rotate(360deg) translateX(125px) rotate(-360deg) } }
@@ -159,12 +125,7 @@
 
     /* ===== Apps: Pro card ===== */
     .apps-grid{ grid-template-columns:1fr; max-width:360px; margin:0; justify-items:start }
-    .app-card{
-      width:100%; max-width:320px; display:flex; flex-direction:column; gap:12px;
-      padding:18px; border-radius:16px; border:1px solid var(--line);
-      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
-      box-shadow:var(--shadow); transition:transform .2s ease, box-shadow .2s ease;
-    }
+    .app-card{ width:100%; max-width:320px; display:flex; flex-direction:column; gap:12px; padding:18px; border-radius:16px; border:1px solid var(--line); background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02)); box-shadow:var(--shadow); transition:transform .2s ease, box-shadow .2s ease; }
     .app-card:hover{ transform:translateY(-4px); box-shadow:0 20px 40px rgba(0,0,0,.35) }
     .shot{ border-radius:12px; background-size:cover; background-position:center; aspect-ratio:1/1 }
     .app-title{ font-size:18px; font-weight:800; line-height:1.2; margin:2px 0 0 }
@@ -172,14 +133,8 @@
     .stars{ display:inline-flex; gap:2px; }
     .stars svg{ width:14px; height:14px; }
 
-    /* App Store button – perfectly aligned */
-    .store-btn{
-      display:inline-flex; align-items:center; gap:10px;
-      padding:10px 14px; border-radius:12px; border:1px solid var(--line);
-      background:rgba(255,255,255,.06); font-weight:700;
-      transition:transform .2s ease, box-shadow .2s ease, background .2s ease;
-      will-change:transform;
-    }
+    /* App Store button – aligned & compact */
+    .store-btn{ display:inline-flex; align-items:center; gap:10px; padding:10px 14px; border-radius:12px; border:1px solid var(--line); background:rgba(255,255,255,.06); font-weight:700; transition:transform .2s ease, box-shadow .2s ease, background .2s ease; will-change:transform; margin-top:6px }
     .store-btn:hover{ transform:translateY(-2px); background:rgba(255,255,255,.09); box-shadow:0 10px 28px rgba(0,0,0,.25) }
     .store-icon{ width:22px; height:22px; flex:0 0 22px; display:block }
     .store-text{ line-height:1; display:flex; flex-direction:column }
@@ -210,21 +165,19 @@
       .about{ grid-template-columns:1fr }
       .about .pillars{ grid-template-columns:1fr }
     }
-    @media (prefers-reduced-motion: reduce){
-      *{ animation:none !important; transition:none !important }
-      html{ scroll-behavior:auto }
-    }
+    @media (prefers-reduced-motion: reduce){ *{ animation:none !important; transition:none !important } html{ scroll-behavior:auto } }
   </style>
 </head>
 <body>
+  <a href="#home" class="visually-hidden">Skip to content</a>
   <!-- NAV -->
-  <nav>
+  <nav id="site-nav" aria-label="Primary">
     <div class="container nav-inner">
       <div class="brand">
         <span class="logo-dot" aria-hidden="true"></span>
-        <span class="badge">CodeZeo</span>
+        <span class="badge" aria-label="CodeZeo">CodeZeo</span>
       </div>
-      <div class="nav-links">
+      <div class="nav-links" role="navigation">
         <a class="active" href="#home">Home</a>
         <a href="#apps">Apps</a>
         <a href="#about">About Us</a>
@@ -287,35 +240,34 @@
   </header>
 
   <!-- APPS -->
-  <section id="apps">
+  <section id="apps" aria-labelledby="apps-title">
     <div class="container">
-      <h2>Apps</h2>
+      <h2 id="apps-title">Apps</h2>
       <p class="lead" style="margin-bottom:18px">We're just getting started.</p>
 
       <div class="grid apps-grid">
         <!-- Submia card -->
-        <article class="app-card">
+        <article class="app-card" aria-labelledby="submia-title">
           <div class="shot" style="background-image:
             linear-gradient(135deg, rgba(121,230,255,.12), rgba(103,228,179,.10)),
-            url('Submialogoclear.png');">
-          </div>
+            url('Submialogoclear.png');"></div>
 
-          <div class="app-meta">
+          <div class="app-meta" aria-label="Meta">
             <span class="chip">Finance • iOS</span>
             <span aria-hidden="true">•</span>
             <span class="stars" aria-label="Rating 5 out of 5">
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/></svg>
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/></svg>
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/></svg>
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/></svg>
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/></svg>
             </span>
           </div>
 
-          <h3 class="app-title">Submia — Smart Subscription Tracker &amp; Reminder</h3>
+          <h3 class="app-title" id="submia-title">Submia — Smart Subscription Tracker &amp; Reminder</h3>
 
           <!-- app store button -->
-          <a class="store-btn" href="#" aria-label="Get Submia on the App Store">
+          <a class="store-btn" href="#" aria-label="Get Submia on the App Store" rel="noopener">
             <svg class="store-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" fill="white" aria-hidden="true">
               <path d="M318.7 268.7c.5 55.3 48.3 73.7 48.8 73.9c-.4 1.4-7.6 26.1-25.1 51.7c-15.1 22.2-30.9 44.3-55.8 44.7c-24.3.5-32.2-14.4-60-14.4c-27.8 0-36.4 14-59.4 14.9c-23.8.9-41.9-24-57-46.1c-31.1-45.1-55-127.6-23-183.4c15.9-27.7 44.3-45.3 75.1-45.8c23.5-.5 45.7 15.8 60 15.8c14.3 0 41.2-19.5 69.6-16.6c11.8.5 45.1 4.8 66.3 36.2c-1.7 1.1-39.7 23.3-39.5 69.1zM250.2 81.3c12.9-15.6 21.8-37.3 19.4-58.9c-18.8.8-41.2 12.5-54.6 28.1c-12 14.1-22.5 36.7-19.7 58c21.1 1.6 42.6-10.7 54.9-27.2z"/>
             </svg>
@@ -330,25 +282,25 @@
   </section>
 
   <!-- ABOUT -->
-  <section id="about">
+  <section id="about" aria-labelledby="about-title">
     <div class="container about">
       <div>
-        <h2>About Us</h2>
+        <h2 id="about-title">About Us</h2>
         <p class="lead">
           CodeZeo is a London-based studio crafting innovative, reliable, and privacy-first applications for a global audience.
           Our mission is simple: build smart software that empowers people, gets out of the way, and respects their data.
         </p>
 
-        <div class="pillars">
-          <div class="p">
+        <div class="pillars" role="list">
+          <div class="p" role="listitem">
             <strong>Clarity</strong>
             <p class="chip">Minimal UI, maximum signal.</p>
           </div>
-          <div class="p">
+          <div class="p" role="listitem">
             <strong>Performance</strong>
             <p class="chip">Swift-first, battery-light.</p>
           </div>
-          <div class="p">
+          <div class="p" role="listitem">
             <strong>Privacy</strong>
             <p class="chip">No dark patterns. No tracking creepiness.</p>
           </div>
@@ -361,32 +313,32 @@
           <li><strong>Support:</strong> Reach us any time at <a href="mailto:info@codezeo.com">info@codezeo.com</a>.</li>
         </ul>
 
-        <div class="timeline">
+        <div class="timeline" aria-label="Roadmap">
           <div class="trow">
-            <span class="dot"></span>
+            <span class="dot" aria-hidden="true"></span>
             <div class="txt"><strong>2025</strong> — Submia enters production with a premium, minimal UX.</div>
           </div>
           <div class="trow">
-            <span class="dot"></span>
+            <span class="dot" aria-hidden="true"></span>
             <div class="txt">Next — Two new apps in finance & productivity, sharing the same privacy-first ethos.</div>
           </div>
         </div>
       </div>
 
-      <div class="glass" style="padding:18px; border-radius:16px;">
+      <aside class="glass" style="padding:18px; border-radius:16px;" aria-label="Tech & Compliance">
         <h3 style="margin:4px 0 8px">Tech Stack</h3>
         <ul class="list">
           <li>SwiftUI • MVVM • StoreKit • RevenueCat</li>
           <li>Core Data / SQLite • CloudKit (where it makes sense)</li>
           <li>Fastlane • GitHub Actions • App Store Connect</li>
         </ul>
-        <h3 style="margin:10px 0 8px">Trust & Compliance</h3>
+        <h3 style="margin:10px 0 8px">Trust &amp; Compliance</h3>
         <ul class="list">
           <li>GDPR compliant, data minimization by design</li>
           <li>Opt-in only analytics, no fingerprinting</li>
           <li>Clear, human-readable policies</li>
         </ul>
-      </div>
+      </aside>
     </div>
   </section>
 
@@ -399,9 +351,10 @@
   </footer>
 
   <script>
+    // Year
     const yearEl = document.getElementById('year'); if(yearEl){ yearEl.textContent = new Date().getFullYear(); }
 
-    // nav active
+    // nav active by intersection
     const links = document.querySelectorAll('.nav-links a');
     const sections = [...document.querySelectorAll('header, section')];
     const navObserver = new IntersectionObserver((entries)=>{
@@ -415,6 +368,12 @@
       })
     },{rootMargin:'-45% 0px -50% 0px', threshold:.01});
     sections.forEach(s=>navObserver.observe(s));
+
+    // nav background on scroll
+    const nav = document.getElementById('site-nav');
+    const toggleNav = () => nav.classList.toggle('scrolled', window.scrollY > 4);
+    toggleNav();
+    window.addEventListener('scroll', toggleNav, { passive: true });
   </script>
 </body>
 </html>
