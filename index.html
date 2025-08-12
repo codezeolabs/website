@@ -16,8 +16,9 @@
       --ink:#eaf0f8;
       --muted:#9aa6bd;
       --line:rgba(255,255,255,.08);
-      --brand:#67e4b3;
-      --brand-2:#79e6ff;
+      --brand:#00C8D7;      /* turquoise */
+      --brand-2:#283C50;    /* night blue */
+      --accent:#79e6ff;     /* soft cyan glow */
       --radius:16px;
       --shadow:0 10px 40px rgba(0,0,0,.35);
       --blur:14px;
@@ -32,9 +33,10 @@
     html,body{
       margin:0; color:var(--ink);
       font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-      background: radial-gradient(1100px 700px at 80% -10%, rgba(121,230,255,.15), transparent 60%),
-                  radial-gradient(1000px 700px at -10% -20%, rgba(103,228,179,.14), transparent 60%),
-                  var(--bg);
+      background:
+        radial-gradient(1100px 700px at 80% -10%, rgba(121,230,255,.15), transparent 60%),
+        radial-gradient(1000px 700px at -10% -20%, rgba(103,228,179,.14), transparent 60%),
+        var(--bg);
       -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
       scroll-behavior:smooth;
     }
@@ -52,15 +54,14 @@
     nav{ position:sticky; top:0; z-index:50; border-bottom:1px solid var(--line);
          background:rgba(10,13,20,.55); backdrop-filter:blur(10px) saturate(130%) }
     .nav-inner{ display:flex; align-items:center; justify-content:space-between; height:66px }
-    .brand{ display:flex; align-items:center; gap:10px }
-    .logo-dot{ width:10px; height:10px; border-radius:50%; background:linear-gradient(135deg, var(--brand), var(--brand-2));
+    .brand{ display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:.02em }
+    .logo-dot{ width:12px; height:12px; border-radius:50%; background:linear-gradient(135deg, var(--brand), var(--accent));
                box-shadow:0 0 24px rgba(121,230,255,.65) }
-    .badge{ font-weight:800; letter-spacing:.02em }
     .nav-links{ display:flex; gap:14px }
     .nav-links a{ padding:8px 12px; border-radius:12px; border:1px solid transparent; transition:all .25s ease }
     .nav-links a:hover{ border-color:var(--line); background:rgba(255,255,255,.04) }
     .nav-links a.active{ border-color:var(--line); background:rgba(255,255,255,.06) }
-    .cta{ background:linear-gradient(135deg, var(--brand), var(--brand-2)); color:#051017; font-weight:800; border-radius:12px; padding:10px 14px }
+    .cta{ background:linear-gradient(135deg, var(--brand), var(--accent)); color:#051017; font-weight:800; border-radius:12px; padding:10px 14px }
 
     /* ====== HERO ====== */
     header.hero{ padding:96px 0 72px; position:relative; overflow:hidden }
@@ -71,24 +72,45 @@
     .buttons{ display:flex; gap:12px; margin-top:24px }
     .btn{ padding:12px 16px; border-radius:12px; border:1px solid var(--line); background:rgba(255,255,255,.04); font-weight:700; transition:transform .2s ease }
     .btn:hover{ transform:translateY(-2px) }
-    .btn.primary{ background:linear-gradient(135deg, var(--brand), var(--brand-2)); color:#051017; border:none }
+    .btn.primary{ background:linear-gradient(135deg, var(--brand), var(--accent)); color:#051017; border:none }
     .trust{ display:flex; gap:14px; align-items:center; flex-wrap:wrap; margin-top:26px; color:var(--muted); font-size:14px }
     .pill{ padding:6px 10px; border:1px solid var(--line); border-radius:999px }
 
-    /* phone mock / parallax */
-    .hero-card{ position:relative; overflow:hidden }
-    .mock{
-      aspect-ratio:16/10; border-radius:var(--radius);
+    /* ====== PREMIUM HERO FIGURE ====== */
+    .hero-figure-wrap{ position:relative }
+    .hero-figure{ position:relative; aspect-ratio:10/16; border-radius:28px; overflow:hidden; pointer-events:none; isolation:isolate }
+    /* Device body */
+    .device{ position:relative; width:100%; height:100%; border-radius:28px; border:1px solid rgba(255,255,255,.12);
       background:
-        radial-gradient(600px 380px at 70% 35%, rgba(121,230,255,.18), transparent 60%),
-        linear-gradient(135deg, rgba(121,230,255,.12), rgba(103,228,179,.12)),
-        url('https://images.unsplash.com/photo-1591054332837-75b1ae8c1c0c?q=80&w=1400&auto=format&fit=crop');
-      background-size:cover; background-position:center;
-      transform:translateZ(0);
-    }
-    /* subtle float animation */
-    @keyframes floaty { from{ transform:translateY(0) } 50%{ transform:translateY(-8px) } to{ transform:translateY(0) } }
-    .mock{ animation:floaty 8s ease-in-out infinite }
+        radial-gradient(800px 500px at 80% 0%, rgba(121,230,255,.18), transparent 60%),
+        linear-gradient(135deg, rgba(121,230,255,.10), rgba(103,228,179,.10)), var(--bg-2); }
+    /* Animated inner glow */
+    .device::before{ content:""; position:absolute; inset:-20%;
+      background:conic-gradient(from 0deg, var(--brand), var(--accent), var(--brand));
+      filter:blur(40px) saturate(130%); opacity:.25; animation:spin 18s linear infinite; }
+    /* Shimmer */
+    .device::after{ content:""; position:absolute; inset:0; background:linear-gradient(120deg, transparent 35%, rgba(255,255,255,.18) 50%, transparent 65%);
+      transform:translateX(-120%); animation:shimmer 6s ease-in-out infinite; mix-blend-mode:screen; }
+
+    /* Notch */
+    .notch{ position:absolute; top:8px; left:50%; transform:translateX(-50%); width:32%; height:10px; border-radius:0 0 10px 10px; background:rgba(0,0,0,.5); border:1px solid rgba(255,255,255,.08) }
+
+    /* Orbiting rings */
+    .rings{ position:absolute; inset:-18%; border-radius:40px; border:1px dashed rgba(121,230,255,.15); animation:spin 28s linear infinite; }
+    .rings::before, .rings::after{ content:""; position:absolute; inset:14%; border-radius:60px; border:1px dashed rgba(103,228,179,.16) }
+    .rings::after{ inset:28% }
+
+    /* Floating particles */
+    .particle{ position:absolute; width:8px; height:8px; border-radius:50%; background:radial-gradient(circle at 30% 30%, #fff, rgba(255,255,255,.2) 60%, transparent 70%);
+      box-shadow:0 0 22px rgba(121,230,255,.55); animation:floatY 7s ease-in-out infinite; }
+
+    /* Label badge inside device */
+    .badge-in{ position:absolute; left:14px; bottom:14px; padding:6px 10px; border-radius:999px; font-weight:700; font-size:12px; color:#051017;
+      background:linear-gradient(135deg, var(--brand), var(--accent)); box-shadow:0 8px 22px rgba(0,0,0,.28) }
+
+    @keyframes spin { to{ transform:rotate(360deg) } }
+    @keyframes shimmer { 0%{ transform:translateX(-120%) } 50%{ transform:translateX(40%) } 100%{ transform:translateX(120%) } }
+    @keyframes floatY { 0%,100%{ transform:translateY(0) } 50%{ transform:translateY(-10px) } }
 
     /* ====== SECTIONS ====== */
     section{ padding:72px 0; border-top:1px solid var(--line) }
@@ -117,6 +139,7 @@
     @media (max-width: 960px){
       .hero-grid, .about, .grid{ grid-template-columns:1fr }
       h1{ font-size:40px }
+      .hero-figure{ aspect-ratio:3/4 }
     }
 
     /* respect reduced motion */
@@ -135,9 +158,9 @@
         <span class="badge">Codezeo</span>
       </div>
       <div class="nav-links">
-        <a class="active" href="home">Home</a>
-        <a href="apps">Apps</a>
-        <a href="about">About Us</a>
+        <a class="active" href="#home">Home</a>
+        <a href="#apps">Apps</a>
+        <a href="#about">About Us</a>
         <a class="cta" href="mailto:info@codezeo.com">Contact</a>
       </div>
     </div>
@@ -149,16 +172,27 @@
       <div class="reveal">
         <div class="kicker">We build awesome apps</div>
         <h1>Premium iOS apps to optimize daily lives.</h1>
-        <p class="lead">Clarity, performance and privacy. No clutter, no dark patterns. Just apps that respects your time.</p>
+        <p class="lead">Clarity, performance and privacy. No clutter, no dark patterns. Just apps that respect your time.</p>
         <div class="buttons">
-          <a class="btn primary" href="apps">See Apps</a>
-          <a class="btn" href="about">About Codezeo</a>
+          <a class="btn primary" href="#apps">See Apps</a>
+          <a class="btn" href="#about">About Codezeo</a>
         </div>
-
       </div>
 
-      <div class="glass hero-card reveal" aria-hidden="true">
-        <div class="mock" role="img" aria-label="app previews"></div>
+      <!-- PREMIUM ANIMATED FIGURE (device-inspired, brand gradient, orbit, shimmer) -->
+      <div class="glass hero-figure-wrap reveal" aria-hidden="true">
+        <div class="hero-figure" id="parallaxTarget">
+          <div class="device">
+            <span class="notch"></span>
+            <span class="badge-in">Codezeo • Privacy‑First</span>
+            <span class="rings"></span>
+            <!-- particles -->
+            <span class="particle" style="left:14%; top:16%; animation-delay:.0s"></span>
+            <span class="particle" style="left:76%; top:22%; width:6px; height:6px; animation-delay:1.3s"></span>
+            <span class="particle" style="left:18%; top:72%; width:10px; height:10px; animation-delay:.6s"></span>
+            <span class="particle" style="left:68%; top:70%; animation-delay:2.1s"></span>
+          </div>
+        </div>
       </div>
     </div>
   </header>
@@ -175,7 +209,7 @@
           <h3>FocusFlow</h3>
           <div class="chip">Productivity • iOS</div>
           <p>Lightweight focus sessions with clean stats & iCloud sync.</p>
-          <p><a class="btn" href="https://apps.apple.com/">App Store</a></p>
+          <p><a class="btn" href="https://apps.apple.com/" target="_blank" rel="noopener">App Store</a></p>
         </article>
 
         <article class="card reveal" style="transition-delay:.08s">
@@ -183,7 +217,7 @@
           <h3>QuietHabits</h3>
           <div class="chip">Wellness • iOS</div>
           <p>Build small habits that stick. Gentle reminders, private analytics.</p>
-          <p><a class="btn" href="https://apps.apple.com/">App Store</a></p>
+          <p><a class="btn" href="https://apps.apple.com/" target="_blank" rel="noopener">App Store</a></p>
         </article>
 
         <article class="card reveal" style="transition-delay:.16s">
@@ -191,7 +225,7 @@
           <h3>Snapshot Pro</h3>
           <div class="chip">Utilities • iOS</div>
           <p>Batch screenshots, annotate, and share in one tap.</p>
-          <p><a class="btn" href="https://apps.apple.com/">App Store</a></p>
+          <p><a class="btn" href="https://apps.apple.com/" target="_blank" rel="noopener">App Store</a></p>
         </article>
       </div>
     </div>
@@ -199,31 +233,28 @@
 
   <!-- ABOUT -->
   <section id="about">
-<div class="container about">
-  <div class="reveal">
-    <h2>About Us</h2>
-    <p class="lead">
-      CodeZeo is a London-based technology studio dedicated to crafting innovative, reliable, and privacy-first applications for a global audience. 
-      Our mission is simple: build smart software that empowers people, gets out of their way, and always respects their data.
-    </p>
-    <p>
-      Founded with a passion for clean design and user-centric development, we focus on creating products that are as intuitive as they are powerful. 
-      Every line of code we write is guided by our core principles: simplicity, security, and scalability.
-    </p>
-    <ul class="list">
-      <li><strong>Revenue Model:</strong> Simple and transparent monthly & yearly subscription plans – no hidden fees.</li>
-      <li><strong>Infrastructure:</strong> Powered by the App Store ecosystem, integrated with RevenueCat for seamless subscription management, and privacy-friendly analytics to ensure user trust.</li>
-      <li><strong>Data Privacy:</strong> We never sell or misuse your data. All analytics are anonymized and GDPR-compliant.</li>
-      <li><strong>Support:</strong> Dedicated and responsive support team, contact us anytime at <a href="mailto:info@codezeo.com">info@codezeo.com</a>.</li>
-    </ul>
-    <p>
-      At CodeZeo, we believe the best technology feels effortless. We combine elegant design with powerful performance, ensuring every interaction with our products is smooth, efficient, and enjoyable. 
-      Whether you're an individual, a business, or a creative professional, our goal is to help you achieve more with less friction.
-    </p>
-  </div>
-</div>
-
-
+    <div class="container about">
+      <div class="reveal">
+        <h2>About Us</h2>
+        <p class="lead">
+          CodeZeo is a London-based technology studio dedicated to crafting innovative, reliable, and privacy-first applications for a global audience.
+          Our mission is simple: build smart software that empowers people, gets out of their way, and always respects their data.
+        </p>
+        <p>
+          Founded with a passion for clean design and user-centric development, we focus on creating products that are as intuitive as they are powerful.
+          Every line of code we write is guided by our core principles: simplicity, security, and scalability.
+        </p>
+        <ul class="list">
+          <li><strong>Revenue Model:</strong> Simple and transparent monthly & yearly subscription plans – no hidden fees.</li>
+          <li><strong>Infrastructure:</strong> Powered by the App Store ecosystem, integrated with RevenueCat for seamless subscription management, and privacy-friendly analytics to ensure user trust.</li>
+          <li><strong>Data Privacy:</strong> We never sell or misuse your data. All analytics are anonymized and GDPR-compliant.</li>
+          <li><strong>Support:</strong> Dedicated and responsive support team, contact us anytime at <a href="mailto:info@codezeo.com">info@codezeo.com</a>.</li>
+        </ul>
+        <p>
+          At CodeZeo, we believe the best technology feels effortless. We combine elegant design with powerful performance, ensuring every interaction with our products is smooth, efficient, and enjoyable.
+          Whether you're an individual, a business, or a creative professional, our goal is to help you achieve more with less friction.
+        </p>
+      </div>
     </div>
   </section>
 
@@ -231,14 +262,13 @@
   <footer>
     <div class="container row">
       <div class="legal">© <span id="year"></span> CodeZeo Ltd • All rights reserved</div>
-      <div class="nav-links"><a href="home">Home</a><a href="apps">Apps</a><a href="about">About</a></div>
+      <div class="nav-links"><a href="#home">Home</a><a href="#apps">Apps</a><a href="#about">About</a></div>
     </div>
   </footer>
 
   <script>
-    // dynamic years
+    // dynamic year
     document.getElementById('year').textContent = new Date().getFullYear();
-    document.getElementById('y').textContent = new Date().getFullYear();
 
     // active nav on scroll + reveal animations
     const links = document.querySelectorAll('.nav-links a');
@@ -264,14 +294,14 @@
     },{threshold:.12, rootMargin:'0px 0px -40px 0px'});
     reveal.forEach(el=>revObs.observe(el));
 
-    // subtle parallax for hero mock
-    const mock = document.querySelector('.mock');
+    // subtle parallax for hero figure
+    const target = document.getElementById('parallaxTarget');
     const preferReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if(mock && !preferReduced){
+    if(target && !preferReduced){
       window.addEventListener('mousemove', (e)=>{
         const x = (e.clientX / window.innerWidth - .5) * 8;
         const y = (e.clientY / window.innerHeight - .5) * 8;
-        mock.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+        target.style.transform = `translate3d(${x}px, ${y}px, 0)`;
       });
     }
   </script>
