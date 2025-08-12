@@ -17,6 +17,7 @@
       --brand:#00C8D7;
       --brand-2:#283C50;
       --accent:#79e6ff;
+      --gold:#FFD60A; /* App Store altın tonu */
       --radius:16px;
       --shadow:0 10px 40px rgba(0,0,0,.35);
       --blur:14px;
@@ -31,10 +32,9 @@
       margin:0; color:var(--ink);
       font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
 
-      /* Night blue → turquoise gradient background */
-      background:
-      radial-gradient(1200px 700px at 80% -10%, rgba(0,200,215,0.08), transparent 60%),
-      linear-gradient(180deg, #0a1a2f 0%, #050c15 100%);
+      /* Daha koyu: siyah → night blue */
+      background: linear-gradient(180deg, #04070d 0%, #0a1a2f 100%);
+
       -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
       scroll-behavior:smooth;
     }
@@ -68,12 +68,13 @@
 
     /* ===== HERO ===== */
     header.hero{ padding:96px 0 64px; position:relative; overflow:hidden; }
+    /* çok hafif aurora */
     .hero::before{
       content:""; position:absolute; inset:-20% -10% auto -10%; height:70%;
       background:
-        radial-gradient(60% 60% at 20% 30%, rgba(0,200,215,.08), transparent 60%),
-        radial-gradient(60% 60% at 80% 0%, rgba(40,60,80,.14), transparent 60%);
-      filter:blur(26px) saturate(120%); pointer-events:none;
+        radial-gradient(60% 60% at 20% 30%, rgba(0,200,215,.05), transparent 60%),
+        radial-gradient(60% 60% at 80% 0%, rgba(40,60,80,.08), transparent 60%);
+      filter:blur(24px) saturate(115%); pointer-events:none;
       animation:aurora 22s ease-in-out infinite;
     }
     @keyframes aurora{
@@ -147,19 +148,24 @@
     .stars{ display:inline-flex; gap:2px; }
     .stars svg{ width:14px; height:14px; }
 
-    /* App Store button (logo bigger + line spacing) */
+    /* ===== App Store button (solda logo+metin, sağda altın yıldızlar) ===== */
     .store-btn{
-      display:inline-flex; align-items:center; gap:12px;
+      display:flex; align-items:center; justify-content:space-between;
+      gap:16px; width:100%;
       padding:10px 14px; border-radius:12px; border:1px solid var(--line);
       background:rgba(255,255,255,.06); font-weight:700;
       transition:transform .2s ease, box-shadow .2s ease, background .2s ease;
       will-change:transform;
     }
     .store-btn:hover{ transform:translateY(-2px); background:rgba(255,255,255,.09); box-shadow:0 10px 28px rgba(0,0,0,.25) }
+    .store-left{ display:flex; align-items:center; gap:12px; min-width:0; }
     .store-icon{ width:28px; height:28px; flex:0 0 28px; display:block } /* büyütüldü */
-    .store-text{ line-height:1; display:flex; flex-direction:column; gap:4px } /* satırlar arası boşluk eklendi */
-    .store-small{ font-size:10px; letter-spacing:.08em; text-transform:uppercase; color:#666c7d }
-    .store-big{ font-size:14px; font-weight:800 }
+    .store-text{ line-height:1; display:flex; flex-direction:column; gap:4px }
+    .store-small{ font-size:10px; letter-spacing:.08em; text-transform:uppercase; color:#666c7d; white-space:nowrap }
+    .store-big{ font-size:14px; font-weight:800; white-space:nowrap }
+
+    .store-stars{ display:inline-flex; gap:2px; margin-left:auto; }
+    .store-stars svg{ width:14px; height:14px; fill:var(--gold); }
 
     /* About */
     .about{ display:grid; grid-template-columns:1.1fr .9fr; gap:22px }
@@ -281,15 +287,24 @@
 
           <h3 class="app-title">Submia — Smart Subscription Tracker &amp; Reminder</h3>
 
-          <!-- App Store button (logo bigger + spacing) -->
+          <!-- App Store button: solda logo+metin, sağda altın yıldızlar -->
           <a class="store-btn" href="#" aria-label="Get Submia on the App Store">
-            <!-- Larger Apple icon -->
-            <svg class="store-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" fill="white" aria-hidden="true">
-              <path d="M318.7 268.7c.5 55.3 48.3 73.7 48.8 73.9c-.4 1.4-7.6 26.1-25.1 51.7c-15.1 22.2-30.9 44.3-55.8 44.7c-24.3.5-32.2-14.4-60-14.4c-27.8 0-36.4 14-59.4 14.9c-23.8.9-41.9-24-57-46.1c-31.1-45.1-55-127.6-23-183.4c15.9-27.7 44.3-45.3 75.1-45.8c23.5-.5 45.7 15.8 60 15.8c14.3 0 41.2-19.5 69.6-16.6c11.8.5 45.1 4.8 66.3 36.2c-1.7 1.1-39.7 23.3-39.5 69.1zM250.2 81.3c12.9-15.6 21.8-37.3 19.4-58.9c-18.8.8-41.2 12.5-54.6 28.1c-12 14.1-22.5 36.7-19.7 58c21.1 1.6 42.6-10.7 54.9-27.2z"/>
-            </svg>
-            <span class="store-text">
-              <span class="store-small">Available on the</span>
-              <span class="store-big">App Store</span>
+            <span class="store-left">
+              <svg class="store-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" fill="white" aria-hidden="true">
+                <path d="M318.7 268.7c.5 55.3 48.3 73.7 48.8 73.9c-.4 1.4-7.6 26.1-25.1 51.7c-15.1 22.2-30.9 44.3-55.8 44.7c-24.3.5-32.2-14.4-60-14.4c-27.8 0-36.4 14-59.4 14.9c-23.8.9-41.9-24-57-46.1c-31.1-45.1-55-127.6-23-183.4c15.9-27.7 44.3-45.3 75.1-45.8c23.5-.5 45.7 15.8 60 15.8c14.3 0 41.2-19.5 69.6-16.6c11.8.5 45.1 4.8 66.3 36.2c-1.7 1.1-39.7 23.3-39.5 69.1zM250.2 81.3c12.9-15.6 21.8-37.3 19.4-58.9c-18.8.8-41.2 12.5-54.6 28.1c-12 14.1-22.5 36.7-19.7 58c21.1 1.6 42.6-10.7 54.9-27.2z"/>
+              </svg>
+              <span class="store-text">
+                <span class="store-small">Available on the</span>
+                <span class="store-big">App Store</span>
+              </span>
+            </span>
+
+            <span class="store-stars" aria-label="5 star rating">
+              <svg viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/></svg>
             </span>
           </a>
         </article>
