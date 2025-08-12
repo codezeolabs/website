@@ -65,13 +65,13 @@
 
     /* ===== HERO ===== */
     header.hero{ padding:96px 0 64px; position:relative; overflow:hidden; }
-    /* subtle aurora bg */
+    /* subtle aurora bg (çok hafif) */
     .hero::before{
       content:""; position:absolute; inset:-20% -10% auto -10%; height:70%;
       background:
-        radial-gradient(60% 60% at 20% 30%, rgba(0,200,215,.12), transparent 60%),
-        radial-gradient(60% 60% at 80% 0%, rgba(40,60,80,.18), transparent 60%);
-      filter:blur(28px) saturate(120%); pointer-events:none;
+        radial-gradient(60% 60% at 20% 30%, rgba(0,200,215,.08), transparent 60%),
+        radial-gradient(60% 60% at 80% 0%, rgba(40,60,80,.14), transparent 60%);
+      filter:blur(26px) saturate(120%); pointer-events:none;
       animation:aurora 22s ease-in-out infinite;
     }
     @keyframes aurora{
@@ -88,70 +88,65 @@
     .btn:hover{ transform:translateY(-2px); box-shadow:0 10px 30px rgba(0,0,0,.25) }
     .btn.primary{ background:linear-gradient(135deg, var(--brand), var(--accent)); color:#051017; border:none }
 
-    /* ===== Coding-themed minimal figure (right) ===== */
+    /* ===== BACKGROUNDLESS CODING FIGURE (RIGHT) ===== */
     .hero-figure-code{
-      position:relative; width:100%; max-width:380px; margin:0 auto; isolation:isolate;
-      transition:transform .3s ease;
+      position:relative; width:100%; max-width:420px; margin:0 auto;
+      /* hiç arkaplan yok, kutu yok */
+      isolation:isolate; transition:transform .3s ease;
     }
-    .code-orb{
-      position:relative; aspect-ratio:1/1; border-radius:28px; overflow:hidden;
-      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
-      box-shadow:inset 0 0 0 1px rgba(255,255,255,.06), 0 20px 56px rgba(0,0,0,.42);
+    .code-canvas{
+      position:relative; width:100%; aspect-ratio:1/1; /* kare alan */
     }
-    /* soft rings */
-    .rings{
-      position:absolute; inset:0; pointer-events:none; opacity:.55;
-      background:
-        radial-gradient(closest-side, rgba(121,230,255,.12), transparent 60%) center/100% 100% no-repeat,
-        radial-gradient(closest-side, rgba(0,200,215,.10), transparent 62%) center/82% 82% no-repeat,
-        radial-gradient(closest-side, rgba(40,60,80,.18), transparent 64%) center/64% 64% no-repeat;
-      filter:saturate(120%);
-      animation:pulse 12s ease-in-out infinite;
+    /* SVG çizgiler */
+    .code-svg{
+      position:absolute; inset:0; display:block;
+      filter:saturate(115%);
     }
-    @keyframes pulse{
-      0%,100%{ transform:scale(1); opacity:.55 }
-      50%{ transform:scale(1.02); opacity:.7 }
-    }
-    /* vector code lines */
-    .code-lines{
-      position:absolute; inset:0; z-index:1; opacity:.9; mix-blend-mode:screen;
-    }
-    /* sheen */
-    .sheen{
-      position:absolute; inset:0; z-index:2; pointer-events:none;
-      background:linear-gradient(100deg, transparent 40%, rgba(255,255,255,.16) 50%, transparent 60%);
-      transform:translateX(-120%);
-      animation:sheen 7s ease-in-out infinite;
-    }
-    @keyframes sheen{
-      0%{ transform:translateX(-120%) }
-      48%{ transform:translateX(10%) }
-      100%{ transform:translateX(120%) }
-    }
-    /* orbiting code tokens */
-    .tokens{ position:absolute; inset:0; z-index:3; pointer-events:none; }
+    /* orbit eden token'lar */
+    .tokens{ position:absolute; inset:0; pointer-events:none; }
     .tok{
       position:absolute; left:50%; top:50%; transform-origin:0 0;
       font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
       font-size:12px; font-weight:700; letter-spacing:.02em;
-      color:#051017; padding:6px 10px; border-radius:999px;
-      background:linear-gradient(135deg, var(--brand), var(--accent));
-      border:1px solid rgba(255,255,255,.35);
-      box-shadow:0 10px 24px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,.35);
-      backdrop-filter:blur(8px);
-      white-space:nowrap;
+      color:var(--ink);
+      padding:6px 10px; border-radius:999px;
+      border:1px solid rgba(255,255,255,.28);
+      background:transparent; /* arkaplansız chip */
+      backdrop-filter:none; box-shadow:none; white-space:nowrap; opacity:.85;
     }
-    .t1{ transform:rotate(0deg) translateX(120px) rotate(0deg); animation:orbit1 12s linear infinite; }
-    .t2{ transform:rotate(120deg) translateX(120px) rotate(-120deg); animation:orbit2 14s linear infinite reverse; }
-    .t3{ transform:rotate(240deg) translateX(120px) rotate(-240deg); animation:orbit3 16s linear infinite; }
-    @keyframes orbit1{ to{ transform:rotate(360deg) translateX(120px) rotate(-360deg) } }
-    @keyframes orbit2{ to{ transform:rotate(360deg) translateX(120px) rotate(-360deg) } }
-    @keyframes orbit3{ to{ transform:rotate(360deg) translateX(120px) rotate(-360deg) } }
+    .t1{ transform:rotate(0deg) translateX(125px) rotate(0deg); animation:orbit1 12s linear infinite; }
+    .t2{ transform:rotate(120deg) translateX(125px) rotate(-120deg); animation:orbit2 14s linear infinite reverse; }
+    .t3{ transform:rotate(240deg) translateX(125px) rotate(-240deg); animation:orbit3 16s linear infinite; }
 
-    /* gentle hover tilt */
-    @media (hover:hover){
-      .hero-figure-code:hover{ transform:perspective(900px) rotateX(4deg) rotateY(-6deg) }
+    /* hafif çizgisel halkalar (arka plansız) */
+    .ring{
+      fill:none; stroke:url(#grad); stroke-opacity:.55; stroke-width:1;
+      stroke-dasharray:2 6;
+      animation:spin 28s linear infinite;
     }
+    .ring.r2{ stroke-opacity:.38; animation-duration:36s }
+    .ring.r3{ stroke-opacity:.26; animation-duration:44s }
+
+    /* akış çizgileri */
+    .flow{
+      fill:none; stroke:url(#grad); stroke-width:1.6; stroke-linecap:round;
+      stroke-dasharray:10 14; opacity:.9;
+      animation:dash 9s linear infinite;
+    }
+    .flow.softer{
+      stroke-opacity:.6; stroke-width:1.2; stroke-dasharray:6 12; animation-duration:11s;
+    }
+
+    /* hafif hover eğimi */
+    @media (hover:hover){
+      .hero-figure-code:hover{ transform:perspective(900px) rotateX(3deg) rotateY(-5deg) }
+    }
+
+    @keyframes dash{ to{ stroke-dashoffset:-240 } }
+    @keyframes spin{ to{ transform:rotate(360deg) } }
+    @keyframes orbit1{ to{ transform:rotate(360deg) translateX(125px) rotate(-360deg) } }
+    @keyframes orbit2{ to{ transform:rotate(360deg) translateX(125px) rotate(-360deg) } }
+    @keyframes orbit3{ to{ transform:rotate(360deg) translateX(125px) rotate(-360deg) } }
 
     /* ===== SECTIONS ===== */
     section{ padding:72px 0; border-top:1px solid var(--line) }
@@ -211,7 +206,7 @@
     @media (max-width: 960px){
       .hero-grid{ grid-template-columns:1fr }
       h1{ font-size:40px }
-      .hero-figure-code{ max-width:340px }
+      .hero-figure-code{ max-width:360px }
       .about{ grid-template-columns:1fr }
       .about .pillars{ grid-template-columns:1fr }
     }
@@ -244,49 +239,43 @@
       <div>
         <div class="kicker">We build awesome apps</div>
         <h1>Premium iOS Apps to <span class="text-grad">Optimize Daily Lives</span>.</h1>
-        <p class="lead">Clarity, performance and privacy. No clutter, no dark patterns - just apps that respect your time.</p>
+        <p class="lead">Clarity, performance and privacy. No clutter, no dark patterns — just apps that respect your time.</p>
         <div class="buttons">
           <a class="btn primary" href="#apps">See Apps</a>
           <a class="btn" href="#about">About CodeZeo</a>
         </div>
       </div>
 
-      <!-- Premium coding-themed animated figure -->
-      <div class="hero-figure-code glass" aria-hidden="true">
-        <div class="code-orb">
-          <!-- soft rings -->
-          <div class="rings"></div>
-
-          <!-- animated vector lines -->
-          <svg class="code-lines" viewBox="0 0 600 600" preserveAspectRatio="xMidYMid meet">
+      <!-- BACKGROUNDLESS premium coding animation -->
+      <div class="hero-figure-code" aria-hidden="true">
+        <div class="code-canvas">
+          <svg class="code-svg" viewBox="0 0 600 600" preserveAspectRatio="xMidYMid meet">
             <defs>
-              <linearGradient id="strokeGrad" x1="0" y1="0" x2="1" y2="1">
+              <linearGradient id="grad" x1="0" y1="0" x2="1" y2="1">
                 <stop offset="0%" stop-color="#00C8D7"/>
                 <stop offset="100%" stop-color="#79e6ff"/>
               </linearGradient>
             </defs>
-            <!-- curved path like a flowing code stream -->
-            <path d="M40,460 C140,420 220,360 300,300 S460,200 560,160"
-                  fill="none" stroke="url(#strokeGrad)" stroke-width="2"
-                  stroke-linecap="round" stroke-dasharray="10 14">
-              <animate attributeName="stroke-dashoffset" values="0; -240; 0" dur="9s" repeatCount="indefinite"/>
-            </path>
-            <!-- second subtle path -->
-            <path d="M60,500 C180,440 260,380 340,320 S500,220 540,120"
-                  fill="none" stroke="url(#strokeGrad)" stroke-opacity=".55" stroke-width="1.5"
-                  stroke-linecap="round" stroke-dasharray="6 12">
-              <animate attributeName="stroke-dashoffset" values="0; -180; 0" dur="11s" repeatCount="indefinite"/>
-            </path>
+
+            <!-- rings (stroke-only, no fill) -->
+            <g transform="translate(300,300)">
+              <circle class="ring r1" r="180"></circle>
+              <circle class="ring r2" r="130"></circle>
+              <circle class="ring r3" r="85"></circle>
+            </g>
+
+            <!-- flowing code paths -->
+            <path class="flow" d="M40,460 C140,420 220,360 300,300 S460,200 560,160"></path>
+            <path class="flow softer" d="M60,500 C180,440 260,380 340,320 S500,220 540,120"></path>
+            <path class="flow softer" d="M80,420 C160,380 260,330 320,280 S480,200 520,180"></path>
+
             <!-- tiny moving dot -->
             <circle r="3.5" fill="#79e6ff">
               <animateMotion dur="7.5s" repeatCount="indefinite" path="M40,460 C140,420 220,360 300,300 S460,200 560,160"/>
             </circle>
           </svg>
 
-          <!-- sheen -->
-          <div class="sheen"></div>
-
-          <!-- orbiting tokens -->
+          <!-- orbiting code tokens (no background) -->
           <div class="tokens">
             <span class="tok t1">&lt; /&gt;</span>
             <span class="tok t2">{ }</span>
@@ -412,7 +401,7 @@
   <script>
     const yearEl = document.getElementById('year'); if(yearEl){ yearEl.textContent = new Date().getFullYear(); }
 
-    // nav active + reveals
+    // nav active
     const links = document.querySelectorAll('.nav-links a');
     const sections = [...document.querySelectorAll('header, section')];
     const navObserver = new IntersectionObserver((entries)=>{
@@ -426,8 +415,6 @@
       })
     },{rootMargin:'-45% 0px -50% 0px', threshold:.01});
     sections.forEach(s=>navObserver.observe(s));
-
-    // (no extra JS needed for the figure; SVG/CSS handles animation)
   </script>
 </body>
 </html>
