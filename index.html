@@ -76,41 +76,21 @@
     .trust{ display:flex; gap:14px; align-items:center; flex-wrap:wrap; margin-top:26px; color:var(--muted); font-size:14px }
     .pill{ padding:6px 10px; border:1px solid var(--line); border-radius:999px }
 
-    /* ====== PREMIUM HERO FIGURE ====== */
+    /* ====== PREMIUM HERO FIGURE (minimal) ====== */
     .hero-figure-wrap{ position:relative }
     .hero-figure{ position:relative; aspect-ratio:10/16; border-radius:28px; overflow:hidden; pointer-events:none; isolation:isolate }
-    /* Device body */
-    .device{ position:relative; width:100%; height:100%; border-radius:28px; border:1px solid rgba(255,255,255,.12);
-      background:
-        radial-gradient(800px 500px at 80% 0%, rgba(121,230,255,.18), transparent 60%),
-        linear-gradient(135deg, rgba(121,230,255,.10), rgba(103,228,179,.10)), var(--bg-2); }
-    /* Animated inner glow */
-    .device::before{ content:""; position:absolute; inset:-20%;
-      background:conic-gradient(from 0deg, var(--brand), var(--accent), var(--brand));
-      filter:blur(40px) saturate(130%); opacity:.25; animation:spin 18s linear infinite; }
-    /* Shimmer */
-    .device::after{ content:""; position:absolute; inset:0; background:linear-gradient(120deg, transparent 35%, rgba(255,255,255,.18) 50%, transparent 65%);
-      transform:translateX(-120%); animation:shimmer 6s ease-in-out infinite; mix-blend-mode:screen; }
-
-    /* Notch */
-    .notch{ position:absolute; top:8px; left:50%; transform:translateX(-50%); width:32%; height:10px; border-radius:0 0 10px 10px; background:rgba(0,0,0,.5); border:1px solid rgba(255,255,255,.08) }
-
-    /* Orbiting rings */
-    .rings{ position:absolute; inset:-18%; border-radius:40px; border:1px dashed rgba(121,230,255,.15); animation:spin 28s linear infinite; }
-    .rings::before, .rings::after{ content:""; position:absolute; inset:14%; border-radius:60px; border:1px dashed rgba(103,228,179,.16) }
-    .rings::after{ inset:28% }
-
-    /* Floating particles */
-    .particle{ position:absolute; width:8px; height:8px; border-radius:50%; background:radial-gradient(circle at 30% 30%, #fff, rgba(255,255,255,.2) 60%, transparent 70%);
-      box-shadow:0 0 22px rgba(121,230,255,.55); animation:floatY 7s ease-in-out infinite; }
-
-    /* Label badge inside device */
+    .device{ position:relative; width:100%; height:100%; border-radius:28px; background:var(--bg-2); }
+    .device::before{ content:""; position:absolute; inset:0; padding:1px; border-radius:28px;
+      background:linear-gradient(135deg, var(--brand), var(--accent));
+      -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite:xor; mask-composite:exclude; }
+    .device::after{ content:""; position:absolute; inset:2px; border-radius:27px;
+      background:conic-gradient(from 0deg, rgba(0,200,215,.10), rgba(40,60,80,.18), rgba(0,200,215,.10));
+      filter:saturate(120%); animation:slowShift 24s linear infinite; }
+    .notch{ position:absolute; top:10px; left:50%; transform:translateX(-50%); width:28%; height:12px; border-radius:0 0 10px 10px; background:rgba(0,0,0,.5); border:1px solid rgba(255,255,255,.06) }
     .badge-in{ position:absolute; left:14px; bottom:14px; padding:6px 10px; border-radius:999px; font-weight:700; font-size:12px; color:#051017;
       background:linear-gradient(135deg, var(--brand), var(--accent)); box-shadow:0 8px 22px rgba(0,0,0,.28) }
-
-    @keyframes spin { to{ transform:rotate(360deg) } }
-    @keyframes shimmer { 0%{ transform:translateX(-120%) } 50%{ transform:translateX(40%) } 100%{ transform:translateX(120%) } }
-    @keyframes floatY { 0%,100%{ transform:translateY(0) } 50%{ transform:translateY(-10px) } }
+    @keyframes slowShift { to{ transform:rotate(360deg) } }
 
     /* ====== SECTIONS ====== */
     section{ padding:72px 0; border-top:1px solid var(--line) }
@@ -147,16 +127,6 @@
       *{ animation:none !important; transition:none !important }
       html{ scroll-behavior:auto }
     }
-      /* ====== Minimal premium figure overrides ====== */
-    .hero-figure{ aspect-ratio:10/16; border-radius:28px; overflow:hidden; pointer-events:none; isolation:isolate }
-    .device{ position:relative; width:100%; height:100%; border-radius:28px; background:var(--bg-2); }
-    .device::before{ content:""; position:absolute; inset:0; padding:1px; border-radius:28px; background:linear-gradient(135deg, var(--brand), var(--accent)); -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite:xor; mask-composite:exclude; }
-    .device::after{ content:""; position:absolute; inset:2px; border-radius:27px; background:conic-gradient(from 0deg, rgba(0,200,215,.10), rgba(40,60,80,.18), rgba(0,200,215,.10)); filter:saturate(120%); animation:slowShift 24s linear infinite; }
-    .notch{ position:absolute; top:10px; left:50%; transform:translateX(-50%); width:28%; height:12px; border-radius:0 0 10px 10px; background:rgba(0,0,0,.5); border:1px solid rgba(255,255,255,.06) }
-    .badge-in{ position:absolute; left:14px; bottom:14px; padding:6px 10px; border-radius:999px; font-weight:700; font-size:12px; color:#051017; background:linear-gradient(135deg, var(--brand), var(--accent)); box-shadow:0 8px 22px rgba(0,0,0,.28) }
-    @keyframes slowShift { to{ transform:rotate(360deg) } }
-    /* Hide legacy decorative elements for a cleaner look */
-    .rings,.particle{ display:none !important }
   </style>
 </head>
 <body>
@@ -189,7 +159,7 @@
         </div>
       </div>
 
-      <!-- PREMIUM ANIMATED FIGURE (device-inspired, brand gradient, orbit, shimmer) -->
+      <!-- PREMIUM ANIMATED FIGURE (minimal, no logo) -->
       <div class="glass hero-figure-wrap reveal" aria-hidden="true">
         <div class="hero-figure" id="parallaxTarget">
           <div class="device">
@@ -205,31 +175,15 @@
   <section id="apps">
     <div class="container">
       <h2 class="reveal">Apps</h2>
-      <p class="lead reveal" style="margin-bottom:18px">A curated set of focused tools. More coming soon.</p>
+      <p class="lead reveal" style="margin-bottom:18px">A curated, privacy-first toolkit — starting with Submia.</p>
 
-      <div class="grid">
+      <div class="grid" style="grid-template-columns:1fr; max-width:680px">
         <article class="card reveal">
-          <div class="shot"></div>
-          <h3>FocusFlow</h3>
-          <div class="chip">Productivity • iOS</div>
-          <p>Lightweight focus sessions with clean stats & iCloud sync.</p>
-          <p><a class="btn" href="https://apps.apple.com/" target="_blank" rel="noopener">App Store</a></p>
-        </article>
-
-        <article class="card reveal" style="transition-delay:.08s">
-          <div class="shot" style="background-image:linear-gradient(135deg, rgba(103,228,179,.14), rgba(121,230,255,.12)), url('https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=1400&auto=format&fit=crop');"></div>
-          <h3>QuietHabits</h3>
-          <div class="chip">Wellness • iOS</div>
-          <p>Build small habits that stick. Gentle reminders, private analytics.</p>
-          <p><a class="btn" href="https://apps.apple.com/" target="_blank" rel="noopener">App Store</a></p>
-        </article>
-
-        <article class="card reveal" style="transition-delay:.16s">
-          <div class="shot" style="background-image:linear-gradient(135deg, rgba(121,230,255,.14), rgba(103,228,179,.12)), url('https://images.unsplash.com/photo-1529336953121-ad5a0d43d0d5?q=80&w=1400&auto=format&fit=crop');"></div>
-          <h3>Snapshot Pro</h3>
-          <div class="chip">Utilities • iOS</div>
-          <p>Batch screenshots, annotate, and share in one tap.</p>
-          <p><a class="btn" href="https://apps.apple.com/" target="_blank" rel="noopener">App Store</a></p>
+          <div class="shot" style="background-image:linear-gradient(135deg, rgba(121,230,255,.12), rgba(103,228,179,.10)), url('Submialogoclear.png'); background-size:cover; background-position:center;"></div>
+          <h3>Submia - Smart Subscription Tracker &amp; Reminder</h3>
+          <div class="chip">Finance • iOS</div>
+          <p>Stay in control of renewals with elegant reminders and zero-noise insights.</p>
+          <p><a class="btn" href="#" aria-label="Submia on the App Store">App Store</a></p>
         </article>
       </div>
     </div>
@@ -272,7 +226,8 @@
 
   <script>
     // dynamic year
-    document.getElementById('year').textContent = new Date().getFullYear();
+    const yearEl = document.getElementById('year');
+    if(yearEl){ yearEl.textContent = new Date().getFullYear(); }
 
     // active nav on scroll + reveal animations
     const links = document.querySelectorAll('.nav-links a');
@@ -290,15 +245,15 @@
     },{rootMargin:'-45% 0px -50% 0px', threshold:.01});
     sections.forEach(s=>navObserver.observe(s));
 
-    const reveal = document.querySelectorAll('.reveal');
+    const revealEls = document.querySelectorAll('.reveal');
     const revObs = new IntersectionObserver((entries)=>{
       entries.forEach(e=>{
         if(e.isIntersecting){ e.target.classList.add('show'); revObs.unobserve(e.target); }
       })
     },{threshold:.12, rootMargin:'0px 0px -40px 0px'});
-    reveal.forEach(el=>revObs.observe(el));
+    revealEls.forEach(el=>revObs.observe(el));
 
-    // subtle parallax for hero figure
+    // subtle parallax for hero figure (respects reduced motion)
     const target = document.getElementById('parallaxTarget');
     const preferReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if(target && !preferReduced){
@@ -311,18 +266,3 @@
   </script>
 </body>
 </html>
-  // Rebuild Apps section with single app (Submia)
-    (function(){
-      const apps = document.querySelector('#apps .grid');
-      if(!apps) return;
-      apps.innerHTML = `
-        <article class="card reveal">
-          <div class="shot" style="background-image:linear-gradient(135deg, rgba(121,230,255,.12), rgba(103,228,179,.10)), url('Submialogoclear.png'); background-size:cover; background-position:center;"></div>
-          <h3>Submia — Smart Subscription Tracker &amp; Reminder</h3>
-          <div class="chip">Finance • iOS</div>
-          <p>Stay in control of renewals with elegant reminders and zero‑noise insights.</p>
-          <p><a class="btn" href="#" aria-label="Submia on the App Store">App Store</a></p>
-        </article>`;
-    })();
-  </script>
-</body>
