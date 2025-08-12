@@ -16,6 +16,7 @@
       --muted:#9aa6bd;
       --line:rgba(255,255,255,.08);
       --brand:#00C8D7;
+      --brand-2:#283C50;
       --accent:#79e6ff;
       --radius:16px;
       --shadow:0 10px 40px rgba(0,0,0,.35);
@@ -30,22 +31,27 @@
     html,body{
       margin:0; color:var(--ink);
       font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-      background:
-        radial-gradient(1100px 700px at 80% -10%, rgba(121,230,255,.15), transparent 60%),
-        radial-gradient(1000px 700px at -10% -20%, rgba(103,228,179,.14), transparent 60%),
-        var(--bg);
+      background: var(--bg);
       -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
       scroll-behavior:smooth;
     }
     a{ color:inherit; text-decoration:none }
+    img{ display:block; max-width:100%; height:auto }
     .container{ max-width:1100px; margin:0 auto; padding:0 20px }
 
+    /* ===== Utility ===== */
     .glass{
       background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
       border:1px solid var(--line); border-radius:var(--radius); backdrop-filter:blur(var(--blur)); -webkit-backdrop-filter:blur(var(--blur));
       box-shadow:var(--shadow);
     }
+    .brand-grad{ background:linear-gradient(135deg, var(--brand), var(--brand-2)); }
+    .text-grad{
+      background:linear-gradient(135deg, var(--brand), var(--accent));
+      -webkit-background-clip:text; background-clip:text; color:transparent;
+    }
 
+    /* ===== NAV ===== */
     nav{ position:sticky; top:0; z-index:50; border-bottom:1px solid var(--line);
          background:rgba(10,13,20,.55); backdrop-filter:blur(10px) saturate(130%) }
     .nav-inner{ display:flex; align-items:center; justify-content:space-between; height:66px }
@@ -59,24 +65,47 @@
     .cta{ background:linear-gradient(135deg, var(--brand), var(--accent)); color:#051017; font-weight:800; border-radius:12px; padding:10px 14px }
 
     /* ===== HERO ===== */
-    header.hero{ padding:88px 0 56px; position:relative; overflow:hidden }
+    header.hero{ padding:96px 0 64px; position:relative; overflow:hidden; }
+    /* animated aurora */
+    .hero::before,
+    .hero::after{
+      content:""; position:absolute; inset:-20% -10% auto -10%; height:70%;
+      background:
+        radial-gradient(60% 60% at 20% 30%, rgba(0,200,215,.14), transparent 60%),
+        radial-gradient(60% 60% at 80% 0%, rgba(40,60,80,.25), transparent 60%);
+      filter:blur(30px) saturate(120%);
+      animation:aurora 18s ease-in-out infinite;
+      pointer-events:none;
+    }
+    .hero::after{
+      inset:auto -10% -20% -10%; height:70%;
+      background:
+        radial-gradient(60% 60% at 70% 80%, rgba(121,230,255,.16), transparent 60%),
+        radial-gradient(60% 60% at 10% 100%, rgba(0,200,215,.12), transparent 60%);
+      animation-duration:22s;
+      animation-direction:reverse;
+    }
+    @keyframes aurora{
+      0%,100%{ transform:translateY(0) scale(1) }
+      50%{ transform:translateY(-4%) scale(1.04) }
+    }
+
     .hero-grid{ display:grid; grid-template-columns:1.2fr .8fr; gap:38px; align-items:center }
     .kicker{ color:var(--muted); letter-spacing:.14em; text-transform:uppercase; font-size:12px; font-weight:700 }
     h1{ font-size:52px; line-height:1.06; margin:.5rem 0 .6rem; font-weight:900 }
     .lead{ color:var(--muted); font-size:18px; max-width:52ch }
     .buttons{ display:flex; gap:12px; margin-top:24px }
-    .btn{ padding:12px 16px; border-radius:12px; border:1px solid var(--line); background:rgba(255,255,255,.04); font-weight:700; transition:transform .2s ease }
-    .btn:hover{ transform:translateY(-2px) }
+    .btn{ padding:12px 16px; border-radius:12px; border:1px solid var(--line); background:rgba(255,255,255,.04); font-weight:700; transition:transform .2s ease, box-shadow .2s ease }
+    .btn:hover{ transform:translateY(-2px); box-shadow:0 10px 30px rgba(0,0,0,.25) }
     .btn.primary{ background:linear-gradient(135deg, var(--brand), var(--accent)); color:#051017; border:none }
 
-    /* ===== Premium hero figure (visible & animated) ===== */
-    .hero-figure-wrap{ position:relative; max-width:280px; margin:0 auto }
+    /* ===== Premium hero figure ===== */
+    .hero-figure-wrap{ position:relative; max-width:300px; margin:0 auto }
     .hero-figure{ position:relative; aspect-ratio:10/16; border-radius:28px; overflow:hidden; isolation:isolate }
     .device{
       position:relative; width:100%; height:100%; border-radius:28px; background:var(--bg-2);
       box-shadow:inset 0 0 0 1px rgba(255,255,255,.06), 0 10px 40px rgba(0,0,0,.35);
     }
-    /* rotating gradient halo (border) */
     .device::before{
       content:""; position:absolute; inset:-1px; border-radius:28px;
       background:conic-gradient(from 0deg, var(--brand), var(--accent), var(--brand));
@@ -85,7 +114,6 @@
       -webkit-mask:linear-gradient(#000 0 0) subtract, radial-gradient(closest-side, transparent 94%, #000 96%);
       mix-blend-mode:screen; pointer-events:none;
     }
-    /* inner animated glow */
     .device::after{
       content:""; position:absolute; inset:2px; border-radius:26px;
       background:
@@ -97,7 +125,6 @@
     .notch{ position:absolute; top:8px; left:50%; transform:translateX(-50%); width:28%; height:10px; border-radius:0 0 10px 10px; background:rgba(0,0,0,.5); border:1px solid rgba(255,255,255,.06) }
     .badge-in{ position:absolute; left:12px; bottom:12px; padding:6px 10px; border-radius:999px; font-weight:700; font-size:12px; color:#051017; background:linear-gradient(135deg, var(--brand), var(--accent)); box-shadow:0 8px 22px rgba(0,0,0,.28) }
 
-    /* app tiles */
     .scene{ position:absolute; inset:0; display:grid; place-items:center; }
     .tile{
       position:absolute; width:68px; height:68px; border-radius:16px;
@@ -133,18 +160,45 @@
     .card h3{ margin:10px 0 6px }
     .chip{ font-size:12px; color:var(--muted) }
 
-    /* single app card – small & left aligned */
-    .apps-grid{ grid-template-columns:1fr; max-width:340px; margin:0; justify-items:start }
-    .card.app{ width:240px }
-    .shot{ border-radius:12px; background-size:cover; background-position:center; }
-    .shot.square{ aspect-ratio:1/1; height:auto; }
+    /* ===== Apps: Pro card ===== */
+    .apps-grid{ grid-template-columns:1fr; max-width:360px; margin:0; justify-items:start }
+    .app-card{
+      width:100%; max-width:320px; display:flex; flex-direction:column; gap:12px;
+      padding:18px; border-radius:16px; border:1px solid var(--line);
+      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+      box-shadow:var(--shadow); transition:transform .2s ease, box-shadow .2s ease;
+    }
+    .app-card:hover{ transform:translateY(-4px); box-shadow:0 20px 40px rgba(0,0,0,.35) }
+    .shot{ border-radius:12px; background-size:cover; background-position:center; aspect-ratio:1/1 }
+    .app-title{ font-size:18px; font-weight:800; line-height:1.2; margin:2px 0 0 }
+    .app-meta{ display:flex; gap:8px; align-items:center; color:var(--muted); font-size:12px }
+    .stars{ display:inline-flex; gap:2px; }
+    .stars svg{ width:14px; height:14px; }
 
-    .reveal{ opacity:0; transform:translateY(14px); transition:opacity .6s ease, transform .6s ease }
-    .reveal.show{ opacity:1; transform:none }
+    /* App Store button – perfectly aligned */
+    .store-btn{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:10px 14px; border-radius:12px; border:1px solid var(--line);
+      background:rgba(255,255,255,.06); font-weight:700;
+      transition:transform .2s ease, box-shadow .2s ease, background .2s ease;
+      will-change:transform;
+    }
+    .store-btn:hover{ transform:translateY(-2px); background:rgba(255,255,255,.09); box-shadow:0 10px 28px rgba(0,0,0,.25) }
+    .store-icon{ width:22px; height:22px; flex:0 0 22px; display:block }
+    .store-text{ line-height:1; display:flex; flex-direction:column }
+    .store-small{ font-size:10px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted) }
+    .store-big{ font-size:14px; font-weight:800 }
 
     .about{ display:grid; grid-template-columns:1.1fr .9fr; gap:22px }
+    .about .pillars{ display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:10px }
+    .about .pillars .p{ padding:14px; border:1px solid var(--line); border-radius:12px; background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02)) }
     .list{ padding-left:1rem; }
     .list li{ margin:8px 0; color:var(--muted) }
+
+    .timeline{ margin-top:18px; display:grid; gap:10px }
+    .trow{ display:flex; gap:10px; align-items:flex-start }
+    .trow .dot{ width:10px; height:10px; border-radius:50%; background:linear-gradient(135deg, var(--brand), var(--accent)); box-shadow:0 0 16px rgba(121,230,255,.6); margin-top:6px }
+    .trow .txt{ color:var(--muted); font-size:14px }
 
     footer{ padding:28px 0; color:var(--muted) }
     footer .row{ display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--line); padding-top:18px }
@@ -153,7 +207,9 @@
     @media (max-width: 960px){
       .hero-grid{ grid-template-columns:1fr }
       h1{ font-size:40px }
-      .hero-figure-wrap{ max-width:240px }
+      .hero-figure-wrap{ max-width:260px }
+      .about{ grid-template-columns:1fr }
+      .about .pillars{ grid-template-columns:1fr }
     }
     @media (prefers-reduced-motion: reduce){
       *{ animation:none !important; transition:none !important }
@@ -183,15 +239,15 @@
     <div class="container hero-grid">
       <div>
         <div class="kicker">We build awesome apps</div>
-        <h1>Premium iOS apps to optimize daily lives.</h1>
-        <p class="lead">Clarity, performance and privacy. No clutter, no dark patterns. Just apps that respect your time.</p>
+        <h1>Premium iOS apps to <span class="text-grad">optimize daily life</span>.</h1>
+        <p class="lead">Clarity, performance and privacy. No clutter, no dark patterns — just apps that respect your time.</p>
         <div class="buttons">
           <a class="btn primary" href="#apps">See Apps</a>
           <a class="btn" href="#about">About CodeZeo</a>
         </div>
       </div>
 
-      <!-- Animasyon görünür: reveal yok -->
+      <!-- Visible premium animation -->
       <div class="glass hero-figure-wrap" aria-hidden="true">
         <div class="hero-figure" id="parallaxTarget">
           <div class="device">
@@ -215,21 +271,38 @@
       <p class="lead" style="margin-bottom:18px">We're just getting started.</p>
 
       <div class="grid apps-grid">
-        <article class="card app" style="max-width: 260px; text-align: left;">
-        <div class="shot square" style="background-image:
-        linear-gradient(135deg, rgba(121,230,255,.12), rgba(103,228,179,.10)),
-        url('Submialogoclear.png'); background-size: cover; background-position: center;">
-        </div>
-        <h3>Submia - Smart Subscription Tracker &amp; Reminder</h3>
-        <div class="chip">Finance • iOS</div>
-        <p style="margin-top:10px; margin-bottom:0;">
-        <a class="btn" href="#" aria-label="Submia on the App Store" style="display: inline-flex; align-items: center; gap: 8px;">
-        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="white" viewBox="0 0 16 16" style="display: block;">
-        <path d="M11.5 1.5c-.8.1-1.6.5-2.1 1.2-.5.6-.8 1.4-.7 2.3.8.1 1.6-.3 2.1-.9.5-.6.8-1.4.7-2.3zm3.1 10.3c-.3.8-.6 1.5-1.1 2.1-.5.7-1 1.4-1.8 1.4-.8 0-1.1-.4-2.1-.4s-1.3.4-2.1.4c-.8 0-1.3-.6-1.8-1.3-1.3-1.8-2.3-5.2-1-7.5.7-1.3 2-2.1 3.4-2.1.8 0 1.5.5 2.1.5.6 0 1.4-.5 2.4-.4.4 0 1.6.2 2.3 1.4-.1.1-1.4.8-1.3 2.4.1 1.9 1.7 2.5 1.8 2.6z"/>
-        </svg>
-        <span>AppStore</span>
-        </a>
-        </p>
+        <!-- Submia card -->
+        <article class="app-card">
+          <div class="shot" style="background-image:
+            linear-gradient(135deg, rgba(121,230,255,.12), rgba(103,228,179,.10)),
+            url('Submialogoclear.png');">
+          </div>
+
+          <div class="app-meta">
+            <span class="chip">Finance • iOS</span>
+            <span aria-hidden="true">•</span>
+            <span class="stars" aria-label="Rating 5 out of 5">
+              <!-- stars -->
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            </span>
+          </div>
+
+          <h3 class="app-title">Submia — Smart Subscription Tracker &amp; Reminder</h3>
+
+          <!-- app store button -->
+          <a class="store-btn" href="#" aria-label="Get Submia on the App Store">
+            <svg class="store-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" fill="white" aria-hidden="true">
+              <path d="M318.7 268.7c.5 55.3 48.3 73.7 48.8 73.9c-.4 1.4-7.6 26.1-25.1 51.7c-15.1 22.2-30.9 44.3-55.8 44.7c-24.3.5-32.2-14.4-60-14.4c-27.8 0-36.4 14-59.4 14.9c-23.8.9-41.9-24-57-46.1c-31.1-45.1-55-127.6-23-183.4c15.9-27.7 44.3-45.3 75.1-45.8c23.5-.5 45.7 15.8 60 15.8c14.3 0 41.2-19.5 69.6-16.6c11.8.5 45.1 4.8 66.3 36.2c-1.7 1.1-39.7 23.3-39.5 69.1zM250.2 81.3c12.9-15.6 21.8-37.3 19.4-58.9c-18.8.8-41.2 12.5-54.6 28.1c-12 14.1-22.5 36.7-19.7 58c21.1 1.6 42.6-10.7 54.9-27.2z"/>
+            </svg>
+            <span class="store-text">
+              <span class="store-small">Available on the</span>
+              <span class="store-big">App Store</span>
+            </span>
+          </a>
         </article>
       </div>
     </div>
@@ -241,18 +314,56 @@
       <div>
         <h2>About Us</h2>
         <p class="lead">
-          CodeZeo is a London-based technology studio dedicated to crafting innovative, reliable, and privacy-first applications for a global audience.
-          Our mission is simple: build smart software that empowers people, gets out of their way, and always respects their data.
+          CodeZeo is a London-based studio crafting innovative, reliable, and privacy-first applications for a global audience.
+          Our mission is simple: build smart software that empowers people, gets out of the way, and respects their data.
         </p>
-        <p>
-          Founded with a passion for clean design and user-centric development, we focus on creating products that are as intuitive as they are powerful.
-          Every line of code we write is guided by our core principles: simplicity, security, and scalability.
-        </p>
+
+        <div class="pillars">
+          <div class="p">
+            <strong>Clarity</strong>
+            <p class="chip">Minimal UI, maximum signal.</p>
+          </div>
+          <div class="p">
+            <strong>Performance</strong>
+            <p class="chip">Swift-first, battery-light.</p>
+          </div>
+          <div class="p">
+            <strong>Privacy</strong>
+            <p class="chip">No dark patterns. No tracking creepiness.</p>
+          </div>
+        </div>
+
+        <ul class="list" style="margin-top:10px">
+          <li><strong>Revenue Model:</strong> Transparent monthly & yearly plans — no hidden fees.</li>
+          <li><strong>Infrastructure:</strong> App Store + RevenueCat for seamless subscriptions, privacy-friendly analytics.</li>
+          <li><strong>Data:</strong> We never sell your data. All analytics are anonymized and GDPR-compliant.</li>
+          <li><strong>Support:</strong> Reach us any time at <a href="mailto:info@codezeo.com">info@codezeo.com</a>.</li>
+        </ul>
+
+        <div class="timeline">
+          <div class="trow">
+            <span class="dot"></span>
+            <div class="txt"><strong>2025</strong> — Submia enters production with a premium, minimal UX.</div>
+          </div>
+          <div class="trow">
+            <span class="dot"></span>
+            <div class="txt">Next — Two new apps in finance & productivity, sharing the same privacy-first ethos.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="glass" style="padding:18px; border-radius:16px;">
+        <h3 style="margin:4px 0 8px">Tech Stack</h3>
         <ul class="list">
-          <li><strong>Revenue Model:</strong> Simple and transparent monthly & yearly subscription plans – no hidden fees.</li>
-          <li><strong>Infrastructure:</strong> Powered by the App Store ecosystem, integrated with RevenueCat for seamless subscription management, and privacy-friendly analytics to ensure user trust.</li>
-          <li><strong>Data Privacy:</strong> We never sell or misuse your data. All analytics are anonymized and GDPR-compliant.</li>
-          <li><strong>Support:</strong> Dedicated and responsive support team, contact us anytime at <a href="mailto:info@codezeo.com">info@codezeo.com</a>.</li>
+          <li>SwiftUI • MVVM • StoreKit • RevenueCat</li>
+          <li>Core Data / SQLite • CloudKit (where it makes sense)</li>
+          <li>Fastlane • GitHub Actions • App Store Connect</li>
+        </ul>
+        <h3 style="margin:10px 0 8px">Trust & Compliance</h3>
+        <ul class="list">
+          <li>GDPR compliant, data minimization by design</li>
+          <li>Opt-in only analytics, no fingerprinting</li>
+          <li>Clear, human-readable policies</li>
         </ul>
       </div>
     </div>
@@ -284,6 +395,7 @@
     },{rootMargin:'-45% 0px -50% 0px', threshold:.01});
     sections.forEach(s=>navObserver.observe(s));
 
+    // reveal if you add .reveal anywhere
     const revealEls = document.querySelectorAll('.reveal');
     const revObs = new IntersectionObserver((entries)=>{
       entries.forEach(e=>{
