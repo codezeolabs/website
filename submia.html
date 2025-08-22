@@ -285,7 +285,11 @@
       box-shadow:0 10px 28px rgba(0,0,0,.25);
     }
 
-
+    /* Başlık + kicker hizası */
+    .logo-title{ align-items:flex-start; }  /* üstten hizala */
+    .title-wrap{ display:flex; flex-direction:column; }
+    .logo-title h1{ margin:0 0 6px; }       /* başlık ile kicker arası küçük boşluk */
+    .kicker{ margin:0; }                    /* emin olmak için */
 
   </style>
 </head>
@@ -327,10 +331,11 @@
     <div>
       <div class="logo-title">
         <img class="app-logo" src="SubmiaLogoRot.png" alt="Submia logo" />
-        <h1>Submia — Smart Subscription Tracker &amp; Reminder</h1>
+        <div class="title-wrap">
+          <h1>Submia — Smart Subscription Tracker &amp; Reminder</h1>
+          <div class="kicker">Finance • iOS</div>
+        </div>
       </div>
-
-      <div class="kicker">Finance • iOS</div>
 
       <p class="lead">Track renewals, prevent unwanted charges, forecast your spend. Private by design — your data stays yours.</p>
       <div class="buttons">
