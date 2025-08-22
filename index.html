@@ -223,30 +223,33 @@
 <body>
   <!-- NAV -->
   <nav>
-    <div class="container nav-inner">
-      <div class="brand">
-        <span class="badge">CodeZeo</span>
-      </div>
-
-      <div class="nav-links">
-        <a class="active" href="#home">Home</a>
-
-        <!-- Apps dropdown -->
-        <div class="dropdown">
-          <!-- Apps linki #apps bölümüne götürür -->
-          <a href="#apps" class="nav-link" id="appsLink">Apps</a>
-          <button class="caret" aria-label="Toggle apps menu" aria-expanded="false" aria-controls="appsMenu"></button>
-        
-          <div class="menu glass" id="appsMenu" role="menu">
-            <a role="menuitem" href="submia.html">Submia</a>
-          </div>
-        </div>
-
-        <a href="#about">About Us</a>
-        <a href="mailto:info@codezeo.com">Contact</a>
-      </div>
+  <div class="container nav-inner">
+    <div class="brand">
+      <span class="badge">CodeZeo</span>
     </div>
-  </nav>
+
+    <div class="nav-links">
+      <a class="active" href="#home">Home</a>
+
+      <!-- Apps: hem link hem de caret ile dropdown -->
+      <div class="dropdown">
+        <a href="#apps" class="nav-link" id="appsLink">Apps</a>
+        <button class="caret" id="appsCaret"
+                aria-label="Toggle apps menu"
+                aria-haspopup="true"
+                aria-expanded="false"
+                aria-controls="appsMenu"></button>
+
+        <div class="menu glass" id="appsMenu" role="menu">
+          <a role="menuitem" href="submia.html">Submia</a>
+        </div>
+      </div>
+
+      <a href="#about">About Us</a>
+      <a href="mailto:info@codezeo.com">Contact</a>
+    </div>
+  </div>
+</nav>
 
   <!-- HERO -->
   <header id="home" class="hero">
