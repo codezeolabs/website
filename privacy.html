@@ -33,12 +33,10 @@
     }
     a{ color:inherit; text-decoration:none }
     .container{ max-width:1100px; margin:0 auto; padding:0 20px }
-    .glass{
-      background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
-      border:1px solid var(--line); border-radius:16px; backdrop-filter:blur(14px); box-shadow:var(--shadow)
-    }
+    .glass{ background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
+      border:1px solid var(--line); border-radius:16px; backdrop-filter:blur(14px); box-shadow:var(--shadow) }
 
-    /* ===== NAV ===== */
+    /* ===== NAV (Terms ile aynı) ===== */
     nav{
       position:sticky; top:0; z-index:50;
       border-bottom:1px solid var(--line);
@@ -72,6 +70,7 @@
               mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'><path d='M7 10l5 5 5-5z'/></svg>") no-repeat center/contain;
       background:var(--ink); opacity:.9;
     }
+
     .menu{
       position:absolute; top:calc(100% + 8px); left:0; z-index:60;
       min-width:160px; padding:8px; border-radius:12px; border:1px solid var(--line);
@@ -82,41 +81,24 @@
     .menu a{ display:block; padding:8px 10px; border-radius:10px }
     .menu a:hover{ background:rgba(255,255,255,.08) }
 
-    /* ===== Page ===== */
+    /* ===== Page (Terms ile aynı) ===== */
     header.page{ padding:64px 0 24px; border-bottom:1px solid var(--line) }
     h1{ font-size:42px; margin:0 0 8px }
     .lead{ color:var(--muted); max-width:70ch }
 
-    /* Başlık ve içerik aynı soldan hizalansın */
-    header.page .container,
-    main.container{ max-width:900px; }
-
-    .title-wrap{
-      display:flex;
-      flex-direction:column;
-      align-items:flex-start; /* her şeyi sola hizala */
-    }
-
-    main{ counter-reset: sec; }
+    main{ max-width:900px }
     section{ padding:28px 0 }
-    h2{ font-size:22px; color:var(--muted); margin:0 0 8px; }
-    h2::before{
-      counter-increment: sec;
-      content: counter(sec) ". ";
-      color: var(--ink);
-      font-weight:800;
-      margin-right:4px;
-    }
+    h2{ font-size:22px; color:var(--muted); margin:0 0 8px }
     p{ line-height:1.7; margin:0 0 12px }
     ul{ margin:8px 0 16px 18px }
     li{ margin:6px 0; color:var(--ink) }
 
-    /* ===== Footer ===== */
+    /* ===== Footer (Terms ile aynı) ===== */
     footer{ padding:28px 0; color:var(--muted) }
     footer .row{ display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--line); padding-top:18px }
     .legal{ font-size:13px }
-    .footer-links{ margin-left:auto; }
-    .footer-links a{ color:var(--muted); text-decoration:underline; margin:0 0 0 16px; font-size:14px }
+    .footer-links{ margin-top:12px; text-align:center }
+    .footer-links a{ color:var(--muted); text-decoration:underline; margin:0 6px; font-size:14px }
     .footer-links a:hover{ color:var(--ink) }
 
     @media (max-width: 960px){
@@ -149,17 +131,14 @@
   <!-- Header -->
   <header class="page">
     <div class="container">
-      <div class="title-wrap">
-        <h1>Privacy Policy</h1>
-        <p class="lead">At Submia, your privacy is our top priority. You stay in full control of your data at all times.</p>
-      </div>
+      <h1>Privacy Policy</h1>
+      <p class="lead">At Submia, your privacy is our top priority. You stay in full control of your data at all times.</p>
     </div>
   </header>
 
   <!-- Content -->
   <main class="container">
     <section>
-      <h2>Data Security & Transparency</h2>
       <p>All your data is securely stored on your device. We do <strong>not</strong> collect, access, or transmit your personal information outside your device. No tracking, analytics, or fingerprinting is used.</p>
     </section>
 
@@ -219,6 +198,7 @@
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
 
+    // Dropdown kontrolü (Terms ile aynı)
     const appsCaret = document.getElementById('appsCaret');
     const appsMenu  = document.getElementById('appsMenu');
     const appsLink  = document.getElementById('appsLink');
