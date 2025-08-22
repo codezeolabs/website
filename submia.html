@@ -54,8 +54,7 @@
          background:rgba(6,10,16,.55); backdrop-filter:blur(10px) saturate(130%) }
     .nav-inner{ display:flex; align-items:center; justify-content:space-between; height:66px }
     .nav-links{ display:flex; gap:14px; align-items:center }
-    .nav-links a,
-    .caret{
+    .nav-links a{
       padding:8px 12px; border-radius:12px; border:1px solid transparent;
       transition:all .25s ease; background:transparent; color:inherit;
       font:inherit; cursor:pointer;
@@ -66,16 +65,35 @@
     /* Dropdown wrapper */
     .dropdown{ position:relative; display:flex; align-items:center }
 
-    /* Caret (dropdown arrow) — büyük */
-    .caret{ display:inline-flex; align-items:center; justify-content:center; margin-left:4px }
-    .caret::before{
-      content:"";
-      width:20px; height:20px; /* büyüklük buradan */
-      -webkit-mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'><path d='M7 10l5 5 5-5z'/></svg>") no-repeat center/contain;
-              mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'><path d='M7 10l5 5 5-5z'/></svg>") no-repeat center/contain;
-      background:var(--ink); opacity:.9;
+    /* Caret (dropdown arrow) — index ile birebir */
+    .caret {
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      margin-left:4px;      /* Apps yazısından biraz uzak */
+      cursor:pointer;
+      border:none;
+      background:transparent;
+      padding:8px 12px;     /* hover alanı linklerle aynı hissiyat */
+      border-radius:12px;
+      transition:all .25s ease;
     }
-
+    
+    .caret::before {
+      content:"";
+      width:18px;           /* index ile aynı boy */
+      height:18px;
+      -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'><path d='M7 10l5 5 5-5z'/></svg>") no-repeat center / contain;
+              mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'><path d='M7 10l5 5 5-5z'/></svg>") no-repeat center / contain;
+      background: var(--ink);
+      opacity:.9;
+    }
+    
+    .caret:hover{
+      background:rgba(255,255,255,.05);
+      border-color:var(--line);
+    }
+    
     /* Dropdown menu */
     .menu{
       position:absolute; top:calc(100% + 8px); left:0; z-index:60;
