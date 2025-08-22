@@ -38,7 +38,7 @@
       border:1px solid var(--line); border-radius:16px; backdrop-filter:blur(14px); box-shadow:var(--shadow)
     }
 
-    /* ===== NAV (sitelerle aynı) ===== */
+    /* ===== NAV ===== */
     nav{
       position:sticky; top:0; z-index:50;
       border-bottom:1px solid var(--line);
@@ -59,8 +59,6 @@
     .nav-links a:hover{ border-color:var(--line); background:rgba(255,255,255,.04) }
 
     .dropdown{ position:relative; display:flex; align-items:center }
-
-    /* Caret (iki sayfayla birebir) */
     .caret{
       display:inline-flex; align-items:center; justify-content:center;
       width:32px; height:32px; margin-left:6px; padding:0;
@@ -74,7 +72,6 @@
               mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'><path d='M7 10l5 5 5-5z'/></svg>") no-repeat center/contain;
       background:var(--ink); opacity:.9;
     }
-
     .menu{
       position:absolute; top:calc(100% + 8px); left:0; z-index:60;
       min-width:160px; padding:8px; border-radius:12px; border:1px solid var(--line);
@@ -90,12 +87,20 @@
     h1{ font-size:42px; margin:0 0 8px }
     .lead{ color:var(--muted); max-width:70ch }
 
-    main{ counter-reset: sec; }                 /* numaralandırma */
-    section{ padding:28px 0 }
-    h2{
-      font-size:22px; color:var(--muted); margin:0 0 8px;
+    /* Başlık ve içerik aynı soldan hizalansın */
+    header.page .container,
+    main.container{ max-width:900px; }
+
+    .title-wrap{
+      display:flex;
+      flex-direction:column;
+      align-items:flex-start; /* her şeyi sola hizala */
     }
-    h2::before{                                    /* 1., 2., 3. … */
+
+    main{ counter-reset: sec; }
+    section{ padding:28px 0 }
+    h2{ font-size:22px; color:var(--muted); margin:0 0 8px; }
+    h2::before{
       counter-increment: sec;
       content: counter(sec) ". ";
       color: var(--ink);
@@ -108,17 +113,10 @@
 
     /* ===== Footer ===== */
     footer{ padding:28px 0; color:var(--muted) }
-    footer .row{
-      display:flex; justify-content:space-between; align-items:center;
-      border-top:1px solid var(--line); padding-top:18px
-    }
+    footer .row{ display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--line); padding-top:18px }
     .legal{ font-size:13px }
-    .footer-links{
-      margin-left:auto;            /* sağa hizala */
-    }
-    .footer-links a{
-      color:var(--muted); text-decoration:underline; margin:0 0 0 16px; font-size:14px
-    }
+    .footer-links{ margin-left:auto; }
+    .footer-links a{ color:var(--muted); text-decoration:underline; margin:0 0 0 16px; font-size:14px }
     .footer-links a:hover{ color:var(--ink) }
 
     @media (max-width: 960px){
@@ -151,13 +149,15 @@
   <!-- Header -->
   <header class="page">
     <div class="container">
-      <h1>Privacy Policy</h1>
-      <p class="lead">At Submia, your privacy is our top priority. You stay in full control of your data at all times.</p>
+      <div class="title-wrap">
+        <h1>Privacy Policy</h1>
+        <p class="lead">At Submia, your privacy is our top priority. You stay in full control of your data at all times.</p>
+      </div>
     </div>
   </header>
 
   <!-- Content -->
-  <main class="container" style="max-width:900px">
+  <main class="container">
     <section>
       <h2>Data Security & Transparency</h2>
       <p>All your data is securely stored on your device. We do <strong>not</strong> collect, access, or transmit your personal information outside your device. No tracking, analytics, or fingerprinting is used.</p>
@@ -208,7 +208,6 @@
   <footer>
     <div class="container row">
       <div class="legal">© <span id="year"></span> CodeZeo Ltd • All rights reserved</div>
-      <!-- Sağda, gri ve altı çizili linkler -->
       <div class="footer-links">
         <a href="terms.html">Terms of Service</a>
         <a href="privacy.html">Privacy Policy</a>
@@ -218,10 +217,8 @@
   </footer>
 
   <script>
-    // Yıl
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Dropdown kontrolü (diğer sayfalarla aynı)
     const appsCaret = document.getElementById('appsCaret');
     const appsMenu  = document.getElementById('appsMenu');
     const appsLink  = document.getElementById('appsLink');
