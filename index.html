@@ -77,19 +77,35 @@
     .nav-links a.active{ border-color:var(--line); background:rgba(255,255,255,.06) }
 
     /* Dropdown */
-    .dropdown{ position:relative }
-    .dropdown-menu{
-      position:absolute; top:110%; left:0; min-width:160px;
-      background:rgba(8,11,18,.95); border:1px solid var(--line); border-radius:12px; padding:8px;
+    /* --- Dropdown (Apps hem link hem caret + açılır menü) --- */
+    .dropdown{ position:relative; display:flex; align-items:center }
+    .nav-links{ display:flex; gap:14px; align-items:center }
+    
+    .caret{
+      display:inline-flex; align-items:center; justify-content:center;
+      width:22px; height:22px; margin-left:6px; border-radius:8px;
+      border:1px solid transparent; background:transparent; cursor:pointer;
+    }
+    .caret::before{
+      content:""; width:12px; height:12px;
+      -webkit-mask:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>') no-repeat center / contain;
+              mask:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>') no-repeat center / contain;
+      background:var(--ink); opacity:.85;
+    }
+    .caret:hover{ background:rgba(255,255,255,.05); border-color:var(--line) }
+    
+    .menu{
+      position:absolute; top:calc(100% + 8px); left:0; z-index:60;
+      min-width:160px; padding:8px; border-radius:12px;
+      border:1px solid var(--line);
+      background:rgba(8,11,18,.95);
       box-shadow:0 20px 40px rgba(0,0,0,.35);
-      opacity:0; transform:translateY(-6px); pointer-events:none; transition:.18s ease;
+      display:none;
     }
-    .dropdown-menu a{ display:block; padding:8px 10px; border-radius:10px }
-    .dropdown-menu a:hover{ background:rgba(255,255,255,.06) }
-    .dropdown:hover .dropdown-menu,
-    .dropdown:focus-within .dropdown-menu{
-      opacity:1; transform:translateY(0); pointer-events:auto;
-    }
+    .menu.open{ display:block }
+    .menu a{ display:block; padding:8px 10px; border-radius:10px }
+    .menu a:hover{ background:rgba(255,255,255,.08) }
+
 
     /* ===== HERO ===== */
     header.hero{ padding:96px 0 64px; position:relative; overflow:hidden; }
@@ -432,15 +448,30 @@
     sections.forEach(s=>navObserver.observe(s));
 
     // (opsiyonel) dropdown erişilebilirliği için aria-expanded güncelle
-    const drop = document.querySelector('.drop-trigger');
-    const dd = document.querySelector('.dropdown');
-    if(drop && dd){
-      const set = (v)=>drop.setAttribute('aria-expanded', v);
-      dd.addEventListener('mouseenter', ()=>set(true));
-      dd.addEventListener('mouseleave', ()=>set(false));
-      drop.addEventListener('focus', ()=>set(true));
-      drop.addEventListener('blur', ()=>set(false));
+    const appsCaret = document.getElementById('appsCaret');
+    const appsMenu  = document.getElementById('appsMenu');
+    const appsLink  = document.getElementById('appsLink');
+    
+    function closeAppsMenu(){
+      appsMenu.classList.remove('open');
+      appsCaret.setAttribute('aria-expanded','false');
     }
+    
+    appsCaret.addEventListener('click', (e)=>{
+      e.stopPropagation();
+      const open = appsMenu.classList.toggle('open');
+      appsCaret.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    
+    appsLink.addEventListener('click', closeAppsMenu);          // Apps → #apps
+    document.addEventListener('click', (e)=>{                   // dışarı tık → kapan
+      if(!appsMenu.contains(e.target) && !appsCaret.contains(e.target)) closeAppsMenu();
+    });
+    appsCaret.addEventListener('keydown', (e)=>{                // klavye desteği
+      if(e.key==='Enter' || e.key===' '){ e.preventDefault(); appsCaret.click(); }
+      if(e.key==='Escape'){ closeAppsMenu(); }
+    });
+
   </script>
 </body>
 </html>
