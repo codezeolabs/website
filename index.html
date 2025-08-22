@@ -55,56 +55,52 @@
       -webkit-background-clip:text; background-clip:text; color:transparent;
     }
 
-    /* ===== NAV ===== */
-    nav{ position:sticky; top:0; z-index:50; border-bottom:1px solid var(--line);
-         background:rgba(10,13,20,.55); backdrop-filter:blur(10px) saturate(130%) }
+    /* ===== NAV (tutarlı) ===== */
+    nav{
+      position:sticky; top:0; z-index:50;
+      border-bottom:1px solid var(--line);
+      background:rgba(10,13,20,.55);
+      backdrop-filter:blur(10px) saturate(130%);
+    }
     .nav-inner{ display:flex; align-items:center; justify-content:space-between; height:66px }
     .brand{ display:flex; align-items:center; gap:10px }
     .brand .badge{
       font-family:'Poppins', sans-serif;
-      font-weight:600;
-      font-size:1.4rem;
-      letter-spacing:.5px;
+      font-weight:600; font-size:1.4rem; letter-spacing:.5px;
       color:var(--brand); /* #00C8D7 */
     }
+    
+    /* Linkler */
     .nav-links{ display:flex; gap:14px; align-items:center }
-    .nav-links a, .drop-trigger{
-      padding:8px 12px; border-radius:12px; border:1px solid transparent; transition:all .25s ease; background:transparent; color:inherit;
-      font: inherit; /* button için */
-      cursor:pointer;
+    .nav-links a{
+      padding:8px 12px; border-radius:12px;
+      border:1px solid transparent;
+      transition:background .25s ease, border-color .25s ease;
     }
-    .nav-links a:hover, .drop-trigger:hover{ border-color:var(--line); background:rgba(255,255,255,.04) }
+    .nav-links a:hover{ border-color:var(--line); background:rgba(255,255,255,.04) }
     .nav-links a.active{ border-color:var(--line); background:rgba(255,255,255,.06) }
-
-    /* Dropdown */
+    
+    /* Dropdown sarmalayıcı */
     .dropdown{ position:relative; display:flex; align-items:center }
-    .nav-links{ display:flex; gap:14px; align-items:center }
     
-    /* Caret (dropdown arrow) */
-    .caret {
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      margin-left:4px;   /* Apps yazısından biraz uzak dursun */
-      cursor:pointer;
-      border:none;
-      background:transparent;
+    /* Caret (dropdown arrow) — iki sayfada da birebir */
+    .caret{
+      display:inline-flex; align-items:center; justify-content:center;
+      width:32px; height:32px;             /* sabit kutu */
+      margin-left:6px; padding:0;           /* link padding'ini alma */
+      border-radius:12px; border:1px solid transparent;
+      background:transparent; cursor:pointer;
+      transition:background .25s ease, border-color .25s ease;
     }
-    
-    .caret::before {
+    .caret:hover{ background:rgba(255,255,255,.04); border-color:var(--line) }
+    .caret::before{
       content:"";
-      width:18px;   /* boyut: submia.html ile aynı */
-      height:18px;
-      -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'><path d='M7 10l5 5 5-5z'/></svg>") no-repeat center / contain;
-              mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'><path d='M7 10l5 5 5-5z'/></svg>") no-repeat center / contain;
-      background: var(--ink);  /* menü rengi ile uyumlu */
-      opacity:.9;
+      width:18px; height:18px;             /* okun boyutu */
+      -webkit-mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'><path d='M7 10l5 5 5-5z'/></svg>") no-repeat center/contain;
+              mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'><path d='M7 10l5 5 5-5z'/></svg>") no-repeat center/contain;
+      background:var(--ink); opacity:.9;
     }
-    
-    .caret:hover {
-      background:rgba(255,255,255,.05);
-      border-color:var(--line);
-    }
+
 
     .menu{
       position:absolute; top:calc(100% + 8px); left:0; z-index:60;
