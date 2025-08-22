@@ -36,7 +36,7 @@
     .glass{ background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
       border:1px solid var(--line); border-radius:16px; backdrop-filter:blur(14px); box-shadow:var(--shadow) }
 
-    /* ===== NAV (privacy ile aynı) ===== */
+    /* ===== NAV ===== */
     nav{
       position:sticky; top:0; z-index:50;
       border-bottom:1px solid var(--line);
@@ -80,14 +80,13 @@
     .menu a{ display:block; padding:8px 10px; border-radius:10px }
     .menu a:hover{ background:rgba(255,255,255,.08) }
 
-    /* ===== Page (privacy ile aynı genişlik) ===== */
+    /* ===== Page ===== */
     header.page{ padding:64px 0 24px; border-bottom:1px solid var(--line) }
     h1{ font-size:42px; margin:0 0 8px }
     .lead{ color:var(--muted); max-width:70ch }
 
-    /* Başlık ve içerik aynı soldan hizalansın */
-    header.page .container,
-    main.container{ max-width:900px; }
+    /* Sola hizalı içerik bloğu (CodeZeo ile aynı çizgi) */
+    .content{ max-width:900px; }
 
     section{ padding:28px 0 }
     h2{ font-size:22px; color:var(--muted); margin:0 0 8px }
@@ -95,7 +94,7 @@
     ul{ margin:8px 0 16px 18px }
     li{ margin:6px 0; color:var(--ink) }
 
-    /* ===== Footer (privacy ile aynı) ===== */
+    /* ===== Footer ===== */
     footer{ padding:28px 0; color:var(--muted) }
     footer .row{ display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--line); padding-top:18px }
     .legal{ font-size:13px }
@@ -133,85 +132,89 @@
   <!-- Header -->
   <header class="page">
     <div class="container">
-      <h1>Terms of Service</h1>
-      <p class="lead">By using Submia, you agree to the Terms below. If you do not agree, please do not use the app.</p>
+      <div class="content">
+        <h1>Terms of Service</h1>
+        <p class="lead">By using Submia, you agree to the Terms below. If you do not agree, please do not use the app.</p>
+      </div>
     </div>
   </header>
 
   <!-- Content -->
   <main class="container">
-    <section>
-      <p>Welcome to Submia! These Terms of Service (“Terms”) govern your use of the Submia mobile application (“App”).</p>
-    </section>
+    <div class="content">
+      <section>
+        <p>Welcome to Submia! These Terms of Service (“Terms”) govern your use of the Submia mobile application (“App”).</p>
+      </section>
 
-    <section>
-      <h2>Use of the App</h2>
-      <ul>
-        <li>You must be at least 13 years old to use Submia.</li>
-        <li>Use the App for personal, non-commercial purposes only.</li>
-        <li>You are responsible for keeping your device and data secure.</li>
-      </ul>
-    </section>
+      <section>
+        <h2>Use of the App</h2>
+        <ul>
+          <li>You must be at least 13 years old to use Submia.</li>
+          <li>Use the App for personal, non-commercial purposes only.</li>
+          <li>You are responsible for keeping your device and data secure.</li>
+        </ul>
+      </section>
 
-    <section>
-      <h2>Subscriptions and Purchases</h2>
-      <ul>
-        <li>Submia Pro and other in-app purchases are billed through your Apple account and are subject to Apple’s terms.</li>
-        <li>All payments are handled by the App Store. We do not access or store your payment details.</li>
-        <li>You may manage or cancel subscriptions through your Apple ID settings.</li>
-      </ul>
-    </section>
+      <section>
+        <h2>Subscriptions and Purchases</h2>
+        <ul>
+          <li>Submia Pro and other in-app purchases are billed through your Apple account and are subject to Apple’s terms.</li>
+          <li>All payments are handled by the App Store. We do not access or store your payment details.</li>
+          <li>You may manage or cancel subscriptions through your Apple ID settings.</li>
+        </ul>
+      </section>
 
-    <section>
-      <h2>Data Storage &amp; Privacy</h2>
-      <ul>
-        <li>Your data is stored exclusively on your device unless you use features (e.g., Contact Support) that require sending data to third-party services.</li>
-        <li>See our <a href="privacy.html" style="text-decoration:underline">Privacy Policy</a> for full details.</li>
-      </ul>
-    </section>
+      <section>
+        <h2>Data Storage &amp; Privacy</h2>
+        <ul>
+          <li>Your data is stored exclusively on your device unless you use features (e.g., Contact Support) that require sending data to third-party services.</li>
+          <li>See our <a href="privacy.html" style="text-decoration:underline">Privacy Policy</a> for full details.</li>
+        </ul>
+      </section>
 
-    <section>
-      <h2>Acceptable Use</h2>
-      <ul>
-        <li>Do not use Submia for any unlawful or harmful purpose.</li>
-        <li>Do not reverse engineer, decompile, or tamper with the App.</li>
-        <li>Do not infringe the intellectual property rights of Submia or others.</li>
-      </ul>
-    </section>
+      <section>
+        <h2>Acceptable Use</h2>
+        <ul>
+          <li>Do not use Submia for any unlawful or harmful purpose.</li>
+          <li>Do not reverse engineer, decompile, or tamper with the App.</li>
+          <li>Do not infringe the intellectual property rights of Submia or others.</li>
+        </ul>
+      </section>
 
-    <section>
-      <h2>Intellectual Property</h2>
-      <ul>
-        <li>All content, design, and code are owned by Submia or its licensors and protected by IP laws.</li>
-        <li>You may not reproduce, distribute, or create derivative works without written permission.</li>
-      </ul>
-    </section>
+      <section>
+        <h2>Intellectual Property</h2>
+        <ul>
+          <li>All content, design, and code are owned by Submia or its licensors and protected by IP laws.</li>
+          <li>You may not reproduce, distribute, or create derivative works without written permission.</li>
+        </ul>
+      </section>
 
-    <section>
-      <h2>Limitation of Liability</h2>
-      <ul>
-        <li>The App is provided “as is” with no warranties regarding functionality or reliability.</li>
-        <li>To the fullest extent permitted by law, Submia is not liable for any damages resulting from use of the App.</li>
-      </ul>
-    </section>
+      <section>
+        <h2>Limitation of Liability</h2>
+        <ul>
+          <li>The App is provided “as is” with no warranties regarding functionality or reliability.</li>
+          <li>To the fullest extent permitted by law, Submia is not liable for any damages resulting from use of the App.</li>
+        </ul>
+      </section>
 
-    <section>
-      <h2>Changes to the Terms</h2>
-      <ul>
-        <li>We may update these Terms from time to time. Changes will be posted in-app and/or on our website.</li>
-        <li>Continued use of the App after changes means you accept the new Terms.</li>
-      </ul>
-    </section>
+      <section>
+        <h2>Changes to the Terms</h2>
+        <ul>
+          <li>We may update these Terms from time to time. Changes will be posted in-app and/or on our website.</li>
+          <li>Continued use of the App after changes means you accept the new Terms.</li>
+        </ul>
+      </section>
 
-    <section>
-      <h2>Termination</h2>
-      <p>We reserve the right to terminate or suspend access to the App at any time, for any reason, without notice.</p>
-    </section>
+      <section>
+        <h2>Termination</h2>
+        <p>We reserve the right to terminate or suspend access to the App at any time, for any reason, without notice.</p>
+      </section>
 
-    <section>
-      <h2>Contact</h2>
-      <p>If you have questions or concerns about these Terms, contact us via the Support section in the app or email <a href="mailto:support@submiaapp.com" style="text-decoration:underline">support@submiaapp.com</a>.</p>
-    </section>
+      <section>
+        <h2>Contact</h2>
+        <p>If you have questions or concerns about these Terms, contact us via the Support section in the app or email <a href="mailto:support@submiaapp.com" style="text-decoration:underline">support@submiaapp.com</a>.</p>
+      </section>
+    </div>
   </main>
 
   <!-- FOOTER -->
@@ -229,7 +232,7 @@
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Dropdown kontrolü (privacy ile aynı)
+    // Dropdown kontrolü
     const appsCaret = document.getElementById('appsCaret');
     const appsMenu  = document.getElementById('appsMenu');
     const appsLink  = document.getElementById('appsLink');
