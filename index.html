@@ -87,10 +87,15 @@
     .caret{
       display:inline-flex; align-items:center; justify-content:center;
       width:32px; height:32px;             /* sabit kutu */
-      margin-left:6px; padding:0;           /* link padding'ini alma */
+      margin-left:6px; padding:0;          /* link padding'ini alma */
       border-radius:12px; border:1px solid transparent;
       background:transparent; cursor:pointer;
       transition:background .25s ease, border-color .25s ease;
+    
+      /* Safari/varsayılan buton stilini kapat */
+      -webkit-appearance: none;
+      appearance: none;
+      outline: none;
     }
     .caret:hover{ background:rgba(255,255,255,.04); border-color:var(--line) }
     .caret::before{
@@ -100,6 +105,13 @@
               mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'><path d='M7 10l5 5 5-5z'/></svg>") no-repeat center/contain;
       background:var(--ink); opacity:.9;
     }
+    /* Tutarlı odak stili (opsiyonel) */
+    .caret:focus-visible{
+      outline:2px solid var(--line);
+      outline-offset:2px;
+      border-radius:12px;
+    }
+
 
 
     .menu{
@@ -258,11 +270,11 @@
       <!-- Apps: hem link hem de caret ile dropdown -->
       <div class="dropdown">
         <a href="#apps" class="nav-link" id="appsLink">Apps</a>
-        <button class="caret" id="appsCaret"
-                aria-label="Toggle apps menu"
-                aria-haspopup="true"
-                aria-expanded="false"
-                aria-controls="appsMenu"></button>
+      <button type="button" class="caret" id="appsCaret"
+              aria-label="Toggle apps menu"
+              aria-haspopup="true"
+              aria-expanded="false"
+              aria-controls="appsMenu"></button>
 
         <div class="menu glass" id="appsMenu" role="menu">
           <a role="menuitem" href="submia.html">Submia</a>
