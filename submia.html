@@ -15,9 +15,12 @@
   <style>
       /* Logo (başlığın üstü) */
       .app-logo{
-        width:64px; height:auto;
-        display:block; margin:0 0 10px;
+        width:100px;   /* eski 64px idi, istersen 120px bile yapabilirsin */
+        height:auto;
+        display:block;
+        margin:10px 0 18px; /* üstten biraz boşluk bırak, altta da */
       }
+
       /* Sağ hero görseli: phone/screenshot kutusu */
       .hero-art .phone{
         aspect-ratio:9/16; border-radius:24px; overflow:hidden;
@@ -222,33 +225,32 @@
 </nav>
 
 
-  <!-- ===== HERO ===== -->
-  <header class="hero">
-    <div class="container hero-grid">
-      <div>
-        <div class="kicker">Finance • iOS</div>
-  
-        <!-- LOGO eklendi -->
-        <img class="app-logo" src="SubmiaLogoRot.png" alt="Submia logo" />
-  
-        <h1>Submia — Smart Subscription Tracker &amp; Reminder</h1>
-        <p class="lead">Track renewals, prevent unwanted charges, forecast your spend. Private by design — your data stays yours.</p>
-        <div class="buttons">
-          <a class="btn primary" href="#download">Get Submia</a>
-          <a class="btn" href="#features">See Features</a>
-        </div>
-      </div>
-  
-      <!-- Sağ taraftaki screenshot (IMG ile) -->
-      <div class="hero-art">
-        <div class="phone glass">
-          <!-- BURAYA kapak ekran görüntünü koy -->
-          <img src="assets/hero-screenshot.png" alt="Submia screenshot" />
-        </div>
+<!-- ===== HERO ===== -->
+<header class="hero">
+  <div class="container hero-grid">
+    <div>
+      <!-- Finance üstte, altına logo -->
+      <div class="kicker">Finance • iOS</div>
+
+      <!-- LOGO büyük, kicker’ın altında -->
+      <img class="app-logo" src="SubmiaLogoRot.png" alt="Submia logo" />
+
+      <h1>Submia — Smart Subscription Tracker &amp; Reminder</h1>
+      <p class="lead">Track renewals, prevent unwanted charges, forecast your spend. Private by design — your data stays yours.</p>
+      <div class="buttons">
+        <a class="btn primary" href="#download">Get Submia</a>
+        <a class="btn" href="#features">See Features</a>
       </div>
     </div>
-  </header>
 
+    <!-- Sağ screenshot aynı -->
+    <div class="hero-art">
+      <div class="phone glass">
+        <img src="assets/hero-screenshot.png" alt="Submia screenshot" />
+      </div>
+    </div>
+  </div>
+</header>
 
   <!-- ===== FEATURES ===== -->
   <section id="features">
