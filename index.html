@@ -233,9 +233,12 @@
 
         <!-- Apps dropdown -->
         <div class="dropdown">
-          <button class="drop-trigger" aria-haspopup="true" aria-expanded="false">Apps</button>
-          <div class="dropdown-menu" role="menu">
-            <a href="submia.html" role="menuitem">Submia</a>
+          <!-- Apps linki #apps bölümüne götürür -->
+          <a href="#apps" class="nav-link" id="appsLink">Apps</a>
+          <button class="caret" aria-label="Toggle apps menu" aria-expanded="false" aria-controls="appsMenu"></button>
+        
+          <div class="menu glass" id="appsMenu" role="menu">
+            <a role="menuitem" href="submia.html">Submia</a>
           </div>
         </div>
 
