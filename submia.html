@@ -13,12 +13,20 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
 
   <style>
-      /* Logo (başlığın üstü) */
+      .logo-title {
+        display: flex;
+        align-items: center;
+        gap: 14px; /* logo ile yazı arasındaki boşluk */
+        margin-bottom: 10px;
+      }
       .app-logo{
         width:140px;   /* eski 64px idi, istersen 120px bile yapabilirsin */
-        height:auto;
         display:block;
-        margin:10px 0 18px; /* üstten biraz boşluk bırak, altta da */
+      }
+      .logo-title h1 {
+        font-size: 36px;   /* yazıyı küçült */
+        line-height: 1.2;
+        margin: 0;
       }
 
       /* Sağ hero görseli: phone/screenshot kutusu */
@@ -229,12 +237,13 @@
 <header class="hero">
   <div class="container hero-grid">
     <div>
-      <!-- LOGO büyük, kicker’ın altında -->
-      <img class="app-logo" src="SubmiaLogoRot.png" alt="Submia logo" />
+      <div class="logo-title">
+        <img class="app-logo" src="SubmiaLogoRot.png" alt="Submia logo" />
+        <h1>Submia — Smart Subscription Tracker &amp; Reminder</h1>
+      </div>
 
       <div class="kicker">Finance • iOS</div>
 
-      <h1>Submia — Smart Subscription Tracker &amp; Reminder</h1>
       <p class="lead">Track renewals, prevent unwanted charges, forecast your spend. Private by design — your data stays yours.</p>
       <div class="buttons">
         <a class="btn primary" href="#download">Get Submia</a>
@@ -250,6 +259,7 @@
     </div>
   </div>
 </header>
+
 
   <!-- ===== FEATURES ===== -->
   <section id="features">
