@@ -222,49 +222,43 @@
       color: var(--ink);     /* hover’da beyazlaşsın */
     }
 
-    /* ==== Screenshots Carousel ==== */
-    .shots-wrapper {
-      position: relative;
+    /* ==== Screenshots: arkaplansız, yatay şerit ==== */
+    .shots-wrap{ position:relative; }
+    
+    .shots-rail{
+      display:flex; gap:16px; align-items:flex-start;
+      overflow-x:auto; overscroll-behavior-x:contain;
+      -webkit-overflow-scrolling: touch;   /* iOS momentum */
+      scroll-snap-type:x mandatory; scroll-behavior:smooth;
+      padding:8px 48px 12px;
+    }
+    .shots-rail::-webkit-scrollbar{ display:none; }
+    
+    .shots-rail img{
+      flex:0 0 auto;
+      height:clamp(420px, 60vh, 620px);
+      width:auto;
+      display:block;
+      border-radius:24px;
+      scroll-snap-align:start;
+      filter:drop-shadow(0 18px 36px rgba(0,0,0,.45));
     }
     
-    .shots {
-      display: flex;
-      gap: 16px;
-      overflow-x: auto;
-      scroll-behavior: smooth;
-      padding-bottom: 10px;
+    .shots-btn{
+      position:absolute; top:50%; transform:translateY(-50%);
+      width:42px; height:42px; border-radius:50%;
+      border:1px solid var(--line);
+      background:rgba(0,0,0,.55); color:#fff; font-size:22px;
+      display:grid; place-items:center; cursor:pointer;
+      transition:background .25s;
+      z-index:2; /* butonlar üstte */
     }
+    .shots-btn:hover{ background:rgba(0,0,0,.8) }
+    .shots-prev{ left:4px } .shots-next{ right:4px }
     
-    .shots::-webkit-scrollbar {
-      display: none; /* scrollbar gizle */
-    }
-    
-    .shot {
-      flex: 0 0 auto;
-      width: 200px;
-      height: 400px;
-      border-radius: 14px;
-      border: 1px solid var(--line);
-      background: #0b1324 center/cover no-repeat;
-    }
-    
-    .shots-next {
-      position: absolute;
-      right: -10px;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(0,0,0,.6);
-      border: none;
-      border-radius: 50%;
-      color: white;
-      font-size: 28px;
-      width: 40px;
-      height: 40px;
-      cursor: pointer;
-      transition: background .25s;
-    }
-    .shots-next:hover {
-      background: rgba(0,0,0,.8);
+    @media (max-width:760px){
+      .shots-rail{ padding:6px 42px 10px }
+      .shots-rail img{ height:clamp(360px, 55vh, 520px) }
     }
 
 
@@ -358,19 +352,22 @@
   <section>
     <div class="container">
       <h2>Screenshots</h2>
-      <div class="shots-wrapper">
-        <div class="shots" id="shots">
-          <div class="shot" style="background-image:url('Onboarding1.png')"></div>
-          <div class="shot" style="background-image:url('DashboardMockup1.png')"></div>
-          <div class="shot" style="background-image:url('DashboardMockup2.png')"></div>
-          <div class="shot" style="background-image:url('DashboardMockup3.png')"></div>
-          <div class="shot" style="background-image:url('DashboardMockup4.png')"></div>
+  
+      <div class="shots-wrap">
+        <button class="shots-btn shots-prev" type="button" aria-label="Scroll left">‹</button>
+  
+        <div class="shots-rail" id="shots">
+          <img src="Onboarding1.png"      alt="Onboarding"           loading="lazy" decoding="async">
+          <img src="DashboardMockup1.png" alt="Dashboard 1"          loading="lazy" decoding="async">
+          <img src="DashboardMockup2.png" alt="Dashboard 2"          loading="lazy" decoding="async">
+          <img src="DashboardMockup3.png" alt="Dashboard 3"          loading="lazy" decoding="async">
+          <img src="DashboardMockup4.png" alt="Dashboard 4"          loading="lazy" decoding="async">
         </div>
-        <button class="shots-next" onclick="scrollShots()">›</button>
+  
+        <button class="shots-btn shots-next" type="button" aria-label="Scroll right">›</button>
       </div>
     </div>
   </section>
-
 
   <!-- ===== DOWNLOAD ===== -->
   <section id="download">
@@ -560,12 +557,22 @@
       });
     }
 
-    function scrollShots(){
-      document.getElementById('shots').scrollBy({ 
-        left: 220,  // her tıklamada 1 görsel kay
-        behavior: 'smooth'
-      });
-    }
+    // Screenshots okları: bir görsel genişliği kadar kaydır
+    (function(){
+      const rail = document.getElementById('shots');
+      const prev = document.querySelector('.shots-prev');
+      const next = document.querySelector('.shots-next');
+      if(!rail || !prev || !next) return;
+    
+      const GAP = 16; // CSS'teki gap ile aynı
+      const step = () => {
+        const first = rail.querySelector('img');
+        return first ? Math.round(first.getBoundingClientRect().width + GAP) : 320;
+      };
+    
+      prev.addEventListener('click', ()=> rail.scrollBy({ left: -step(), behavior:'smooth' }));
+      next.addEventListener('click', ()=> rail.scrollBy({ left:  step(), behavior:'smooth' }));
+    })();
 
   </script>
 </body>
