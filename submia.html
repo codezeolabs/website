@@ -53,13 +53,13 @@
       /* Responsive: tablet / mobilde küçültme */
       @media (max-width: 1100px){
         .logo-title h1{ font-size:30px }
-        .-mockups{ transform:scale(.92) }             /* oransal küçültme */
+        .hero-mockups{ transform:scale(.92) }             /* oransal küçültme */
       }
       @media (max-width: 760px){
         .app-logo{ width:120px }
         .logo-title h1{ font-size:26px }
-        .-art{ max-width:420px }
-        .-mockups{ transform:scale(.82) }             /* daha da küçült */
+        .hero-art{ max-width:420px }
+        .hero-mockups{ transform:scale(.82) }             /* daha da küçült */
       }
 
 
@@ -157,9 +157,9 @@
     .menu a{ display:block; padding:8px 10px; border-radius:10px }
     .menu a:hover{ background:rgba(255,255,255,.08) }
 
-    /* =====  ===== */
-    header.{ padding:96px 0 32px; position:relative; overflow:hidden }
-    .-grid{ display:grid; grid-template-columns:1.15fr .85fr; gap:38px; align-items:center }
+    /* ===== HERO ===== */
+    header.hero{ padding:96px 0 32px; position:relative; overflow:hidden }
+    .hero-grid{ display:grid; grid-template-columns:1.15fr .85fr; gap:38px; align-items:center }
     .kicker{ color:var(--muted); letter-spacing:.14em; text-transform:uppercase; font-size:12px; font-weight:700 }
     h1{ font-size:48px; line-height:1.06; margin:.5rem 0 .6rem; font-weight:900 }
     .lead{ color:var(--muted); font-size:18px; max-width:60ch }
@@ -206,7 +206,7 @@
 
     /* Responsive */
     @media (max-width: 960px){
-      .-grid{ grid-template-columns:1fr }
+      .hero-grid{ grid-template-columns:1fr }
       h1{ font-size:40px }
       .features{ grid-template-columns:1fr }
       .shots{ grid-template-columns:1fr 1fr }
@@ -256,34 +256,36 @@
   </div>
 </nav>
 
-  <!-- ===== HERO ===== -->
-  <header class="hero">
-    <div class="container hero-grid">
-      <div>
-        <div class="logo-title">
-          <img class="app-logo" src="SubmiaLogoRot.png" alt="Submia logo" />
-          <h1>Submia — Smart Subscription Tracker &amp; Reminder</h1>
-        </div>
-  
-        <div class="kicker">Finance • iOS</div>
-  
-        <p class="lead">Track renewals, prevent unwanted charges, forecast your spend. Private by design — your data stays yours.</p>
-        <div class="buttons">
-          <a class="btn primary" href="#download">Get Submia</a>
-          <a class="btn" href="#features">See Features</a>
-        </div>
+<!-- ===== HERO ===== -->
+<header class="hero">
+  <div class="container hero-grid">
+    <div>
+      <div class="logo-title">
+        <img class="app-logo" src="SubmiaLogoRot.png" alt="Submia logo" />
+        <h1>Submia — Smart Subscription Tracker &amp; Reminder</h1>
       </div>
-  
-      <div class="hero-art">
-        <div class="hero-mockups" aria-hidden="true">
-          <img class="m4" src="DashboardMockup4.png" alt="" loading="lazy">
-          <img class="m3" src="DashboardMockup3.png" alt="" loading="lazy">
-          <img class="m2" src="DashboardMockup2.png" alt="" loading="lazy">
-          <img class="m1" src="DashboardMockup1.png" alt="" loading="lazy">
-        </div>
+
+      <div class="kicker">Finance • iOS</div>
+
+      <p class="lead">Track renewals, prevent unwanted charges, forecast your spend. Private by design — your data stays yours.</p>
+      <div class="buttons">
+        <a class="btn primary" href="#download">Get Submia</a>
+        <a class="btn" href="#features">See Features</a>
       </div>
     </div>
-  </header>
+
+    <!-- Sağ screenshot aynı -->
+    <div class="hero-art">
+      <div class="hero-mockups" aria-hidden="true">
+        <img class="m4" src="DashboardMockup4.png" alt="" loading="lazy">
+        <img class="m3" src="DashboardMockup3.png" alt="" loading="lazy">
+        <img class="m2" src="DashboardMockup2.png" alt="" loading="lazy">
+        <img class="m1" src="DashboardMockup1.png" alt="" loading="lazy">
+      </div>
+    </div>
+  </div>
+</header>
+
 
   <!-- ===== FEATURES ===== -->
   <section id="features">
