@@ -12,12 +12,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
 
-  <link rel="preload" as="image" href="SubmiaLogoRot.png">
-  <link rel="preload" as="image" href="DashboardMockup1.png">
-  <link rel="preload" as="image" href="DashboardMockup2.png">
-  <link rel="preload" as="image" href="DashboardMockup3.png">
-  <link rel="preload" as="image" href="DashboardMockup4.png">
-
   <style>
       /* Başlık + logo */
       .logo-title{
@@ -59,13 +53,13 @@
       /* Responsive: tablet / mobilde küçültme */
       @media (max-width: 1100px){
         .logo-title h1{ font-size:30px }
-        .hero-mockups{ transform:scale(.92) }             /* oransal küçültme */
+        .-mockups{ transform:scale(.92) }             /* oransal küçültme */
       }
       @media (max-width: 760px){
         .app-logo{ width:120px }
         .logo-title h1{ font-size:26px }
-        .hero-art{ max-width:420px }
-        .hero-mockups{ transform:scale(.82) }             /* daha da küçült */
+        .-art{ max-width:420px }
+        .-mockups{ transform:scale(.82) }             /* daha da küçült */
       }
 
 
@@ -163,9 +157,9 @@
     .menu a{ display:block; padding:8px 10px; border-radius:10px }
     .menu a:hover{ background:rgba(255,255,255,.08) }
 
-    /* ===== HERO ===== */
-    header.hero{ padding:96px 0 32px; position:relative; overflow:hidden }
-    .hero-grid{ display:grid; grid-template-columns:1.15fr .85fr; gap:38px; align-items:center }
+    /* =====  ===== */
+    header.{ padding:96px 0 32px; position:relative; overflow:hidden }
+    .-grid{ display:grid; grid-template-columns:1.15fr .85fr; gap:38px; align-items:center }
     .kicker{ color:var(--muted); letter-spacing:.14em; text-transform:uppercase; font-size:12px; font-weight:700 }
     h1{ font-size:48px; line-height:1.06; margin:.5rem 0 .6rem; font-weight:900 }
     .lead{ color:var(--muted); font-size:18px; max-width:60ch }
@@ -212,7 +206,7 @@
 
     /* Responsive */
     @media (max-width: 960px){
-      .hero-grid{ grid-template-columns:1fr }
+      .-grid{ grid-template-columns:1fr }
       h1{ font-size:40px }
       .features{ grid-template-columns:1fr }
       .shots{ grid-template-columns:1fr 1fr }
@@ -267,7 +261,7 @@
     <div class="container hero-grid">
       <div>
         <div class="logo-title">
-          <img class="app-logo" src="SubmiaLogoRot.png" alt="Submia logo" width="140" height="140" />
+          <img class="app-logo" src="SubmiaLogoRot.png" alt="Submia logo" />
           <h1>Submia — Smart Subscription Tracker &amp; Reminder</h1>
         </div>
   
@@ -280,18 +274,16 @@
         </div>
       </div>
   
-      <!-- Sağ screenshotlar -->
       <div class="hero-art">
         <div class="hero-mockups" aria-hidden="true">
-          <img class="m4" src="DashboardMockup4.png" alt="Submia screen 4" width="160" height="310">
-          <img class="m3" src="DashboardMockup3.png" alt="Submia screen 3" width="180" height="340">
-          <img class="m2" src="DashboardMockup2.png" alt="Submia screen 2" width="200" height="370">
-          <img class="m1" src="DashboardMockup1.png" alt="Submia screen 1" width="220" height="400">
+          <img class="m4" src="DashboardMockup4.png" alt="" loading="lazy">
+          <img class="m3" src="DashboardMockup3.png" alt="" loading="lazy">
+          <img class="m2" src="DashboardMockup2.png" alt="" loading="lazy">
+          <img class="m1" src="DashboardMockup1.png" alt="" loading="lazy">
         </div>
       </div>
     </div>
   </header>
-
 
   <!-- ===== FEATURES ===== -->
   <section id="features">
