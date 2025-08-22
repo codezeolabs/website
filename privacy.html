@@ -106,6 +106,15 @@
     ul{ margin:8px 0 16px 18px }
     li{ margin:6px 0; color:var(--ink) }
 
+    /* === Privacy page: içeriği sola dayalı yap === */
+    body.privacy header.page .container,
+    body.privacy main.container{
+      max-width: none;         /* genişlik sınırı yok */
+      margin: 0;               /* ortalamayı kaldır */
+      padding-left: 20px;      /* container boşluklarını koru */
+      padding-right: 20px;
+    }
+
     /* ===== Footer ===== */
     footer{ padding:28px 0; color:var(--muted) }
     footer .row{
@@ -126,7 +135,7 @@
     }
   </style>
 </head>
-<body>
+<body class="privacy">
   <!-- NAV -->
   <nav>
     <div class="container nav-inner">
@@ -157,7 +166,7 @@
   </header>
 
   <!-- Content -->
-  <main class="container" style="max-width:900px">
+  <main class="container">
     <section>
       <h2>Data Security & Transparency</h2>
       <p>All your data is securely stored on your device. We do <strong>not</strong> collect, access, or transmit your personal information outside your device. No tracking, analytics, or fingerprinting is used.</p>
