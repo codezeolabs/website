@@ -80,17 +80,27 @@
     .dropdown{ position:relative; display:flex; align-items:center }
     .nav-links{ display:flex; gap:14px; align-items:center }
     
-    .caret{
-      display:inline-flex; align-items:center; justify-content:center;
-      width:22px; height:22px; margin-left:6px; border-radius:8px;
-      border:1px solid transparent; background:transparent; cursor:pointer;
+    /* Caret (dropdown arrow) */
+    .caret {
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      margin-left:4px;   /* Apps yazısından biraz uzak dursun */
+      cursor:pointer;
+      border:none;
+      background:transparent;
     }
-    .caret::before{
-      content:""; width:30px; height:30px;
-      -webkit-mask:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>') no-repeat center / contain;
-              mask:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>') no-repeat center / contain;
-      background:var(--ink); opacity:.85;
+    
+    .caret::before {
+      content:"";
+      width:18px;   /* burayı istediğin kadar büyütebilirsin (16–20px iyi durur) */
+      height:18px;
+      -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'><path d='M7 10l5 5 5-5z'/></svg>") no-repeat center / contain;
+              mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'><path d='M7 10l5 5 5-5z'/></svg>") no-repeat center / contain;
+      background: var(--ink);  /* menü rengi ile uyumlu */
+      opacity:.9;
     }
+
     .caret:hover{ background:rgba(255,255,255,.05); border-color:var(--line) }
     
     .menu{
