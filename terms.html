@@ -36,7 +36,7 @@
     .glass{ background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
       border:1px solid var(--line); border-radius:16px; backdrop-filter:blur(14px); box-shadow:var(--shadow) }
 
-    /* ===== NAV (sitelerle aynı) ===== */
+    /* ===== NAV (privacy ile aynı) ===== */
     nav{
       position:sticky; top:0; z-index:50;
       border-bottom:1px solid var(--line);
@@ -56,10 +56,7 @@
     }
     .nav-links a:hover{ border-color:var(--line); background:rgba(255,255,255,.04) }
 
-    /* Dropdown wrapper */
     .dropdown{ position:relative; display:flex; align-items:center }
-
-    /* Caret (iki sayfayla birebir) */
     .caret{
       display:inline-flex; align-items:center; justify-content:center;
       width:32px; height:32px; margin-left:6px; padding:0;
@@ -73,7 +70,6 @@
               mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'><path d='M7 10l5 5 5-5z'/></svg>") no-repeat center/contain;
       background:var(--ink); opacity:.9;
     }
-
     .menu{
       position:absolute; top:calc(100% + 8px); left:0; z-index:60;
       min-width:160px; padding:8px; border-radius:12px; border:1px solid var(--line);
@@ -84,19 +80,22 @@
     .menu a{ display:block; padding:8px 10px; border-radius:10px }
     .menu a:hover{ background:rgba(255,255,255,.08) }
 
-    /* ===== Page ===== */
+    /* ===== Page (privacy ile aynı genişlik) ===== */
     header.page{ padding:64px 0 24px; border-bottom:1px solid var(--line) }
     h1{ font-size:42px; margin:0 0 8px }
     .lead{ color:var(--muted); max-width:70ch }
 
-    main{ max-width:900px }
+    /* Başlık ve içerik aynı soldan hizalansın */
+    header.page .container,
+    main.container{ max-width:900px; }
+
     section{ padding:28px 0 }
     h2{ font-size:22px; color:var(--muted); margin:0 0 8px }
     p{ line-height:1.7; margin:0 0 12px }
     ul{ margin:8px 0 16px 18px }
     li{ margin:6px 0; color:var(--ink) }
 
-    /* ===== Footer ===== */
+    /* ===== Footer (privacy ile aynı) ===== */
     footer{ padding:28px 0; color:var(--muted) }
     footer .row{ display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--line); padding-top:18px }
     .legal{ font-size:13px }
@@ -146,7 +145,7 @@
     </section>
 
     <section>
-      <h2>1. Use of the App</h2>
+      <h2>Use of the App</h2>
       <ul>
         <li>You must be at least 13 years old to use Submia.</li>
         <li>Use the App for personal, non-commercial purposes only.</li>
@@ -155,7 +154,7 @@
     </section>
 
     <section>
-      <h2>2. Subscriptions and Purchases</h2>
+      <h2>Subscriptions and Purchases</h2>
       <ul>
         <li>Submia Pro and other in-app purchases are billed through your Apple account and are subject to Apple’s terms.</li>
         <li>All payments are handled by the App Store. We do not access or store your payment details.</li>
@@ -164,7 +163,7 @@
     </section>
 
     <section>
-      <h2>3. Data Storage &amp; Privacy</h2>
+      <h2>Data Storage &amp; Privacy</h2>
       <ul>
         <li>Your data is stored exclusively on your device unless you use features (e.g., Contact Support) that require sending data to third-party services.</li>
         <li>See our <a href="privacy.html" style="text-decoration:underline">Privacy Policy</a> for full details.</li>
@@ -172,7 +171,7 @@
     </section>
 
     <section>
-      <h2>4. Acceptable Use</h2>
+      <h2>Acceptable Use</h2>
       <ul>
         <li>Do not use Submia for any unlawful or harmful purpose.</li>
         <li>Do not reverse engineer, decompile, or tamper with the App.</li>
@@ -181,7 +180,7 @@
     </section>
 
     <section>
-      <h2>5. Intellectual Property</h2>
+      <h2>Intellectual Property</h2>
       <ul>
         <li>All content, design, and code are owned by Submia or its licensors and protected by IP laws.</li>
         <li>You may not reproduce, distribute, or create derivative works without written permission.</li>
@@ -189,7 +188,7 @@
     </section>
 
     <section>
-      <h2>6. Limitation of Liability</h2>
+      <h2>Limitation of Liability</h2>
       <ul>
         <li>The App is provided “as is” with no warranties regarding functionality or reliability.</li>
         <li>To the fullest extent permitted by law, Submia is not liable for any damages resulting from use of the App.</li>
@@ -197,7 +196,7 @@
     </section>
 
     <section>
-      <h2>7. Changes to the Terms</h2>
+      <h2>Changes to the Terms</h2>
       <ul>
         <li>We may update these Terms from time to time. Changes will be posted in-app and/or on our website.</li>
         <li>Continued use of the App after changes means you accept the new Terms.</li>
@@ -205,12 +204,12 @@
     </section>
 
     <section>
-      <h2>8. Termination</h2>
+      <h2>Termination</h2>
       <p>We reserve the right to terminate or suspend access to the App at any time, for any reason, without notice.</p>
     </section>
 
     <section>
-      <h2>9. Contact</h2>
+      <h2>Contact</h2>
       <p>If you have questions or concerns about these Terms, contact us via the Support section in the app or email <a href="mailto:support@submiaapp.com" style="text-decoration:underline">support@submiaapp.com</a>.</p>
     </section>
   </main>
@@ -219,8 +218,6 @@
   <footer>
     <div class="container row">
       <div class="legal">© <span id="year"></span> CodeZeo Ltd • All rights reserved</div>
-  
-      <!-- Sağda, gri ve altı çizili linkler -->
       <div class="footer-links">
         <a href="terms.html">Terms of Service</a>
         <a href="privacy.html">Privacy Policy</a>
@@ -229,12 +226,10 @@
     </div>
   </footer>
 
-
   <script>
-    // Yıl
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Dropdown kontrolü (diğer sayfalarla aynı)
+    // Dropdown kontrolü (privacy ile aynı)
     const appsCaret = document.getElementById('appsCaret');
     const appsMenu  = document.getElementById('appsMenu');
     const appsLink  = document.getElementById('appsLink');
