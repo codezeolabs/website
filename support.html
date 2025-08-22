@@ -91,9 +91,17 @@
     }
     label{ display:block; font-weight:700; margin:12px 0 6px }
     .req{ color:#7f8aa3; font-weight:600; margin-left:6px }
-    input[type="text"], input[type="email"], textarea{
+    input[type="text"], input[type="email"], textarea, select{
       width:100%; padding:12px 12px; border-radius:12px; border:1px solid var(--line);
       background:rgba(255,255,255,.03); color:var(--ink); outline:none;
+    }
+    /* Select arrow + spacing */
+    select{
+      appearance:none; -webkit-appearance:none; -moz-appearance:none;
+      padding-right:40px;
+      background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'><path d='M7 10l5 5 5-5z'/></svg>");
+      background-repeat:no-repeat; background-position:right 12px center;
+      background-size:18px 18px;
     }
     textarea{ min-height:120px; resize:vertical }
     .hint{ color:var(--muted); font-size:13px; margin-top:6px }
@@ -173,6 +181,19 @@
         <label for="name">Name</label>
         <input type="text" id="name" name="name" placeholder="Your Name" autocomplete="name" />
 
+        <!-- Category (NEW) -->
+        <label for="category">Category <span class="req">(required)</span></label>
+        <select id="category" name="category" required>
+          <option value="" disabled selected>Select a category</option>
+          <option>App Support</option>
+          <option>App Info</option>
+          <option>Feature Request</option>
+          <option>Feedback</option>
+          <option>Bug Report</option>
+          <option>Business</option>
+          <option>Other</option>
+        </select>
+
         <label for="message">Message <span class="req">(required)</span></label>
         <textarea id="message" name="message" placeholder="How can we help?" required></textarea>
 
@@ -237,6 +258,7 @@
       formError.style.display = 'none';
       const email = form.email.value.trim();
       const name = form.name.value.trim();
+      const category = form.category.value.trim();
       const message = form.message.value.trim();
 
       // Validation
@@ -247,6 +269,7 @@
         formError.style.display = 'inline';
         return;
       }
+      if(!category) missing.push('Category');
       if(!message) missing.push('Message');
       if(missing.length){
         formError.textContent = 'Please fill in: ' + missing.join(', ');
@@ -261,7 +284,7 @@
       const payload = {
         access_key: form.access_key.value,
         subject: form.subject.value,
-        email, name, message
+        email, name, category, message
       };
 
       try{
