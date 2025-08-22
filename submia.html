@@ -49,51 +49,52 @@
       text-shadow:0 0 22px rgba(121,230,255,.25);
     }
 
-    /* ===== NAV (aynısı) ===== */
-    nav{ position:sticky; top:0; z-index:50; border-bottom:1px solid var(--line);
-         background:rgba(6,10,16,.55); backdrop-filter:blur(10px) saturate(130%) }
+    /* ===== NAV (tutarlı) ===== */
+    nav{
+      position:sticky; top:0; z-index:50;
+      border-bottom:1px solid var(--line);
+      background:rgba(10,13,20,.55);
+      backdrop-filter:blur(10px) saturate(130%);
+    }
     .nav-inner{ display:flex; align-items:center; justify-content:space-between; height:66px }
-    .nav-links{ display:flex; gap:14px; align-items:center }
+    .brand{ display:flex; align-items:center; gap:10px }
+    .brand .badge{
+      font-family:'Poppins', sans-serif;
+      font-weight:600; font-size:1.4rem; letter-spacing:.5px;
+      color:var(--brand); /* #00C8D7 */
+    }
+    
     /* Linkler */
-    .nav-links a {
-      padding:8px 12px;
-      border-radius:12px;
+    .nav-links{ display:flex; gap:14px; align-items:center }
+    .nav-links a{
+      padding:8px 12px; border-radius:12px;
       border:1px solid transparent;
       transition:background .25s ease, border-color .25s ease;
     }
-    .nav-links a:hover { border-color:var(--line); background:rgba(255,255,255,.04) }
+    .nav-links a:hover{ border-color:var(--line); background:rgba(255,255,255,.04) }
+    .nav-links a.active{ border-color:var(--line); background:rgba(255,255,255,.06) }
     
     /* Dropdown sarmalayıcı */
-    .dropdown { position:relative; display:flex; align-items:center }
+    .dropdown{ position:relative; display:flex; align-items:center }
     
     /* Caret (dropdown arrow) — iki sayfada da birebir */
     .caret{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      width:32px;           /* sabit alan */
-      height:32px;
-      margin-left:6px;
-      padding:0;            /* anchor'lardaki padding'i alma */
-      border-radius:10px;
-      border:1px solid transparent;
-      background:transparent;
-      cursor:pointer;
+      display:inline-flex; align-items:center; justify-content:center;
+      width:32px; height:32px;             /* sabit kutu */
+      margin-left:6px; padding:0;           /* link padding'ini alma */
+      border-radius:12px; border:1px solid transparent;
+      background:transparent; cursor:pointer;
       transition:background .25s ease, border-color .25s ease;
     }
-    .caret:hover{
-      background:rgba(255,255,255,.04);
-      border-color:var(--line);
-    }
+    .caret:hover{ background:rgba(255,255,255,.04); border-color:var(--line) }
     .caret::before{
       content:"";
-      width:18px;           /* oku büyütmek/küçültmek istersen burayı değiştir */
-      height:18px;
+      width:18px; height:18px;             /* okun boyutu */
       -webkit-mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'><path d='M7 10l5 5 5-5z'/></svg>") no-repeat center/contain;
               mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'><path d='M7 10l5 5 5-5z'/></svg>") no-repeat center/contain;
-      background:var(--ink);
-      opacity:.9;
+      background:var(--ink); opacity:.9;
     }
+
 
     /* Dropdown menu */
     .menu{
