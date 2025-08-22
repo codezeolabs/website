@@ -176,37 +176,37 @@
   </style>
 </head>
 <body>
-  <!-- ===== NAV (index ile aynı davranış) ===== -->
-  <nav>
-    <div class="container nav-inner">
-      <div class="brand">
-        <a href="index.html#home" class="badge">CodeZeo</a>
-      </div>
-
-      <div class="nav-links">
-        <a href="index.html#home">Home</a>
-
-        <div class="dropdown">
-          <!-- Apps'e tıklayınca index.html#apps -->
-          <a href="index.html#apps" class="nav-link" id="appsLink">Apps</a>
-          <!-- Caret → dropdown aç/kapa -->
-          <button class="caret" id="appsCaret"
-                  aria-label="Toggle apps menu"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                  aria-controls="appsMenu"></button>
-
-          <div class="menu glass" id="appsMenu" role="menu">
-            <a role="menuitem" href="submia.html">Submia</a>
-            <!-- Yeni uygulamalar buraya eklenecek -->
-          </div>
-        </div>
-
-        <a href="index.html#about">About Us</a>
-        <a href="mailto:info@codezeo.com">Contact</a>
-      </div>
+  
+<!-- NAV -->
+<nav>
+  <div class="container nav-inner">
+    <div class="brand">
+      <a href="index.html#home" class="badge">CodeZeo</a>
     </div>
-  </nav>
+
+    <div class="nav-links">
+      <a href="index.html#home">Home</a>
+
+      <div class="dropdown">
+        <a href="index.html#apps" class="nav-link" id="appsLink">Apps</a>
+        <button class="caret" id="appsCaret"
+                aria-label="Toggle apps menu"
+                aria-haspopup="true"
+                aria-expanded="false"
+                aria-controls="appsMenu"></button>
+
+        <div class="menu glass" id="appsMenu" role="menu">
+          <a role="menuitem" href="submia.html">Submia</a>
+        </div>
+      </div>
+
+      <!-- Değiştirildi -->
+      <a href="#about">About App</a>
+      <a href="support.html">Support</a>
+    </div>
+  </div>
+</nav>
+
 
   <!-- ===== HERO ===== -->
   <header class="hero">
@@ -288,7 +288,23 @@
     </div>
   </section>
 
-  <!-- ===== FAQ ===== -->
+  <!-- ===== ABOUT APP ===== -->
+<section id="about">
+  <div class="container">
+    <h2>About App</h2>
+    <p class="lead">
+      Submia helps you track, forecast, and manage all your subscriptions in one place.
+      Minimal, privacy-first design ensures your data always stays on your device.
+    </p>
+    <ul class="list">
+      <li><strong>Track:</strong> Keep all subscriptions organized</li>
+      <li><strong>Remind:</strong> Get notifications before renewals</li>
+      <li><strong>Optimize:</strong> See monthly & yearly spending insights</li>
+    </ul>
+  </div>
+</section>
+
+
 <!-- ===== FAQ ===== -->
 <section id="faq">
   <div class="container">
