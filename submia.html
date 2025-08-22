@@ -13,6 +13,20 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
 
   <style>
+      /* Logo (başlığın üstü) */
+      .app-logo{
+        width:64px; height:auto;
+        display:block; margin:0 0 10px;
+      }
+      /* Sağ hero görseli: phone/screenshot kutusu */
+      .hero-art .phone{
+        aspect-ratio:9/16; border-radius:24px; overflow:hidden;
+        background:linear-gradient(135deg, rgba(121,230,255,.12), rgba(103,228,179,.10));
+        border:1px solid var(--line);
+      }
+      .hero-art .phone img{
+        display:block; width:100%; height:100%; object-fit:cover;
+      }
     :root{
       --ink:#eaf0f8;
       --muted:#9aa6bd;
@@ -213,6 +227,10 @@
     <div class="container hero-grid">
       <div>
         <div class="kicker">Finance • iOS</div>
+  
+        <!-- LOGO eklendi -->
+        <img class="app-logo" src="SubmiaLogoRot.png" alt="Submia logo" />
+  
         <h1>Submia — Smart Subscription Tracker &amp; Reminder</h1>
         <p class="lead">Track renewals, prevent unwanted charges, forecast your spend. Private by design — your data stays yours.</p>
         <div class="buttons">
@@ -220,14 +238,17 @@
           <a class="btn" href="#features">See Features</a>
         </div>
       </div>
-
+  
+      <!-- Sağ taraftaki screenshot (IMG ile) -->
       <div class="hero-art">
-        <div class="glass" style="aspect-ratio:9/16; border-radius:24px; overflow:hidden;
-             background:linear-gradient(135deg, rgba(121,230,255,.12), rgba(103,228,179,.10)),
-                        url('assets/submia-hero.png') center/cover no-repeat;"></div>
+        <div class="phone glass">
+          <!-- BURAYA kapak ekran görüntünü koy -->
+          <img src="assets/hero-screenshot.png" alt="Submia screenshot" />
+        </div>
       </div>
     </div>
   </header>
+
 
   <!-- ===== FEATURES ===== -->
   <section id="features">
@@ -255,6 +276,7 @@
     <div class="container">
       <h2>Screenshots</h2>
       <div class="shots">
+        <!-- Her kart için ya background-image ya da <img> kullan -->
         <div class="shot" style="background-image:url('assets/submia-1.png')"></div>
         <div class="shot" style="background-image:url('assets/submia-2.png')"></div>
         <div class="shot" style="background-image:url('assets/submia-3.png')"></div>
