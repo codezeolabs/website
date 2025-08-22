@@ -121,17 +121,27 @@
   <nav>
     <div class="container nav-inner">
       <div class="brand">
-        <a href="index.html" class="badge" aria-label="Back to CodeZeo Home">CodeZeo</a>
+        <span class="badge">CodeZeo</span>
       </div>
+  
       <div class="nav-links">
         <a href="index.html#home">Home</a>
-        <a href="submia.html">Apps</a>
+  
+        <!-- Apps: hem link hem dropdown -->
+        <div class="dropdown">
+          <a href="index.html#apps" class="nav-link">Apps</a>
+          <button class="caret" aria-label="Toggle apps menu" aria-haspopup="true" aria-expanded="false"></button>
+          <div class="dropdown-menu glass" role="menu">
+            <a role="menuitem" href="submia.html">Submia</a>
+          </div>
+        </div>
+  
         <a href="index.html#about">About Us</a>
         <a href="mailto:info@codezeo.com">Contact</a>
       </div>
     </div>
   </nav>
-
+  
   <!-- HERO -->
   <header class="hero">
     <div class="container hero-grid">
