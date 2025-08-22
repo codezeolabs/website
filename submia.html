@@ -222,6 +222,52 @@
       color: var(--ink);     /* hover’da beyazlaşsın */
     }
 
+    /* ==== Screenshots Carousel ==== */
+    .shots-wrapper {
+      position: relative;
+    }
+    
+    .shots {
+      display: flex;
+      gap: 16px;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      padding-bottom: 10px;
+    }
+    
+    .shots::-webkit-scrollbar {
+      display: none; /* scrollbar gizle */
+    }
+    
+    .shot {
+      flex: 0 0 auto;
+      width: 200px;
+      height: 400px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: #0b1324 center/cover no-repeat;
+    }
+    
+    .shots-next {
+      position: absolute;
+      right: -10px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,.6);
+      border: none;
+      border-radius: 50%;
+      color: white;
+      font-size: 28px;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      transition: background .25s;
+    }
+    .shots-next:hover {
+      background: rgba(0,0,0,.8);
+    }
+
+
   </style>
 </head>
 <body>
@@ -312,17 +358,19 @@
   <section>
     <div class="container">
       <h2>Screenshots</h2>
-      <div class="shots">
-        <!-- Her kart için ya background-image ya da <img> kullan -->
-        <div class="shot" style="background-image:url('Onboarding1.png')"></div>
-        <div class="shot" style="background-image:url('DashboardMockup1.png')"></div>
-        <div class="shot" style="background-image:url('DashboardMockup2.png')"></div>
-        <div class="shot" style="background-image:url('DashboardMockup3.png')"></div>
-        <div class="shot" style="background-image:url('DashboardMockup4.png')"></div>
-
+      <div class="shots-wrapper">
+        <div class="shots" id="shots">
+          <div class="shot" style="background-image:url('Onboarding1.png')"></div>
+          <div class="shot" style="background-image:url('DashboardMockup1.png')"></div>
+          <div class="shot" style="background-image:url('DashboardMockup2.png')"></div>
+          <div class="shot" style="background-image:url('DashboardMockup3.png')"></div>
+          <div class="shot" style="background-image:url('DashboardMockup4.png')"></div>
+        </div>
+        <button class="shots-next" onclick="scrollShots()">›</button>
       </div>
     </div>
   </section>
+
 
   <!-- ===== DOWNLOAD ===== -->
   <section id="download">
@@ -511,6 +559,14 @@
         if(e.key==='Escape'){ closeAppsMenu(); }
       });
     }
+
+    function scrollShots(){
+      document.getElementById('shots').scrollBy({ 
+        left: 220,  // her tıklamada 1 görsel kay
+        behavior: 'smooth'
+      });
+    }
+
   </script>
 </body>
 </html>
