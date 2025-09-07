@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Support — Submia</title>
   <meta name="description" content="Get support for Submia. Send us a message and we'll get back to you quickly." />
+  <link rel="canonical" href="https://codezeo.com/submiasupport.html">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,13 +15,9 @@
 
   <style>
     :root{
-      --ink:#eaf0f8;
-      --muted:#9aa6bd;
-      --line:rgba(255,255,255,.08);
-      --brand:#00C8D7;
-      --accent:#79e6ff;
-      --radius:16px;
-      --shadow:0 10px 40px rgba(0,0,0,.35);
+      --ink:#eaf0f8; --muted:#9aa6bd; --line:rgba(255,255,255,.08);
+      --brand:#00C8D7; --accent:#79e6ff;
+      --radius:16px; --shadow:0 10px 40px rgba(0,0,0,.35);
     }
     *{ box-sizing:border-box }
     html,body{
@@ -33,7 +30,7 @@
     a{ color:inherit; text-decoration:none }
     .container{ max-width:1100px; margin:0 auto; padding:0 20px }
 
-    /* ===== NAV (tüm sayfalarla aynı) ===== */
+    /* NAV */
     nav{
       position:sticky; top:0; z-index:50;
       border-bottom:1px solid var(--line);
@@ -77,12 +74,11 @@
     .menu a{ display:block; padding:8px 10px; border-radius:10px }
     .menu a:hover{ background:rgba(255,255,255,.08) }
 
-    /* ===== Page Header ===== */
+    /* Page */
     header.page{ padding:64px 0 24px; border-bottom:1px solid var(--line) }
     h1{ font-size:42px; margin:0 0 8px }
     .lead{ color:var(--muted); max-width:70ch }
 
-    /* ===== Support Form ===== */
     main .card{
       margin:26px auto; max-width:720px;
       padding:22px; border-radius:16px; border:1px solid var(--line);
@@ -95,7 +91,6 @@
       width:100%; padding:12px 12px; border-radius:12px; border:1px solid var(--line);
       background:rgba(255,255,255,.03); color:var(--ink); outline:none;
     }
-    /* Select arrow + spacing */
     select{
       appearance:none; -webkit-appearance:none; -moz-appearance:none;
       padding-right:40px;
@@ -126,7 +121,7 @@
     }
     .toast.show{ opacity:1; transform:translateX(-50%) translateY(-2px) }
 
-    /* ===== Footer ===== */
+    /* Footer */
     footer{ padding:28px 0; color:var(--muted) }
     footer .row{ display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--line); padding-top:18px }
     .legal{ font-size:13px }
@@ -158,7 +153,7 @@
           </div>
         </div>
         <a href="submia.html#about">About App</a>
-        <a href="support.html">Support</a>
+        <a href="submiasupport.html">Support</a>
       </div>
     </div>
   </nav>
@@ -181,7 +176,6 @@
         <label for="name">Name</label>
         <input type="text" id="name" name="name" placeholder="Your Name" autocomplete="name" />
 
-        <!-- Category (NEW) -->
         <label for="category">Category <span class="req">(required)</span></label>
         <select id="category" name="category" required>
           <option value="" disabled selected>Select a category</option>
@@ -214,8 +208,8 @@
     <div class="container row">
       <div class="legal">© <span id="year"></span> CodeZeo Ltd • All rights reserved</div>
       <div class="footer-links">
-        <a href="terms.html">Terms of Service</a>
-        <a href="privacy.html">Privacy Policy</a>
+        <a href="submiaterms.html">Terms of Service</a>
+        <a href="submiaprivacy.html">Privacy Policy</a>
         <a href="restore.html">Restore Purchases</a>
       </div>
     </div>
@@ -231,7 +225,7 @@
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Navbar dropdown (tüm sayfalarda aynı)
+    // Navbar dropdown
     const appsCaret = document.getElementById('appsCaret');
     const appsMenu  = document.getElementById('appsMenu');
     const appsLink  = document.getElementById('appsLink');
@@ -261,7 +255,6 @@
       const category = form.category.value.trim();
       const message = form.message.value.trim();
 
-      // Validation
       const missing = [];
       if(!email) missing.push('E-mail address');
       if(email && !isValidEmail(email)) {
@@ -277,7 +270,6 @@
         return;
       }
 
-      // Submit to Web3Forms
       sendBtn.classList.add('disabled');
       sendBtn.textContent = 'Sending…';
 
@@ -297,7 +289,6 @@
 
         if(data && (data.success || data.message?.toLowerCase().includes('success'))){
           form.reset();
-          // toast
           toast.classList.add('show');
           setTimeout(()=> toast.classList.remove('show'), 1800);
         }else{
