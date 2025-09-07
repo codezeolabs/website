@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Privacy Policy — Submia</title>
   <meta name="description" content="Submia Privacy Policy — your data stays on your device. No tracking, no analytics, no ads." />
+  <link rel="canonical" href="https://codezeo.com/submia/privacy/">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,14 +15,9 @@
 
   <style>
     :root{
-      --ink:#eaf0f8;
-      --muted:#9aa6bd;
-      --line:rgba(255,255,255,.08);
-      --brand:#00C8D7;
-      --accent:#79e6ff;
-      --gold:#FFD60A;
-      --radius:16px;
-      --shadow:0 10px 40px rgba(0,0,0,.35);
+      --ink:#eaf0f8; --muted:#9aa6bd; --line:rgba(255,255,255,.08);
+      --brand:#00C8D7; --accent:#79e6ff; --gold:#FFD60A;
+      --radius:16px; --shadow:0 10px 40px rgba(0,0,0,.35);
     }
     *{ box-sizing:border-box }
     html,body{
@@ -36,24 +32,16 @@
     .glass{ background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
       border:1px solid var(--line); border-radius:16px; backdrop-filter:blur(14px); box-shadow:var(--shadow) }
 
-    /* ===== NAV (Terms ile aynı) ===== */
+    /* NAV */
     nav{
-      position:sticky; top:0; z-index:50;
-      border-bottom:1px solid var(--line);
-      background:rgba(10,13,20,.55);
-      backdrop-filter:blur(10px) saturate(130%);
+      position:sticky; top:0; z-index:50; border-bottom:1px solid var(--line);
+      background:rgba(10,13,20,.55); backdrop-filter:blur(10px) saturate(130%);
     }
     .nav-inner{ display:flex; align-items:center; justify-content:space-between; height:66px }
     .brand{ display:flex; align-items:center; gap:10px }
-    .brand .badge{
-      font-family:'Poppins', sans-serif; font-weight:600; font-size:1.4rem; letter-spacing:.5px;
-      color:var(--brand);
-    }
+    .brand .badge{ font-family:'Poppins', sans-serif; font-weight:600; font-size:1.4rem; letter-spacing:.5px; color:var(--brand) }
     .nav-links{ display:flex; gap:14px; align-items:center }
-    .nav-links a{
-      padding:8px 12px; border-radius:12px; border:1px solid transparent;
-      transition:background .25s ease, border-color .25s ease;
-    }
+    .nav-links a{ padding:8px 12px; border-radius:12px; border:1px solid transparent; transition:background .25s ease, border-color .25s ease }
     .nav-links a:hover{ border-color:var(--line); background:rgba(255,255,255,.04) }
 
     .dropdown{ position:relative; display:flex; align-items:center }
@@ -70,18 +58,16 @@
               mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'><path d='M7 10l5 5 5-5z'/></svg>") no-repeat center/contain;
       background:var(--ink); opacity:.9;
     }
-
     .menu{
       position:absolute; top:calc(100% + 8px); left:0; z-index:60;
       min-width:160px; padding:8px; border-radius:12px; border:1px solid var(--line);
-      background:rgba(8,11,18,.95); box-shadow:0 20px 40px rgba(0,0,0,.35);
-      display:none;
+      background:rgba(8,11,18,.95); box-shadow:0 20px 40px rgba(0,0,0,.35); display:none;
     }
     .menu.open{ display:block }
     .menu a{ display:block; padding:8px 10px; border-radius:10px }
     .menu a:hover{ background:rgba(255,255,255,.08) }
 
-    /* ===== Page (Terms ile aynı) ===== */
+    /* PAGE */
     header.page{ padding:64px 0 24px; border-bottom:1px solid var(--line) }
     h1{ font-size:42px; margin:0 0 8px }
     .lead{ color:var(--muted); max-width:70ch }
@@ -93,7 +79,7 @@
     ul{ margin:8px 0 16px 18px }
     li{ margin:6px 0; color:var(--ink) }
 
-    /* ===== Footer (Terms ile aynı) ===== */
+    /* FOOTER */
     footer{ padding:28px 0; color:var(--muted) }
     footer .row{ display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--line); padding-top:18px }
     .legal{ font-size:13px }
@@ -101,9 +87,7 @@
     .footer-links a{ color:var(--muted); text-decoration:underline; margin:0 6px; font-size:14px }
     .footer-links a:hover{ color:var(--ink) }
 
-    @media (max-width: 960px){
-      h1{ font-size:34px }
-    }
+    @media (max-width: 960px){ h1{ font-size:34px } }
   </style>
 </head>
 <body>
@@ -111,18 +95,19 @@
   <nav>
     <div class="container nav-inner">
       <div class="brand">
-        <a href="index.html#home" class="badge">CodeZeo</a>
+        <a href="/index.html#home" class="badge">CodeZeo</a>
       </div>
       <div class="nav-links">
-        <a href="index.html#home">Home</a>
+        <a href="/index.html#home">Home</a>
         <div class="dropdown">
-          <a href="index.html#apps" class="nav-link" id="appsLink">Apps</a>
+          <a href="/index.html#apps" class="nav-link" id="appsLink">Apps</a>
           <button class="caret" id="appsCaret" aria-label="Toggle apps menu" aria-haspopup="true" aria-expanded="false" aria-controls="appsMenu"></button>
           <div class="menu glass" id="appsMenu" role="menu">
-            <a role="menuitem" href="submia.html">Submia</a>
+            <!-- Eğer ürün sayfan /submia/ ise aşağıdaki linki /submia/ yap -->
+            <a role="menuitem" href="/submia/">Submia</a>
           </div>
         </div>
-        <a href="index.html#about">About Us</a>
+        <a href="/index.html#about">About Us</a>
         <a href="mailto:info@codezeo.com">Contact</a>
       </div>
     </div>
@@ -188,9 +173,9 @@
     <div class="container row">
       <div class="legal">© <span id="year"></span> CodeZeo Ltd • All rights reserved</div>
       <div class="footer-links">
-        <a href="terms.html">Terms of Service</a>
-        <a href="privacy.html">Privacy Policy</a>
-        <a href="restore.html">Restore Purchases</a>
+        <a href="/submia/terms/">Terms of Service</a>
+        <a href="/submia/privacy/">Privacy Policy</a>
+        <a href="/submia/restore/">Restore Purchases</a>
       </div>
     </div>
   </footer>
@@ -198,7 +183,7 @@
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Dropdown kontrolü (Terms ile aynı)
+    // Dropdown
     const appsCaret = document.getElementById('appsCaret');
     const appsMenu  = document.getElementById('appsMenu');
     const appsLink  = document.getElementById('appsLink');
