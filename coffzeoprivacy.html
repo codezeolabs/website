@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Privacy Policy — CoffZeo</title>
-  <meta name="description" content="CoffZeo Privacy Policy — your health & caffeine data stays on your device. No tracking, no analytics, no ads." />
+  <meta name="description" content="CoffZeo Privacy Policy — your drink and caffeine data stays on your device. No tracking, no analytics, no ads, no remote storage." />
   <link rel="canonical" href="https://codezeo.com/coffzeoprivacy.html">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,24 +13,55 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
 
   <style>
-    :root{ --ink:#eaf0f8; --muted:#9aa6bd; --line:rgba(255,255,255,.08); --brand:#00C8D7; --accent:#79e6ff; --gold:#FFD60A; --radius:16px; --shadow:0 10px 40px rgba(0,0,0,.35) }
+    :root{
+      --ink:#eaf0f8; --muted:#9aa6bd; --line:rgba(255,255,255,.08);
+      --brand:#00C8D7; --accent:#79e6ff; --gold:#FFD60A;
+      --radius:16px; --shadow:0 10px 40px rgba(0,0,0,.35);
+    }
     *{ box-sizing:border-box }
-    html,body{ margin:0; color:var(--ink); font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; background: linear-gradient(180deg, #04070d 0%, #0a1a2f 100%); -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; scroll-behavior:smooth }
+    html,body{
+      margin:0; color:var(--ink);
+      font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      background: linear-gradient(180deg, #04070d 0%, #0a1a2f 100%);
+      -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+      scroll-behavior:smooth;
+    }
     a{ color:inherit; text-decoration:none }
     .container{ max-width:1100px; margin:0 auto; padding:0 20px }
-    .glass{ background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.02)); border:1px solid var(--line); border-radius:16px; backdrop-filter:blur(14px); box-shadow:var(--shadow) }
+    .glass{
+      background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
+      border:1px solid var(--line); border-radius:16px;
+      backdrop-filter:blur(14px); box-shadow:var(--shadow);
+    }
 
     /* NAV */
-    nav{ position:sticky; top:0; z-index:50; border-bottom:1px solid var(--line); background:rgba(10,13,20,.55); backdrop-filter:blur(10px) saturate(130%) }
+    nav{
+      position:sticky; top:0; z-index:50;
+      border-bottom:1px solid var(--line);
+      background:rgba(10,13,20,.55);
+      backdrop-filter:blur(10px) saturate(130%);
+    }
     .nav-inner{ display:flex; align-items:center; justify-content:space-between; height:66px }
     .brand{ display:flex; align-items:center; gap:10px }
-    .brand .badge{ font-family:'Poppins', sans-serif; font-weight:600; font-size:1.4rem; letter-spacing:.5px; color:var(--brand) }
+    .brand .badge{
+      font-family:'Poppins', sans-serif;
+      font-weight:600; font-size:1.4rem; letter-spacing:.5px;
+      color:var(--brand);
+    }
     .nav-links{ display:flex; gap:14px; align-items:center }
-    .nav-links a{ padding:8px 12px; border-radius:12px; border:1px solid transparent; transition:background .25s ease, border-color .25s ease }
+    .nav-links a{
+      padding:8px 12px; border-radius:12px; border:1px solid transparent;
+      transition:background .25s ease, border-color .25s ease;
+    }
     .nav-links a:hover{ border-color:var(--line); background:rgba(255,255,255,.04) }
 
     .dropdown{ position:relative; display:flex; align-items:center }
-    .caret{ display:inline-flex; align-items:center; justify-content:center; width:32px; height:32px; margin-left:6px; padding:0; border-radius:12px; border:1px solid transparent; background:transparent; cursor:pointer; transition:background .25s ease, border-color .25s ease }
+    .caret{
+      display:inline-flex; align-items:center; justify-content:center;
+      width:32px; height:32px; margin-left:6px; padding:0;
+      border-radius:12px; border:1px solid transparent; background:transparent; cursor:pointer;
+      transition:background .25s ease, border-color .25s ease;
+    }
     .caret:hover{ background:rgba(255,255,255,.04); border-color:var(--line) }
     .caret::before{
       content:""; width:18px; height:18px;
@@ -38,7 +69,12 @@
               mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'><path d='M7 10l5 5 5-5z'/></svg>") no-repeat center/contain;
       background:var(--ink); opacity:.9;
     }
-    .menu{ position:absolute; top:calc(100% + 8px); left:0; z-index:60; min-width:160px; padding:8px; border-radius:12px; border:1px solid var(--line); background:rgba(8,11,18,.95); box-shadow:0 20px 40px rgba(0,0,0,.35); display:none }
+    .menu{
+      position:absolute; top:calc(100% + 8px); left:0; z-index:60;
+      min-width:160px; padding:8px; border-radius:12px; border:1px solid var(--line);
+      background:rgba(8,11,18,.95); box-shadow:0 20px 40px rgba(0,0,0,.35);
+      display:none;
+    }
     .menu.open{ display:block }
     .menu a{ display:block; padding:8px 10px; border-radius:10px }
     .menu a:hover{ background:rgba(255,255,255,.08) }
@@ -56,12 +92,21 @@
 
     /* FOOTER */
     footer{ padding:28px 0; color:var(--muted) }
-    footer .row{ display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--line); padding-top:18px }
+    footer .row{
+      display:flex; justify-content:space-between; align-items:center;
+      border-top:1px solid var(--line); padding-top:18px;
+    }
     .legal{ font-size:13px }
     .footer-links{ margin-top:12px; text-align:center }
-    .footer-links a{ color:var(--muted); text-decoration:underline; margin:0 6px; font-size:14px }
+    .footer-links a{
+      color:var(--muted); text-decoration:underline;
+      margin:0 6px; font-size:14px;
+    }
     .footer-links a:hover{ color:var(--ink) }
-    @media (max-width: 960px){ h1{ font-size:34px } }
+
+    @media (max-width: 960px){
+      h1{ font-size:34px }
+    }
   </style>
 </head>
 <body>
@@ -89,66 +134,243 @@
   <header class="page">
     <div class="container">
       <h1>Privacy Policy</h1>
-      <p class="lead">At CoffZeo, your health data belongs to you. We do not track, sell, or store your caffeine logs on our servers.</p>
+      <p class="lead">
+        At CoffZeo, your drink and caffeine data stays on your device.
+        We do not collect, track, sell, or store your logs on our servers.
+      </p>
     </div>
   </header>
 
   <main class="container">
     <section>
-      <p>All your data is securely stored on your device. We do <strong>not</strong> collect, access, or transmit your personal health information outside your device. No tracking, analytics, or fingerprinting is used.</p>
+      <p>
+        This Privacy Policy explains how CoffZeo (“we”, “us”, or “our”) handles your information when you use the CoffZeo
+        mobile application (“App”). CoffZeo is designed with a <strong>local-first</strong> approach: your logs and
+        caffeine-related data are stored on your device and are not uploaded to our servers.
+      </p>
+      <p>
+        This policy refers specifically to the current version of CoffZeo, which focuses on drink logging, caffeine
+        tracking, limit tracking, weekly intake tracking, and basic settings. If we significantly change how data is
+        handled in a future version, we will update this document.
+      </p>
     </section>
 
     <section>
-      <h2>What Information Do We Store?</h2>
+      <h2>Core Principle: On-Device Storage</h2>
+      <p>
+        CoffZeo is built so that your caffeine information stays under your control. In the current version:
+      </p>
       <ul>
-        <li>Caffeine logs you add: drink type, caffeine amount (mg), time of consumption</li>
-        <li>Metabolic settings: your weight and caffeine sensitivity (used for half-life calculations only)</li>
-        <li>App preferences: daily limits, notification times, theme</li>
+        <li>Drink logs and caffeine calculations are stored locally on your device.</li>
+        <li>We do <strong>not</strong> operate a CoffZeo cloud or database for your drink history.</li>
+        <li>We do <strong>not</strong> collect your caffeine logs on our servers.</li>
+        <li>We do <strong>not</strong> use third-party analytics SDKs inside the App to profile your behavior.</li>
       </ul>
-      <p>No sensitive or personally identifiable information (PII) is sent to CodeZeo servers.</p>
+      <p>
+        If you remove the App or reset your device, the local data stored by CoffZeo may be deleted unless it is included
+        in your personal device backup (for example, iCloud or local backups managed by you and your operating system).
+      </p>
     </section>
 
     <section>
-      <h2>Apple Health (HealthKit) Integration</h2>
-      <p>CoffZeo integrates with Apple Health to sync your caffeine intake. This integration is optional and requires your explicit permission.</p>
+      <h2>Information Stored on Your Device</h2>
+      <p>
+        To provide drink logging and caffeine tracking, the App may store the following data locally on your device:
+      </p>
       <ul>
-        <li><strong>Read Data:</strong> We do not read other health data from your device unless necessary for caffeine analysis (e.g. sleep analysis if supported).</li>
-        <li><strong>Write Data:</strong> We write your caffeine intake directly to Apple Health so you can view it alongside your other nutrition data.</li>
-        <li><strong>Privacy:</strong> HealthKit data remains on your device and is not shared with us or third parties.</li>
+        <li>
+          <strong>Drink logs:</strong> The drinks you choose or add (e.g., type of beverage from the in-app list,
+          approximate caffeine value, time you logged it).
+        </li>
+        <li>
+          <strong>Caffeine estimates:</strong> Calculated daily and weekly caffeine intake based on your logs so you can
+          see simple trends.
+        </li>
+        <li>
+          <strong>Limit and preference settings:</strong> Your personal caffeine limit, unit settings, and other app
+          preferences (for example, whether certain insights are enabled).
+        </li>
+        <li>
+          <strong>Basic app state:</strong> Data necessary for the App to function correctly (such as what view you last
+          opened or if you completed onboarding).
+        </li>
       </ul>
+      <p>
+        This information is used solely within the App to provide you with its core features and improve your experience
+        on your own device.
+      </p>
     </section>
 
     <section>
-      <h2>Your Rights & Control</h2>
-      <p>You can edit, export, or delete your data at any time. The <em>Delete Data</em> feature in Settings removes all your logs and preferences instantly from your device.</p>
+      <h2>What We Do <em>Not</em> Collect</h2>
+      <p>
+        In the current version of CoffZeo, we do <strong>not</strong>:
+      </p>
+      <ul>
+        <li>Collect your drink logs or caffeine data on our own servers.</li>
+        <li>Collect your name, email address, or any direct personal identifiers from within the App interface.</li>
+        <li>Track you across apps or websites using advertising identifiers for ad targeting.</li>
+        <li>Embed third-party advertising SDKs or ad networks inside CoffZeo.</li>
+        <li>Use analytics SDKs to build behavioral profiles based on your drink logging.</li>
+      </ul>
+      <p>
+        The only information we may indirectly see is that which you voluntarily provide if you contact us (for example
+        by email) or what Apple shares in aggregated form through the App Store (such as download counts, crash reports,
+        and anonymized sales summaries).
+      </p>
     </section>
 
     <section>
-      <h2>Third-Party Services & Exceptions</h2>
-      <p>No analytics, no ads, no third-party SDKs. When you use the in-app Support form, only the information you provide (email, name, message) is sent securely via Web3Forms for support purposes only.</p>
+      <h2>Purchases and App Store Data</h2>
+      <p>
+        CoffZeo may offer optional paid features (such as CoffZeo Pro) via in-app purchases or subscriptions.
+        All purchases are processed by Apple through the App Store:
+      </p>
+      <ul>
+        <li>
+          We do not handle your payment card details; these are processed by Apple according to their own terms and
+          privacy policy.
+        </li>
+        <li>
+          Apple may share high-level, aggregated information with us (for example, total number of purchases, country
+          distribution, revenue figures) so we can understand how the App is performing.
+        </li>
+        <li>
+          This App Store information does not contain your detailed drink logs and is not used to identify you
+          personally inside CoffZeo.
+        </li>
+      </ul>
+      <p>
+        Any receipts or purchase tokens used inside CoffZeo exist solely so the App can verify that a subscription or
+        purchase is active on your device.
+      </p>
+    </section>
+
+    <section>
+      <h2>No Ads, No Third-Party Tracking</h2>
+      <p>
+        CoffZeo does not contain in-app advertisements. We do not integrate advertisement SDKs that track your behavior
+        between apps or websites.
+      </p>
+      <p>
+        Likewise, we do not embed third-party analytics SDKs inside CoffZeo for behavioral tracking in the current
+        version of the App. We may rely on high-level, aggregated analytics provided by Apple via the App Store (for
+        example, anonymized crash information or device statistics) to maintain stability and improve the App, but this
+        data is managed by Apple and does not include your detailed drink history.
+      </p>
+    </section>
+
+    <section>
+      <h2>Notifications and App Permissions</h2>
+      <p>
+        CoffZeo may request certain optional permissions from your device operating system, such as:
+      </p>
+      <ul>
+        <li>
+          <strong>Notifications:</strong> To send you local reminders related to your caffeine tracking (for example,
+          gentle reminders to log drinks or to stay within your chosen daily limit). Notification scheduling is handled
+          by your device, and the content is generated locally by the App.
+        </li>
+      </ul>
+      <p>
+        Granting or revoking these permissions is completely under your control and can be changed at any time in your
+        device settings. These permissions do not send your drink logs or caffeine data to our servers.
+      </p>
+    </section>
+
+    <section>
+      <h2>Your Choices and Control</h2>
+      <p>
+        Because CoffZeo stores your logs locally, you already have strong control over your data:
+      </p>
+      <ul>
+        <li>
+          You can edit or delete individual drink entries directly in the App, which updates the local data stored on
+          your device.
+        </li>
+        <li>
+          You can change or reset your caffeine limit and preferences at any time.
+        </li>
+        <li>
+          If you uninstall CoffZeo, your local drink logs and settings may be removed from your device’s storage.
+        </li>
+        <li>
+          If your device is backed up (for example using iCloud), then backups of CoffZeo data are managed by your
+          operating system and Apple, not by us. You can control those backups in your system settings.
+        </li>
+      </ul>
+      <p>
+        If you have questions about how to manage or delete your data on your device, you are welcome to contact us and
+        we will do our best to guide you.
+      </p>
+    </section>
+
+    <section>
+      <h2>Contacting Us</h2>
+      <p>
+        If you contact us (for example via email), we will receive the information you choose to send, such as your
+        email address, name (if provided), and the content of your message. We use this information solely to respond
+        to your request and provide support.
+      </p>
+      <p>
+        We do not link support messages back to your in-app drink logs, as we do not have access to those logs on our
+        servers. We also do not sell or share your support emails with advertisers.
+      </p>
     </section>
 
     <section>
       <h2>Children’s Privacy</h2>
-      <p>CoffZeo is not designed for children under 13. No data is knowingly collected from children.</p>
+      <p>
+        CoffZeo is not designed for children under the age of 13 (or the minimum age required in your country).
+        We do not knowingly collect personal information from children through the App. Because your logs remain
+        on your device, we do not have visibility into whether the App is used by a child in your household.
+      </p>
+      <p>
+        If you are a parent or guardian and have concerns about your child’s use of CoffZeo, you can delete the App
+        from their device and manage any relevant backups via the device’s operating system.
+      </p>
     </section>
 
     <section>
-      <h2>App Permissions</h2>
-      <ul>
-        <li><strong>Notifications:</strong> To alert you when your caffeine levels are safe for sleep or when you exceed your daily limit.</li>
-        <li><strong>Apple Health:</strong> To read/write caffeine data (optional).</li>
-      </ul>
+      <h2>Data Security</h2>
+      <p>
+        Your drink and caffeine data are stored on your device and are protected by the security mechanisms of your
+        operating system (such as device encryption, passcode, Face ID or Touch ID if enabled). We recommend using a
+        strong device passcode and keeping your device’s operating system up to date.
+      </p>
+      <p>
+        Because we do not host your logs on our servers, there is no CoffZeo cloud database for an attacker to target.
+        However, it is still important to protect physical access to your device and to manage your backups securely.
+      </p>
     </section>
 
     <section>
-      <h2>Policy Updates</h2>
-      <p>If our privacy policy changes, you will be notified within the app before updates take effect.</p>
+      <h2>Changes to This Privacy Policy</h2>
+      <p>
+        As CoffZeo evolves, we may introduce new features or integrations that affect how data is handled. If we make
+        meaningful changes to this Privacy Policy, we will update the text on this page and may also provide notice in
+        the App.
+      </p>
+      <p>
+        If we ever decide to collect or process your data beyond what is described here (for example, to support cloud
+        sync or additional services), we will update this policy and, where required, ask for your consent before those
+        changes take effect.
+      </p>
     </section>
 
     <section>
       <h2>Contact Us</h2>
-      <p>Questions? Contact us anytime via the Support section within the app or email us at <a href="mailto:info@codezeo.com" style="text-decoration:underline">info@codezeo.com</a>. We are committed to responding to all privacy inquiries.</p>
+      <p>
+        If you have any questions or concerns about this Privacy Policy or how CoffZeo handles your information, you can
+        contact us at:
+      </p>
+      <p>
+        <a href="mailto:info@codezeo.com" style="text-decoration:underline">info@codezeo.com</a>
+      </p>
+      <p style="font-size:13px; color:var(--muted); margin-top:12px;">
+        This Privacy Policy is provided for general informational purposes only and does not constitute legal advice.
+        For specific legal questions, please consult your own legal counsel.
+      </p>
     </section>
   </main>
 
@@ -170,12 +392,34 @@
     const appsCaret = document.getElementById('appsCaret');
     const appsMenu  = document.getElementById('appsMenu');
     const appsLink  = document.getElementById('appsLink');
-    function closeAppsMenu(){ appsMenu.classList.remove('open'); appsCaret.setAttribute('aria-expanded','false'); }
+
+    function closeAppsMenu(){
+      appsMenu.classList.remove('open');
+      appsCaret.setAttribute('aria-expanded','false');
+    }
+
     if (appsCaret && appsMenu){
-      appsCaret.addEventListener('click', (e)=>{ e.stopPropagation(); const open = appsMenu.classList.toggle('open'); appsCaret.setAttribute('aria-expanded', open ? 'true':'false'); });
+      appsCaret.addEventListener('click', (e)=>{
+        e.stopPropagation();
+        const open = appsMenu.classList.toggle('open');
+        appsCaret.setAttribute('aria-expanded', open ? 'true':'false');
+      });
+
       appsLink && appsLink.addEventListener('click', closeAppsMenu);
-      document.addEventListener('click', (e)=>{ if(!appsMenu.contains(e.target) && !appsCaret.contains(e.target)) closeAppsMenu(); });
-      appsCaret.addEventListener('keydown', (e)=>{ if(e.key==='Enter' || e.key===' '){ e.preventDefault(); appsCaret.click(); } if(e.key==='Escape'){ closeAppsMenu(); }});
+
+      document.addEventListener('click', (e)=>{
+        if(!appsMenu.contains(e.target) && !appsCaret.contains(e.target)) closeAppsMenu();
+      });
+
+      appsCaret.addEventListener('keydown', (e)=>{
+        if(e.key==='Enter' || e.key===' '){
+          e.preventDefault();
+          appsCaret.click();
+        }
+        if(e.key==='Escape'){
+          closeAppsMenu();
+        }
+      });
     }
   </script>
 </body>
