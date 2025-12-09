@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Support — CoffZeo</title>
+  <meta name="description" content="Get support for CoffZeo. Send us a message regarding caffeine tracking, bugs, or feature requests." />
+  <link rel="canonical" href="https://codezeo.com/coffzeosupport.html">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --ink:#eaf0f8; --muted:#9aa6bd; --line:rgba(255,255,255,.08);
+      --brand:#00C8D7; --accent:#79e6ff;
+      --radius:16px; --shadow:0 10px 40px rgba(0,0,0,.35);
+    }
+    *{ box-sizing:border-box }
+    html,body{
+      margin:0; color:var(--ink);
+      font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      background: linear-gradient(180deg, #04070d 0%, #0a1a2f 100%);
+      -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+      scroll-behavior:smooth;
+    }
+    a{ color:inherit; text-decoration:none }
+    .container{ max-width:1100px; margin:0 auto; padding:0 20px }
+
+    /* NAV */
+    nav{
+      position:sticky; top:0; z-index:50;
+      border-bottom:1px solid var(--line);
+      background:rgba(10,13,20,.55);
+      backdrop-filter:blur(10px) saturate(130%);
+    }
+    .nav-inner{ display:flex; align-items:center; justify-content:space-between; height:66px }
+    .brand{ display:flex; align-items:center; gap:10px }
+    .brand .badge{
+      font-family:'Poppins', sans-serif; font-weight:600; font-size:1.4rem; letter-spacing:.5px;
+      color:var(--brand);
+    }
+    .nav-links{ display:flex; gap:14px; align-items:center }
+    .nav-links a{
+      padding:8px 12px; border-radius:12px; border:1px solid transparent;
+      transition:background .25s ease, border-color .25s ease;
+    }
+    .nav-links a:hover{ border-color:var(--line); background:rgba(255,255,255,.04) }
+
+    .dropdown{ position:relative; display:flex; align-items:center }
+    .caret{
+      display:inline-flex; align-items:center; justify-content:center;
+      width:32px; height:32px; margin-left:6px; padding:0;
+      border-radius:12px; border:1px solid transparent; background:transparent; cursor:pointer;
+      transition:background .25s ease, border-color .25s ease;
+    }
+    .caret:hover{ background:rgba(255,255,255,.04); border-color:var(--line) }
+    .caret::before{
+      content:""; width:18px; height:18px;
+      -webkit-mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'><path d='M7 10l5 5 5-5z'/></svg>") no-repeat center/contain;
+              mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'><path d='M7 10l5 5 5-5z'/></svg>") no-repeat center/contain;
+      background:var(--ink); opacity:.9;
+    }
+    .menu{
+      position:absolute; top:calc(100% + 8px); left:0; z-index:60;
+      min-width:160px; padding:8px; border-radius:12px; border:1px solid var(--line);
+      background:rgba(8,11,18,.95); box-shadow:0 20px 40px rgba(0,0,0,.35);
+      display:none;
+    }
+    .menu.open{ display:block }
+    .menu a{ display:block; padding:8px 10px; border-radius:10px }
+    .menu a:hover{ background:rgba(255,255,255,.08) }
+
+    /* Page */
+    header.page{ padding:64px 0 24px; border-bottom:1px solid var(--line) }
+    h1{ font-size:42px; margin:0 0 8px }
+    .lead{ color:var(--muted); max-width:70ch }
+
+    main .card{
+      margin:26px auto; max-width:720px;
+      padding:22px; border-radius:16px; border:1px solid var(--line);
+      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+      box-shadow:var(--shadow);
+    }
+    label{ display:block; font-weight:700; margin:12px 0 6px }
+    .req{ color:#7f8aa3; font-weight:600; margin-left:6px }
+    input[type="text"], input[type="email"], textarea, select{
+      width:100%; padding:12px 12px; border-radius:12px; border:1px solid var(--line);
+      background:rgba(255,255,255,.03); color:var(--ink); outline:none;
+    }
+    select{
+      appearance:none; -webkit-appearance:none; -moz-appearance:none;
+      padding-right:40px;
+      background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'><path d='M7 10l5 5 5-5z'/></svg>");
+      background-repeat:no-repeat; background-position:right 12px center;
+      background-size:18px 18px;
+    }
+    textarea{ min-height:120px; resize:vertical }
+    .hint{ color:var(--muted); font-size:13px; margin-top:6px }
+    .actions{ margin-top:16px; display:flex; gap:10px; align-items:center }
+    .btn{
+      padding:12px 16px; border-radius:12px; border:1px solid var(--line);
+      background:linear-gradient(135deg, var(--brand), var(--accent)); color:#051017;
+      font-weight:800; cursor:pointer; transition:transform .2s ease, box-shadow .2s ease;
+    }
+    .btn:hover{ transform:translateY(-2px); box-shadow:0 10px 28px rgba(0,0,0,.25) }
+    .disabled{ opacity:.6; pointer-events:none }
+    .error{ color:#ffb3b3; font-size:14px; margin-top:8px }
+
+    /* Toast */
+    .toast-wrap{ position:fixed; inset:0; pointer-events:none; }
+    .toast{
+      position:absolute; left:50%; bottom:34px; transform:translateX(-50%);
+      display:inline-flex; align-items:center; gap:10px;
+      padding:12px 22px; border-radius:16px; background:rgba(255,255,255,.18);
+      backdrop-filter: blur(12px); color:#0b1324; font-weight:700;
+      box-shadow:0 10px 30px rgba(0,0,0,.25); opacity:0; transition:opacity .3s ease, transform .3s ease;
+    }
+    .toast.show{ opacity:1; transform:translateX(-50%) translateY(-2px) }
+
+    /* Footer */
+    footer{ padding:28px 0; color:var(--muted) }
+    footer .row{ display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--line); padding-top:18px }
+    .legal{ font-size:13px }
+    .footer-links{ margin-top:12px; text-align:right }
+    .footer-links a{ color:var(--muted); text-decoration:underline; margin-left:14px; font-size:14px }
+    .footer-links a:hover{ color:var(--ink) }
+
+    @media (max-width: 960px){
+      h1{ font-size:34px }
+      .footer-links{ text-align:left }
+      .footer-links a{ margin-left:0; margin-right:12px }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="container nav-inner">
+      <div class="brand">
+        <a href="index.html#home" class="badge">CodeZeo</a>
+      </div>
+      <div class="nav-links">
+        <a href="index.html#home">Home</a>
+        <div class="dropdown">
+          <a href="index.html#apps" class="nav-link" id="appsLink">Apps</a>
+          <button class="caret" id="appsCaret" aria-label="Toggle apps menu" aria-haspopup="true" aria-expanded="false" aria-controls="appsMenu"></button>
+          <div class="menu glass" id="appsMenu" role="menu">
+            <a role="menuitem" href="submia.html">Submia</a>
+            <a role="menuitem" href="coffzeoapp.html">CoffZeo</a>
+          </div>
+        </div>
+        <a href="coffzeoapp.html#about">About App</a>
+        <a href="coffzeosupport.html">Support</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="page">
+    <div class="container">
+      <h1>Support</h1>
+      <p class="lead">Send us a message — we usually reply within 24 hours.</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="card">
+      <form id="supportForm" novalidate>
+        <label for="email">Email <span class="req">(required)</span></label>
+        <input type="email" id="email" name="email" placeholder="your@email.com" autocomplete="email" required />
+
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" placeholder="Your Name" autocomplete="name" />
+
+        <label for="category">Category <span class="req">(required)</span></label>
+        <select id="category" name="category" required>
+          <option value="" disabled selected>Select a category</option>
+          <option>App Support</option>
+          <option>App Info</option>
+          <option>Feature Request</option>
+          <option>Feedback</option>
+          <option>Bug Report</option>
+          <option>Business</option>
+          <option>Other</option>
+        </select>
+
+        <label for="message">Message <span class="req">(required)</span></label>
+        <textarea id="message" name="message" placeholder="How can we help?" required></textarea>
+
+        <div class="actions">
+          <button type="submit" id="sendBtn" class="btn">Send</button>
+          <span id="formError" class="error" role="alert" aria-live="polite" style="display:none"></span>
+        </div>
+
+        <input type="hidden" name="access_key" value="af086798-f3a8-439b-99f8-419ffbe939d1" />
+        <input type="hidden" name="subject" value="Support Message from CoffZeo" />
+      </form>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container row">
+      <div class="legal">© <span id="year"></span> CodeZeo Ltd • All rights reserved</div>
+      <div class="footer-links">
+        <a href="coffzeoterms.html">Terms of Service</a>
+        <a href="coffzeoprivacy.html">Privacy Policy</a>
+        <a href="coffzeorestore.html">Restore Purchases</a>
+      </div>
+    </div>
+  </footer>
+
+  <div class="toast-wrap" aria-live="polite" aria-atomic="true">
+    <div id="toast" class="toast">
+      <span>✔ Your message is sent!</span>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Navbar dropdown
+    const appsCaret = document.getElementById('appsCaret');
+    const appsMenu  = document.getElementById('appsMenu');
+    const appsLink  = document.getElementById('appsLink');
+    function closeAppsMenu(){ appsMenu.classList.remove('open'); appsCaret.setAttribute('aria-expanded','false'); }
+    if (appsCaret && appsMenu){
+      appsCaret.addEventListener('click', (e)=>{ e.stopPropagation(); const open = appsMenu.classList.toggle('open'); appsCaret.setAttribute('aria-expanded', open ? 'true':'false'); });
+      appsLink && appsLink.addEventListener('click', closeAppsMenu);
+      document.addEventListener('click', (e)=>{ if(!appsMenu.contains(e.target) && !appsCaret.contains(e.target)) closeAppsMenu(); });
+      appsCaret.addEventListener('keydown', (e)=>{ if(e.key==='Enter' || e.key===' '){ e.preventDefault(); appsCaret.click(); } if(e.key==='Escape'){ closeAppsMenu(); }});
+    }
+
+    // === Support form (Web3Forms) ===
+    const form = document.getElementById('supportForm');
+    const sendBtn = document.getElementById('sendBtn');
+    const toast = document.getElementById('toast');
+    const formError = document.getElementById('formError');
+
+    function isValidEmail(email){
+      return /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(email);
+    }
+
+    form.addEventListener('submit', async (e)=>{
+      e.preventDefault();
+      formError.style.display = 'none';
+      const email = form.email.value.trim();
+      const name = form.name.value.trim();
+      const category = form.category.value.trim();
+      const message = form.message.value.trim();
+
+      const missing = [];
+      if(!email) missing.push('E-mail address');
+      if(email && !isValidEmail(email)) {
+        formError.textContent = 'Please enter a valid e-mail address.';
+        formError.style.display = 'inline';
+        return;
+      }
+      if(!category) missing.push('Category');
+      if(!message) missing.push('Message');
+      if(missing.length){
+        formError.textContent = 'Please fill in: ' + missing.join(', ');
+        formError.style.display = 'inline';
+        return;
+      }
+
+      sendBtn.classList.add('disabled');
+      sendBtn.textContent = 'Sending…';
+
+      const payload = {
+        access_key: form.access_key.value,
+        subject: form.subject.value,
+        email, name, category, message
+      };
+
+      try{
+        const res = await fetch('https://api.web3forms.com/submit', {
+          method:'POST',
+          headers:{ 'Content-Type':'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+
+        if(data && (data.success || data.message?.toLowerCase().includes('success'))){
+          form.reset();
+          toast.classList.add('show');
+          setTimeout(()=> toast.classList.remove('show'), 1800);
+        }else{
+          formError.textContent = 'Failed to send your message. Please try again later.';
+          formError.style.display = 'inline';
+        }
+      }catch(err){
+        formError.textContent = 'Network error. Please try again.';
+        formError.style.display = 'inline';
+      }finally{
+        sendBtn.classList.remove('disabled');
+        sendBtn.textContent = 'Send';
+      }
+    });
+  </script>
+</body>
+</html>
