@@ -6,7 +6,6 @@
   <title>CodeZeo - Smart & Premium iOS Apps</title>
   <meta name="description" content="CodeZeo builds premium, privacy-first iOS apps, the apps that bring real value to the daily lives of our customers." />
 
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
@@ -18,10 +17,10 @@
       --ink:#eaf0f8;
       --muted:#9aa6bd;
       --line:rgba(255,255,255,.08);
-      --brand:#00C8D7;   /* CodeZeo mavi */
+      --brand:#00C8D7;    /* CodeZeo mavi */
       --brand-2:#283C50;
       --accent:#79e6ff;
-      --gold:#FFD60A;    /* App Store altın tonu */
+      --gold:#FFD60A;     /* App Store altın tonu */
       --radius:16px;
       --shadow:0 10px 40px rgba(0,0,0,.35);
       --blur:14px;
@@ -83,19 +82,15 @@
     /* Dropdown sarmalayıcı */
     .dropdown{ position:relative; display:flex; align-items:center }
     
-    /* Caret (dropdown arrow) — iki sayfada da birebir */
+    /* Caret (dropdown arrow) */
     .caret{
       display:inline-flex; align-items:center; justify-content:center;
       width:32px; height:32px;             /* sabit kutu */
-      margin-left:6px; padding:0;          /* link padding'ini alma */
+      margin-left:6px; padding:0;           /* link padding'ini alma */
       border-radius:12px; border:1px solid transparent;
       background:transparent; cursor:pointer;
       transition:background .25s ease, border-color .25s ease;
-    
-      /* Safari/varsayılan buton stilini kapat */
-      -webkit-appearance: none;
-      appearance: none;
-      outline: none;
+      -webkit-appearance: none; appearance: none; outline: none;
     }
     .caret:hover{ background:rgba(255,255,255,.04); border-color:var(--line) }
     .caret::before{
@@ -105,14 +100,9 @@
               mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'><path d='M7 10l5 5 5-5z'/></svg>") no-repeat center/contain;
       background:var(--ink); opacity:.9;
     }
-    /* Tutarlı odak stili (opsiyonel) */
     .caret:focus-visible{
-      outline:2px solid var(--line);
-      outline-offset:2px;
-      border-radius:12px;
+      outline:2px solid var(--line); outline-offset:2px; border-radius:12px;
     }
-
-
 
     .menu{
       position:absolute; top:calc(100% + 8px); left:0; z-index:60;
@@ -190,13 +180,22 @@
     .card h3{ margin:10px 0 6px }
     .chip{ font-size:12px; color:var(--muted) }
 
-    /* ===== Apps: Pro card ===== */
-    .apps-grid{ grid-template-columns:1fr; max-width:360px; margin:0; justify-items:start }
+    /* ===== Apps Grid (GÜNCELLENDİ: 2 Kolon sığacak şekilde) ===== */
+    .apps-grid{
+      /* Yan yana sığmaları için gridi genişlettik */
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      max-width: 760px; /* Önceden 360'tı, şimdi iki kart sığsın */
+      margin: 0 auto;   /* Ortala */
+      justify-items: center;
+      gap: 24px;
+    }
+
     .app-card{
-      width:100%; max-width:320px; display:flex; flex-direction:column; gap:12px;
+      width:100%; max-width:340px; display:flex; flex-direction:column; gap:12px;
       padding:18px; border-radius:16px; border:1px solid var(--line);
       background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
       box-shadow:var(--shadow); transition:transform .2s ease, box-shadow .2s ease;
+      height: 100%; /* Kartların boyunu eşitle */
     }
     .app-card:hover{ transform:translateY(-4px); box-shadow:0 20px 40px rgba(0,0,0,.35) }
     .shot{ border-radius:12px; border-radius: 20%; background-size:cover; background-position:center; aspect-ratio:1/1 }
@@ -204,9 +203,9 @@
     .app-meta{ display:flex; gap:8px; align-items:center; color:var(--muted); font-size:12px }
 
     /* App kartını link yapınca stil bozulmasın */
-    .app-link{ display:block; color:inherit; text-decoration:none }
+    .app-link{ display:block; color:inherit; text-decoration:none; width: 100%; max-width:340px; }
 
-    /* ===== App Store button (solda logo+metin, sağda altın yıldızlar) ===== */
+    /* ===== App Store button ===== */
     .store-btn{
       display:flex; align-items:center; justify-content:space-between;
       gap:16px; width:100%;
@@ -214,6 +213,7 @@
       background:rgba(255,255,255,.06); font-weight:700;
       transition:transform .2s ease, box-shadow .2s ease, background .2s ease;
       will-change:transform;
+      margin-top: auto; /* Butonu en alta it */
     }
     .store-btn:hover{ transform:translateY(-2px); background:rgba(255,255,255,.09); box-shadow:0 10px 28px rgba(0,0,0,.25) }
     .store-left{ display:flex; align-items:center; gap:12px; min-width:0; }
@@ -248,7 +248,7 @@
       .hero-figure-code{ max-width:360px }
       .about{ grid-template-columns:1fr }
       .about .pillars{ grid-template-columns:1fr }
-      .dropdown-menu{ position:fixed; left:20px; right:auto } /* küçük ekranda taşma riskini azaltır */
+      .dropdown-menu{ position:fixed; left:20px; right:auto } 
     }
     @media (prefers-reduced-motion: reduce){
       *{ animation:none !important; transition:none !important }
@@ -257,7 +257,6 @@
   </style>
 </head>
 <body>
-  <!-- NAV -->
   <nav>
   <div class="container nav-inner">
     <div class="brand">
@@ -267,7 +266,6 @@
     <div class="nav-links">
       <a class="active" href="#home">Home</a>
 
-      <!-- Apps: hem link hem de caret ile dropdown -->
       <div class="dropdown">
         <a href="#apps" class="nav-link" id="appsLink">Apps</a>
       <button type="button" class="caret" id="appsCaret"
@@ -278,6 +276,7 @@
 
         <div class="menu glass" id="appsMenu" role="menu">
           <a role="menuitem" href="submia.html">Submia</a>
+          <a role="menuitem" href="coffzeoapp.html">CoffZeo</a>
         </div>
       </div>
 
@@ -287,7 +286,6 @@
   </div>
 </nav>
 
-  <!-- HERO -->
   <header id="home" class="hero">
     <div class="container hero-grid">
       <div>
@@ -300,7 +298,6 @@
         </div>
       </div>
 
-      <!-- BACKGROUNDLESS premium coding animation -->
       <div class="hero-figure-code" aria-hidden="true">
         <div class="code-canvas">
           <svg class="code-svg" viewBox="0 0 600 600" preserveAspectRatio="xMidYMid meet">
@@ -332,14 +329,13 @@
     </div>
   </header>
 
-  <!-- APPS -->
   <section id="apps">
     <div class="container">
       <h2>Apps</h2>
       <p class="lead" style="margin-bottom:18px">We're just getting started.</p>
 
       <div class="grid apps-grid">
-        <!-- Submia card (tamamı link) -->
+        
         <a class="app-link" href="submia.html" aria-label="Open Submia page">
           <article class="app-card">
             <div class="shot" style="background-image:
@@ -353,7 +349,6 @@
               <span class="chip">Finance • iOS</span>
             </div>
 
-            <!-- App Store button: solda logo+metin, sağda altın 5 yıldız -->
             <span class="store-btn" role="button" tabindex="0">
               <span class="store-left">
                 <svg class="store-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" fill="white" aria-hidden="true">
@@ -364,7 +359,6 @@
                   <span class="store-big">App Store</span>
                 </span>
               </span>
-
               <span class="store-stars" aria-label="5 star rating">
                 <svg viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/></svg>
                 <svg viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/></svg>
@@ -375,11 +369,45 @@
             </span>
           </article>
         </a>
+
+        <a class="app-link" href="coffzeoapp.html" aria-label="Open CoffZeo page">
+          <article class="app-card">
+            <div class="shot" style="background-image:
+              linear-gradient(135deg, rgba(255,214,10,.12), rgba(200,140,23,.10)),
+              url('CoffZeoLogo.png');">
+            </div>
+
+            <h3 class="app-title">CoffZeo — Smart Caffeine Tracker &amp; Logger</h3>
+
+            <div class="app-meta">
+              <span class="chip">Health & Fitness • iOS</span>
+            </div>
+
+            <span class="store-btn" role="button" tabindex="0">
+              <span class="store-left">
+                <svg class="store-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" fill="white" aria-hidden="true">
+                  <path d="M318.7 268.7c.5 55.3 48.3 73.7 48.8 73.9c-.4 1.4-7.6 26.1-25.1 51.7c-15.1 22.2-30.9 44.3-55.8 44.7c-24.3.5-32.2-14.4-60-14.4c-27.8 0-36.4 14-59.4 14.9c-23.8.9-41.9-24-57-46.1c-31.1-45.1-55-127.6-23-183.4c15.9-27.7 44.3-45.3 75.1-45.8c23.5-.5 45.7 15.8 60 15.8c14.3 0 41.2-19.5 69.6-16.6c11.8.5 45.1 4.8 66.3 36.2c-1.7 1.1-39.7 23.3-39.5 69.1zM250.2 81.3c12.9-15.6 21.8-37.3 19.4-58.9c-18.8.8-41.2 12.5-54.6 28.1c-12 14.1-22.5 36.7-19.7 58c21.1 1.6 42.6-10.7 54.9-27.2z"/>
+                </svg>
+                <span class="store-text">
+                  <span class="store-small">Available on the</span>
+                  <span class="store-big">App Store</span>
+                </span>
+              </span>
+              <span class="store-stars" aria-label="5 star rating">
+                <svg viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              </span>
+            </span>
+          </article>
+        </a>
+
       </div>
     </div>
   </section>
 
-  <!-- ABOUT -->
   <section id="about">
     <div class="container about">
       <div>
@@ -423,7 +451,6 @@
         </div>
       </div>
 
-      <!-- Tech Stack & Trust (backgroundless) -->
       <div>
         <h3 style="margin:4px 0 8px">Tech Stack</h3>
         <ul class="list">
@@ -441,7 +468,6 @@
     </div>
   </section>
 
-  <!-- FOOTER -->
   <footer>
     <div class="container row">
       <div class="legal">© <span id="year"></span> CodeZeo Ltd • All rights reserved</div>
@@ -477,20 +503,22 @@
       appsCaret.setAttribute('aria-expanded','false');
     }
     
-    appsCaret.addEventListener('click', (e)=>{
-      e.stopPropagation();
-      const open = appsMenu.classList.toggle('open');
-      appsCaret.setAttribute('aria-expanded', open ? 'true' : 'false');
-    });
-    
-    appsLink.addEventListener('click', closeAppsMenu);          // Apps → #apps
-    document.addEventListener('click', (e)=>{                   // dışarı tık → kapan
-      if(!appsMenu.contains(e.target) && !appsCaret.contains(e.target)) closeAppsMenu();
-    });
-    appsCaret.addEventListener('keydown', (e)=>{                // klavye desteği
-      if(e.key==='Enter' || e.key===' '){ e.preventDefault(); appsCaret.click(); }
-      if(e.key==='Escape'){ closeAppsMenu(); }
-    });
+    if(appsCaret && appsMenu){
+      appsCaret.addEventListener('click', (e)=>{
+        e.stopPropagation();
+        const open = appsMenu.classList.toggle('open');
+        appsCaret.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      
+      appsLink.addEventListener('click', closeAppsMenu);          // Apps → #apps
+      document.addEventListener('click', (e)=>{                   // dışarı tık → kapan
+        if(!appsMenu.contains(e.target) && !appsCaret.contains(e.target)) closeAppsMenu();
+      });
+      appsCaret.addEventListener('keydown', (e)=>{                // klavye desteği
+        if(e.key==='Enter' || e.key===' '){ e.preventDefault(); appsCaret.click(); }
+        if(e.key==='Escape'){ closeAppsMenu(); }
+      });
+    }
 
   </script>
 </body>
