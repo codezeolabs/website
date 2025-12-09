@@ -1,0 +1,562 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CoffZeo — Smart Caffeine Tracker & Logger</title>
+  <meta name="description" content="CoffZeo helps you track your daily caffeine intake, visualize half-life, and improve your sleep quality." />
+  <link rel="canonical" href="https://codezeo.com/coffzeo.html">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+
+  <style>
+      /* Başlık + logo */
+      .logo-title{
+        display:flex; align-items:center; gap:14px; margin-bottom:10px;
+      }
+      .app-logo{ width:140px; border-radius: 20%; display:block; }
+      .logo-title h1{
+        font-size:32px;          /* küçültüldü */
+        line-height:1.1;
+        margin:0;
+      }
+      
+      /* ==== HERO mockups (SwiftUI ZStack ile aynı hizalar) ==== */
+      .hero-art{ position:relative; width:100%; max-width:520px; margin:0 auto; }
+      
+      /* SwiftUI: .frame(width: 350, height: 410) */
+      .hero-mockups{
+        position:relative;
+        width:350px;             /* ZStack genişliği */
+        height:410px;            /* ZStack yüksekliği */
+        margin:0 auto;           /* ortala */
+      }
+      
+      /* Ortayı referans al, offset’leri center’a göre uygula */
+      .hero-mockups img{
+        position:absolute; bottom:0; left:50%;
+        transform-origin: bottom center;
+        filter: drop-shadow(0 18px 36px rgba(0,0,0,.45));
+        will-change: transform;
+        border-radius:28px;
+      }
+      
+      /* SwiftUI'deki frame ve offset değerleri */
+      .hero-mockups .m1{ width:220px; transform:translateX(-50%) translateX(-85px); z-index:4; } 
+      .hero-mockups .m2{ width:200px; transform:translateX(-50%) translateX(  5px); z-index:3; } 
+      .hero-mockups .m3{ width:180px; transform:translateX(-50%) translateX( 65px); z-index:2; } 
+      .hero-mockups .m4{ width:160px; transform:translateX(-50%) translateX(110px); z-index:1; } 
+      
+      /* Responsive: tablet / mobilde küçültme */
+      @media (max-width: 1100px){
+        .logo-title h1{ font-size:30px }
+        .hero-mockups{ transform:scale(.92) }             /* oransal küçültme */
+      }
+      @media (max-width: 760px){
+        .app-logo{ width:120px }
+        .logo-title h1{ font-size:26px }
+        .hero-art{ max-width:420px }
+        .hero-mockups{ transform:scale(.82) }             /* daha da küçült */
+      }
+
+
+    :root{
+      --ink:#eaf0f8;
+      --muted:#9aa6bd;
+      --line:rgba(255,255,255,.08);
+      /* İstersen CoffZeo için rengi buradan değiştirebilirsin (örn: #C68E17) */
+      --brand:#00C8D7; 
+      --accent:#79e6ff;
+      --gold:#FFD60A;
+      --radius:16px;
+      --shadow:0 10px 40px rgba(0,0,0,.35);
+    }
+    *{ box-sizing:border-box }
+    html,body{
+      margin:0; color:var(--ink);
+      font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      background: linear-gradient(180deg, #04070d 0%, #0a1a2f 100%);
+      -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+      scroll-behavior:smooth;
+    }
+    a{ color:inherit; text-decoration:none }
+    .container{ max-width:1100px; margin:0 auto; padding:0 20px }
+
+    .glass{
+      background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
+      border:1px solid var(--line); border-radius:16px; backdrop-filter:blur(14px); box-shadow:var(--shadow)
+    }
+
+    /* ===== Brand ===== */
+    .brand{ display:flex; align-items:center; gap:10px }
+    .badge{
+      font-family:"Poppins", Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      font-weight:600; font-size:20px; letter-spacing:.02em; line-height:1;
+      background:linear-gradient(135deg, var(--brand), var(--accent));
+      -webkit-background-clip:text; background-clip:text; color:transparent;
+      text-shadow:0 0 22px rgba(121,230,255,.25);
+    }
+
+    /* ===== NAV (tutarlı) ===== */
+    nav{
+      position:sticky; top:0; z-index:50;
+      border-bottom:1px solid var(--line);
+      background:rgba(10,13,20,.55);
+      backdrop-filter:blur(10px) saturate(130%);
+    }
+    .nav-inner{ display:flex; align-items:center; justify-content:space-between; height:66px }
+    .brand{ display:flex; align-items:center; gap:10px }
+    .brand .badge{
+      font-family:'Poppins', sans-serif;
+      font-weight:600; font-size:1.4rem; letter-spacing:.5px;
+      color:var(--brand);
+    }
+    
+    /* Linkler */
+    .nav-links{ display:flex; gap:14px; align-items:center }
+    .nav-links a{
+      padding:8px 12px; border-radius:12px;
+      border:1px solid transparent;
+      transition:background .25s ease, border-color .25s ease;
+    }
+    .nav-links a:hover{ border-color:var(--line); background:rgba(255,255,255,.04) }
+    .nav-links a.active{ border-color:var(--line); background:rgba(255,255,255,.06) }
+    
+    /* Dropdown sarmalayıcı */
+    .dropdown{ position:relative; display:flex; align-items:center }
+    
+    /* Caret (dropdown arrow) */
+    .caret{
+      display:inline-flex; align-items:center; justify-content:center;
+      width:32px; height:32px;             /* sabit kutu */
+      margin-left:6px; padding:0;            /* link padding'ini alma */
+      border-radius:12px; border:1px solid transparent;
+      background:transparent; cursor:pointer;
+      transition:background .25s ease, border-color .25s ease;
+    }
+    .caret:hover{ background:rgba(255,255,255,.04); border-color:var(--line) }
+    .caret::before{
+      content:"";
+      width:18px; height:18px;             /* okun boyutu */
+      -webkit-mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'><path d='M7 10l5 5 5-5z'/></svg>") no-repeat center/contain;
+              mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'><path d='M7 10l5 5 5-5z'/></svg>") no-repeat center/contain;
+      background:var(--ink); opacity:.9;
+    }
+
+
+    /* Dropdown menu */
+    .menu{
+      position:absolute; top:calc(100% + 8px); left:0; z-index:60;
+      min-width:160px; padding:8px; border-radius:12px; border:1px solid var(--line);
+      background:rgba(8,11,18,.95); box-shadow:0 20px 40px rgba(0,0,0,.35);
+      display:none;
+    }
+    .menu.open{ display:block }
+    .menu a{ display:block; padding:8px 10px; border-radius:10px }
+    .menu a:hover{ background:rgba(255,255,255,.08) }
+
+    /* ===== HERO ===== */
+    header.hero{ padding:96px 0 32px; position:relative; overflow:hidden }
+    .hero-grid{ display:grid; grid-template-columns:1.15fr .85fr; gap:38px; align-items:center }
+    .kicker{ color:var(--muted); letter-spacing:.14em; text-transform:uppercase; font-size:12px; font-weight:700 }
+    h1{ font-size:48px; line-height:1.06; margin:.5rem 0 .6rem; font-weight:900 }
+    .lead{ color:var(--muted); font-size:18px; max-width:60ch }
+    .buttons{ display:flex; gap:12px; margin-top:22px }
+    .btn{ padding:12px 16px; border-radius:12px; border:1px solid var(--line); background:rgba(255,255,255,.04); font-weight:700; transition:transform .2s ease, box-shadow .2s ease }
+    .btn:hover{ transform:translateY(-2px); box-shadow:0 10px 30px rgba(0,0,0,.25) }
+    .btn.primary{ background:linear-gradient(135deg, var(--brand), var(--accent)); color:#051017; border:none }
+
+    /* ===== App Store Button ===== */
+    .store-btn{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:16px; width:100%; max-width:360px;
+      padding:12px 16px; border-radius:12px; border:1px solid var(--line);
+      background:rgba(255,255,255,.06); font-weight:700;
+      transition:transform .2s ease, box-shadow .2s ease, background .2s ease;
+    }
+    .store-btn:hover{ transform:translateY(-2px); background:rgba(255,255,255,.09); box-shadow:0 10px 28px rgba(0,0,0,.25) }
+    .store-left{ display:flex; align-items:center; gap:12px }
+    .store-icon{ width:28px; height:28px; flex:0 0 28px; display:block }
+    .store-text{ line-height:1; display:flex; flex-direction:column; gap:4px }
+    .store-small{ font-size:10px; letter-spacing:.08em; text-transform:uppercase; color:#666c7d }
+    .store-big{ font-size:14px; font-weight:800 }
+    .store-stars{ display:inline-flex; gap:2px }
+    .store-stars svg{ width:14px; height:14px; fill:var(--gold) }
+
+    /* ===== Sections ===== */
+    section{ padding:64px 0; border-top:1px solid var(--line) }
+    h2{ font-size:32px; margin:0 0 14px }
+
+    .features{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px }
+    .f{ padding:18px; border-radius:14px; border:1px solid var(--line); background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02)) }
+    .f h3{ margin:6px 0 6px }
+
+    .shots{ display:grid; grid-template-columns:repeat(3,1fr); gap:12px }
+    .shot{ aspect-ratio:9/16; border-radius:14px; border:1px solid var(--line); background:#0b1324 center/cover no-repeat }
+
+    details{ border:1px solid var(--line); border-radius:12px; padding:14px 16px; background:rgba(255,255,255,.03) }
+    details+details{ margin-top:10px }
+    summary{ cursor:pointer; font-weight:700 }
+
+    footer{ padding:28px 0; color:var(--muted) }
+    footer .row{ display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--line); padding-top:18px }
+    .legal{ font-size:13px }
+
+    /* Responsive */
+    @media (max-width: 960px){
+      .hero-grid{ grid-template-columns:1fr }
+      h1{ font-size:40px }
+      .features{ grid-template-columns:1fr }
+      .shots{ grid-template-columns:1fr 1fr }
+    }
+    
+    .footer-links a {
+      color: var(--muted);   /* gri */
+      text-decoration: underline;
+      margin: 0 6px;
+      font-size: 14px;
+    }
+    .footer-links a:hover {
+      color: var(--ink);     /* hover’da beyazlaşsın */
+    }
+
+    /* ==== Screenshots: arkaplansız, yatay şerit ==== */
+    .shots-wrap{ position:relative; }
+    
+    .shots-rail{
+      display:flex; gap:16px; align-items:flex-start;
+      overflow-x:auto; overscroll-behavior-x:contain;
+      -webkit-overflow-scrolling: touch;   /* iOS momentum */
+      scroll-snap-type:x mandatory; scroll-behavior:smooth;
+      padding:8px 48px 12px;
+    }
+    .shots-rail::-webkit-scrollbar{ display:none; }
+    
+    .shots-rail img{
+      flex:0 0 auto;
+      height:clamp(420px, 60vh, 620px);
+      width:auto;
+      display:block;
+      border-radius:24px;
+      scroll-snap-align:start;
+      filter:drop-shadow(0 18px 36px rgba(0,0,0,.45));
+    }
+    
+    .shots-btn{
+      position:absolute; top:50%; transform:translateY(-50%);
+      width:42px; height:42px; border-radius:50%;
+      border:1px solid var(--line);
+      background:rgba(0,0,0,.55); color:#fff; font-size:22px;
+      display:grid; place-items:center; cursor:pointer;
+      transition:background .25s;
+      z-index:2; /* butonlar üstte */
+    }
+    .shots-btn:hover{ background:rgba(0,0,0,.8) }
+    .shots-prev{ left:4px } .shots-next{ right:4px }
+    
+    @media (max-width:760px){
+      .shots-rail{ padding:6px 42px 10px }
+      .shots-rail img{ height:clamp(360px, 55vh, 520px) }
+    }
+
+    /* App Store butonunu hero’da daha dolgun göster */
+    .hero .buttons .store-btn{
+      max-width:300px;
+      min-height:56px;
+    }
+    
+    /* Marka mavisi ikincil buton – metin tam ortalı */
+    .btn.btn-brand{
+      background:linear-gradient(135deg, var(--brand), var(--accent));
+      border:none;
+      color:#051017;
+      font-weight:800;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-width: 180px;   /* defaulttan daha geniş */
+      min-height:56px;
+      padding:12px 20px;
+    }
+    .btn.btn-brand:hover{
+      transform:translateY(-2px);
+      box-shadow:0 10px 28px rgba(0,0,0,.25);
+    }
+
+    /* Başlık + kicker hizası */
+    .logo-title{ align-items:flex-start; }  /* üstten hizala */
+    .title-wrap{ display:flex; flex-direction:column; }
+    .logo-title h1{ margin:0 0 6px; }       /* başlık ile kicker arası küçük boşluk */
+    .kicker{ margin:0; }                    /* emin olmak için */
+
+  </style>
+</head>
+<body>
+  
+<nav>
+  <div class="container nav-inner">
+    <div class="brand">
+      <a href="index.html#home" class="badge">CodeZeo</a>
+    </div>
+
+    <div class="nav-links">
+      <a href="index.html#home">Home</a>
+
+      <div class="dropdown">
+        <a href="#" class="nav-link" id="appsLink">Apps</a>
+        <button class="caret" id="appsCaret"
+                aria-label="Toggle apps menu"
+                aria-haspopup="true"
+                aria-expanded="false"
+                aria-controls="appsMenu"></button>
+
+        <div class="menu glass" id="appsMenu" role="menu">
+          <a role="menuitem" href="submia.html">Submia</a>
+          <a role="menuitem" href="coffzeo.html">CoffZeo</a>
+        </div>
+      </div>
+
+      <a href="#about">About App</a>
+      <a href="coffzeosupport.html">Support</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="container hero-grid">
+    <div>
+      <div class="logo-title">
+        <img class="app-logo" src="CoffZeoLogo.png" alt="CoffZeo logo" />
+        <div class="title-wrap">
+          <h1>CoffZeo — Smart Caffeine Tracker &amp; Logger</h1>
+          <div class="kicker">Health & Fitness • iOS</div>
+        </div>
+      </div>
+
+      <p class="lead">Log your coffee intake, visualize caffeine half-life, and sleep better. Know exactly when your buzz will fade.</p>
+      <div class="buttons">
+        <a id="download" class="store-btn" href="#" aria-label="Get CoffZeo on the App Store">
+          <span class="store-left">
+            <svg class="store-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" fill="white" aria-hidden="true">
+              <path d="M318.7 268.7c.5 55.3 48.3 73.7 48.8 73.9c-.4 1.4-7.6 26.1-25.1 51.7c-15.1 22.2-30.9 44.3-55.8 44.7c-24.3.5-32.2-14.4-60-14.4c-27.8 0-36.4 14-59.4 14.9c-23.8.9-41.9-24-57-46.1c-31.1-45.1-55-127.6-23-183.4c15.9-27.7 44.3-45.3 75.1-45.8c23.5-.5 45.7 15.8 60 15.8c14.3 0 41.2-19.5 69.6-16.6c11.8.5 45.1 4.8 66.3 36.2c-1.7 1.1-39.7 23.3-39.5 69.1zM250.2 81.3c12.9-15.6 21.8-37.3 19.4-58.9c-18.8.8-41.2 12.5-54.6 28.1c-12 14.1-22.5 36.7-19.7 58c21.1 1.6 42.6-10.7 54.9-27.2z"/>
+            </svg>
+      
+            <span class="store-text">
+              <span class="store-small">Available on the</span>
+              <span class="store-big">App Store</span>
+            </span>
+          </span>
+      
+          <span class="store-stars" aria-label="5 star rating">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          </span>
+        </a>
+      
+        <a class="btn btn-brand" href="#features">See Features</a>
+      </div>
+
+    </div>
+
+    <div class="hero-art">
+      <div class="hero-mockups" aria-hidden="true">
+        <img class="m4" src="CoffZeoMockup4.png" alt="" loading="lazy">
+        <img class="m3" src="CoffZeoMockup3.png" alt="" loading="lazy">
+        <img class="m2" src="CoffZeoMockup2.png" alt="" loading="lazy">
+        <img class="m1" src="CoffZeoMockup1.png" alt="" loading="lazy">
+      </div>
+    </div>
+  </div>
+</header>
+
+
+  <section id="features">
+    <div class="container">
+      <h2>Why CoffZeo</h2>
+      <div class="features">
+        <div class="f">
+          <strong>Smart Logging</strong>
+          <p class="chip">Log espresso, tea, or energy drinks in seconds. Widgets and Shortcuts support included.</p>
+        </div>
+        <div class="f">
+          <strong>Metabolism Tracker</strong>
+          <p class="chip">Visualize caffeine half-life to know when you'll be alert and when you can sleep.</p>
+        </div>
+        <div class="f">
+          <strong>Apple Health Sync</strong>
+          <p class="chip">Seamlessly syncs caffeine data with Apple Health. Privacy-first, on-device storage.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <h2>Screenshots</h2>
+  
+      <div class="shots-wrap">
+        <button class="shots-btn shots-prev" type="button" aria-label="Scroll left">‹</button>
+  
+        <div class="shots-rail" id="shots">
+          <img src="CoffZeoShot1.png"      alt="Onboarding"           loading="lazy" decoding="async">
+          <img src="CoffZeoShot2.png"      alt="Dashboard Main"       loading="lazy" decoding="async">
+          <img src="CoffZeoShot3.png"      alt="Add Drink"            loading="lazy" decoding="async">
+          <img src="CoffZeoShot4.png"      alt="Charts"               loading="lazy" decoding="async">
+          <img src="CoffZeoShot5.png"      alt="Settings"             loading="lazy" decoding="async">
+        </div>
+  
+        <button class="shots-btn shots-next" type="button" aria-label="Scroll right">›</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+  <div class="container">
+    <h2>About App</h2>
+    <p class="lead">
+      CoffZeo is the ultimate caffeine tracker designed to help you balance energy and rest.
+      Track your daily intake, avoid the afternoon crash, and protect your sleep schedule.
+    </p>
+    <ul class="list">
+      <li><strong>Track:</strong> Easy logging for coffee, tea, soda & more</li>
+      <li><strong>Analyze:</strong> Real-time half-life calculation</li>
+      <li><strong>Improve:</strong> Reduce anxiety and sleep better</li>
+    </ul>
+  </div>
+</section>
+
+
+<section id="faq">
+  <div class="container">
+    <h2>FAQ</h2>
+
+    <details>
+      <summary>Is there a limit on how many drinks I can log?</summary>
+      <p class="chip">In the Free plan, you can log up to 3 drinks per day. Upgrade to CoffZeo Pro for unlimited logging and advanced statistics.</p>
+    </details>
+
+    <details>
+      <summary>How does CoffZeo calculate caffeine half-life?</summary>
+      <p class="chip">We use a standard metabolic half-life algorithm (avg. 5 hours) to estimate remaining caffeine in your system. You can adjust your personal sensitivity in Settings.</p>
+    </details>
+
+    <details>
+      <summary>Does it sync with Apple Health?</summary>
+      <p class="chip">Yes! CoffZeo reads and writes caffeine data to Apple Health, so all your nutrition data stays in one place.</p>
+    </details>
+
+    <details>
+      <summary>Does CoffZeo work offline?</summary>
+      <p class="chip">Yes. All your logs and preferences are stored locally on your device.</p>
+    </details>
+
+    <details>
+      <summary>What features come with CoffZeo Pro?</summary>
+      <p class="chip">Pro users get unlimited logging, custom drink creation, widgets, detailed sleep insights, and CSV data export.</p>
+    </details>
+
+    <details>
+      <summary>Can I add custom drinks?</summary>
+      <p class="chip">Yes, Pro users can create custom presets with specific caffeine amounts for their favorite brews.</p>
+    </details>
+
+    <details>
+      <summary>Will I lose my data if I delete the app?</summary>
+      <p class="chip">If you haven't synced with Apple Health or backed up, local data will be deleted. We recommend enabling Health sync.</p>
+    </details>
+
+    <details>
+      <summary>Is my data private?</summary>
+      <p class="chip">Absolutely. We don't track what you drink or when. Your health data stays on your phone.</p>
+    </details>
+
+    <details>
+      <summary>How do I contact support?</summary>
+      <p class="chip">Go to <strong>Settings &gt; Contact</strong> in the app to send us an email.</p>
+    </details>
+
+    <details>
+      <summary>Can I change the measurement units?</summary>
+      <p class="chip">Yes, you can toggle between mg (milligrams) and other units, or change liquid measurements between ml and oz in Settings.</p>
+    </details>
+
+  </div>
+</section>
+
+
+  <footer>
+    <div class="container row">
+      <div class="legal">© <span id="year"></span> CodeZeo Ltd • All rights reserved</div>
+  
+      <div class="footer-links">
+        <a href="coffzeoterms.html">Terms of Service</a>
+        <a href="coffzeoprivacy.html">Privacy Policy</a>
+        <a href="coffzeorestore.html">Restore Purchases</a>
+      </div>
+    </div>
+  </footer>
+
+
+
+  <script>
+    // footer yılı
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Dropdown kontrolü
+    const appsCaret = document.getElementById('appsCaret');
+    const appsMenu  = document.getElementById('appsMenu');
+    const appsLink  = document.getElementById('appsLink');
+
+    function closeAppsMenu(){
+      appsMenu.classList.remove('open');
+      appsCaret.setAttribute('aria-expanded','false');
+    }
+
+    if (appsCaret && appsMenu){
+      appsCaret.addEventListener('click', (e)=>{
+        e.stopPropagation();
+        const open = appsMenu.classList.toggle('open');
+        appsCaret.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+
+      // Apps linkine tıklanınca menüyü kapat
+      appsLink && appsLink.addEventListener('click', closeAppsMenu);
+
+      // Dışarı tıklanınca kapat
+      document.addEventListener('click', (e)=>{
+        if(!appsMenu.contains(e.target) && !appsCaret.contains(e.target)) closeAppsMenu();
+      });
+
+      // Klavye desteği
+      appsCaret.addEventListener('keydown', (e)=>{
+        if(e.key==='Enter' || e.key===' '){ e.preventDefault(); appsCaret.click(); }
+        if(e.key==='Escape'){ closeAppsMenu(); }
+      });
+    }
+
+    // Screenshots okları: bir görsel genişliği kadar kaydır
+    (function(){
+      const rail = document.getElementById('shots');
+      const prev = document.querySelector('.shots-prev');
+      const next = document.querySelector('.shots-next');
+      if(!rail || !prev || !next) return;
+  
+      const GAP = 16; // CSS'teki gap ile aynı
+      const step = () => {
+        const first = rail.querySelector('img');
+        return first ? Math.round(first.getBoundingClientRect().width + GAP) : 320;
+      };
+  
+      prev.addEventListener('click', ()=> rail.scrollBy({ left: -step(), behavior:'smooth' }));
+      next.addEventListener('click', ()=> rail.scrollBy({ left:  step(), behavior:'smooth' }));
+    })();
+
+  </script>
+</body>
+</html>
