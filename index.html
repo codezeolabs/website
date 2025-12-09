@@ -180,12 +180,11 @@
     .card h3{ margin:10px 0 6px }
     .chip{ font-size:12px; color:var(--muted) }
 
-    /* ===== Apps Grid (GÜNCELLENDİ: 2 Kolon sığacak şekilde) ===== */
+    /* ===== Apps Grid (2 kolon için) ===== */
     .apps-grid{
-      /* Yan yana sığmaları için gridi genişlettik */
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      max-width: 760px; /* Önceden 360'tı, şimdi iki kart sığsın */
-      margin: 0 auto;   /* Ortala */
+      max-width: 760px;
+      margin: 0 auto;
       justify-items: center;
       gap: 24px;
     }
@@ -195,10 +194,10 @@
       padding:18px; border-radius:16px; border:1px solid var(--line);
       background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
       box-shadow:var(--shadow); transition:transform .2s ease, box-shadow .2s ease;
-      height: 100%; /* Kartların boyunu eşitle */
+      height: 100%;
     }
     .app-card:hover{ transform:translateY(-4px); box-shadow:0 20px 40px rgba(0,0,0,.35) }
-    .shot{ border-radius:12px; border-radius: 20%; background-size:cover; background-position:center; aspect-ratio:1/1 }
+    .shot{ border-radius: 20%; background-size:cover; background-position:center; aspect-ratio:1/1 }
     .app-title{ font-size:18px; font-weight:800; line-height:1.2; margin:2px 0 0 }
     .app-meta{ display:flex; gap:8px; align-items:center; color:var(--muted); font-size:12px }
 
@@ -213,7 +212,7 @@
       background:rgba(255,255,255,.06); font-weight:700;
       transition:transform .2s ease, box-shadow .2s ease, background .2s ease;
       will-change:transform;
-      margin-top: auto; /* Butonu en alta it */
+      margin-top: auto;
     }
     .store-btn:hover{ transform:translateY(-2px); background:rgba(255,255,255,.09); box-shadow:0 10px 28px rgba(0,0,0,.25) }
     .store-left{ display:flex; align-items:center; gap:12px; min-width:0; }
@@ -258,33 +257,33 @@
 </head>
 <body>
   <nav>
-  <div class="container nav-inner">
-    <div class="brand">
-      <span class="badge">CodeZeo</span>
-    </div>
-
-    <div class="nav-links">
-      <a class="active" href="#home">Home</a>
-
-      <div class="dropdown">
-        <a href="#apps" class="nav-link" id="appsLink">Apps</a>
-      <button type="button" class="caret" id="appsCaret"
-              aria-label="Toggle apps menu"
-              aria-haspopup="true"
-              aria-expanded="false"
-              aria-controls="appsMenu"></button>
-
-        <div class="menu glass" id="appsMenu" role="menu">
-          <a role="menuitem" href="submia.html">Submia</a>
-          <a role="menuitem" href="coffzeoapp.html">CoffZeo</a>
-        </div>
+    <div class="container nav-inner">
+      <div class="brand">
+        <span class="badge">CodeZeo</span>
       </div>
 
-      <a href="#about">About Us</a>
-      <a href="mailto:info@codezeo.com">Contact</a>
+      <div class="nav-links">
+        <a class="active" href="#home">Home</a>
+
+        <div class="dropdown">
+          <a href="#apps" class="nav-link" id="appsLink">Apps</a>
+          <button type="button" class="caret" id="appsCaret"
+                  aria-label="Toggle apps menu"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  aria-controls="appsMenu"></button>
+
+          <div class="menu glass" id="appsMenu" role="menu">
+            <a role="menuitem" href="submia.html">Submia</a>
+            <a role="menuitem" href="coffzeoapp.html">CoffZeo</a>
+          </div>
+        </div>
+
+        <a href="#about">About Us</a>
+        <a href="mailto:info@codezeo.com">Contact</a>
+      </div>
     </div>
-  </div>
-</nav>
+  </nav>
 
   <header id="home" class="hero">
     <div class="container hero-grid">
@@ -336,6 +335,7 @@
 
       <div class="grid apps-grid">
         
+        <!-- SUBMIA CARD -->
         <a class="app-link" href="submia.html" aria-label="Open Submia page">
           <article class="app-card">
             <div class="shot" style="background-image:
@@ -349,10 +349,8 @@
               <span class="chip">Finance • iOS</span>
             </div>
 
-                <a class="store-btn" 
-                   href="https://apps.apple.com/us/app/submia-subscriptions-bills/id6752131883"
-                   target="_blank" rel="noopener noreferrer">
-              
+            <!-- Buton: JS ile App Store'a gidecek -->
+            <span class="store-btn submia-store-btn" role="button" tabindex="0">
               <span class="store-left">
                 <svg class="store-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" fill="white" aria-hidden="true">
                   <path d="M318.7 268.7c.5 55.3 48.3 73.7 48.8 73.9c-.4 1.4-7.6 26.1-25.1 51.7c-15.1 22.2-30.9 44.3-55.8 44.7c-24.3.5-32.2-14.4-60-14.4c-27.8 0-36.4 14-59.4 14.9c-23.8.9-41.9-24-57-46.1c-31.1-45.1-55-127.6-23-183.4c15.9-27.7 44.3-45.3 75.1-45.8c23.5-.5 45.7 15.8 60 15.8c14.3 0 41.2-19.5 69.6-16.6c11.8.5 45.1 4.8 66.3 36.2c-1.7 1.1-39.7 23.3-39.5 69.1zM250.2 81.3c12.9-15.6 21.8-37.3 19.4-58.9c-18.8.8-41.2 12.5-54.6 28.1c-12 14.1-22.5 36.7-19.7 58c21.1 1.6 42.6-10.7 54.9-27.2z"/>
@@ -373,6 +371,7 @@
           </article>
         </a>
 
+        <!-- COFFZEO CARD -->
         <a class="app-link" href="coffzeoapp.html" aria-label="Open CoffZeo page">
           <article class="app-card">
             <div class="shot" style="background-image:
@@ -479,7 +478,8 @@
   </footer>
 
   <script>
-    const yearEl = document.getElementById('year'); if(yearEl){ yearEl.textContent = new Date().getFullYear(); }
+    const yearEl = document.getElementById('year'); 
+    if(yearEl){ yearEl.textContent = new Date().getFullYear(); }
 
     // nav active
     const links = document.querySelectorAll('.nav-links a');
@@ -496,7 +496,7 @@
     },{rootMargin:'-45% 0px -50% 0px', threshold:.01});
     sections.forEach(s=>navObserver.observe(s));
 
-    // (opsiyonel) dropdown erişilebilirliği için aria-expanded güncelle
+    // Dropdown erişilebilirliği için aria-expanded güncelle
     const appsCaret = document.getElementById('appsCaret');
     const appsMenu  = document.getElementById('appsMenu');
     const appsLink  = document.getElementById('appsLink');
@@ -513,16 +513,34 @@
         appsCaret.setAttribute('aria-expanded', open ? 'true' : 'false');
       });
       
-      appsLink.addEventListener('click', closeAppsMenu);          // Apps → #apps
-      document.addEventListener('click', (e)=>{                   // dışarı tık → kapan
+      appsLink.addEventListener('click', closeAppsMenu);
+      document.addEventListener('click', (e)=>{
         if(!appsMenu.contains(e.target) && !appsCaret.contains(e.target)) closeAppsMenu();
       });
-      appsCaret.addEventListener('keydown', (e)=>{                // klavye desteği
+      appsCaret.addEventListener('keydown', (e)=>{
         if(e.key==='Enter' || e.key===' '){ e.preventDefault(); appsCaret.click(); }
         if(e.key==='Escape'){ closeAppsMenu(); }
       });
     }
 
+    // Submia App Store butonu: direkt App Store linki aç
+    const submiaStoreBtn = document.querySelector('.submia-store-btn');
+    if (submiaStoreBtn) {
+      const submiaStoreUrl = 'https://apps.apple.com/us/app/submia-subscriptions-bills/id6752131883';
+
+      const openSubmiaStore = (e) => {
+        e.stopPropagation();  // Kart linkini tetikleme
+        e.preventDefault();
+        window.open(submiaStoreUrl, '_blank', 'noopener');
+      };
+
+      submiaStoreBtn.addEventListener('click', openSubmiaStore);
+      submiaStoreBtn.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          openSubmiaStore(e);
+        }
+      });
+    }
   </script>
 </body>
 </html>
