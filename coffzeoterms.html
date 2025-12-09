@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Terms of Service — CoffZeo</title>
+  <meta name="description" content="CoffZeo Terms of Service — conditions for using the app and CoffZeo Pro." />
+  <link rel="canonical" href="https://codezeo.com/coffzeoterms.html">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --ink:#eaf0f8; --muted:#9aa6bd; --line:rgba(255,255,255,.08);
+      --brand:#00C8D7; --accent:#79e6ff; --gold:#FFD60A;
+      --radius:16px; --shadow:0 10px 40px rgba(0,0,0,.35);
+    }
+    *{ box-sizing:border-box }
+    html,body{
+      margin:0; color:var(--ink);
+      font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      background: linear-gradient(180deg, #04070d 0%, #0a1a2f 100%);
+      -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+      scroll-behavior:smooth;
+    }
+    a{ color:inherit; text-decoration:none }
+    .container{ max-width:1100px; margin:0 auto; padding:0 20px }
+    .glass{ background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
+      border:1px solid var(--line); border-radius:16px; backdrop-filter:blur(14px); box-shadow:var(--shadow) }
+
+    /* NAV */
+    nav{
+      position:sticky; top:0; z-index:50;
+      border-bottom:1px solid var(--line);
+      background:rgba(10,13,20,.55);
+      backdrop-filter:blur(10px) saturate(130%);
+    }
+    .nav-inner{ display:flex; align-items:center; justify-content:space-between; height:66px }
+    .brand{ display:flex; align-items:center; gap:10px }
+    .brand .badge{
+      font-family:'Poppins', sans-serif; font-weight:600; font-size:1.4rem; letter-spacing:.5px;
+      color:var(--brand);
+    }
+    .nav-links{ display:flex; gap:14px; align-items:center }
+    .nav-links a{
+      padding:8px 12px; border-radius:12px; border:1px solid transparent;
+      transition:background .25s ease, border-color .25s ease;
+    }
+    .nav-links a:hover{ border-color:var(--line); background:rgba(255,255,255,.04) }
+
+    .dropdown{ position:relative; display:flex; align-items:center }
+    .caret{
+      display:inline-flex; align-items:center; justify-content:center;
+      width:32px; height:32px; margin-left:6px; padding:0;
+      border-radius:12px; border:1px solid transparent; background:transparent; cursor:pointer;
+      transition:background .25s ease, border-color .25s ease;
+    }
+    .caret:hover{ background:rgba(255,255,255,.04); border-color:var(--line) }
+    .caret::before{
+      content:""; width:18px; height:18px;
+      -webkit-mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'><path d='M7 10l5 5 5-5z'/></svg>") no-repeat center/contain;
+              mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'><path d='M7 10l5 5 5-5z'/></svg>") no-repeat center/contain;
+      background:var(--ink); opacity:.9;
+    }
+    .menu{
+      position:absolute; top:calc(100% + 8px); left:0; z-index:60;
+      min-width:160px; padding:8px; border-radius:12px; border:1px solid var(--line);
+      background:rgba(8,11,18,.95); box-shadow:0 20px 40px rgba(0,0,0,.35);
+      display:none;
+    }
+    .menu.open{ display:block }
+    .menu a{ display:block; padding:8px 10px; border-radius:10px }
+    .menu a:hover{ background:rgba(255,255,255,.08) }
+
+    /* PAGE */
+    header.page{ padding:64px 0 24px; border-bottom:1px solid var(--line) }
+    h1{ font-size:42px; margin:0 0 8px }
+    .lead{ color:var(--muted); max-width:70ch }
+    .content{ max-width:900px; }
+
+    section{ padding:28px 0 }
+    h2{ font-size:22px; color:var(--muted); margin:0 0 8px }
+    p{ line-height:1.7; margin:0 0 12px }
+    ul{ margin:8px 0 16px 18px }
+    li{ margin:6px 0; color:var(--ink) }
+
+    /* FOOTER */
+    footer{ padding:28px 0; color:var(--muted) }
+    footer .row{ display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--line); padding-top:18px }
+    .legal{ font-size:13px }
+    .footer-links{ margin-top:12px; text-align:center }
+    .footer-links a{ color:var(--muted); text-decoration:underline; margin:0 6px; font-size:14px }
+    .footer-links a:hover{ color:var(--ink) }
+
+    @media (max-width: 960px){ h1{ font-size:34px } }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="container nav-inner">
+      <div class="brand">
+        <a href="index.html#home" class="badge">CodeZeo</a>
+      </div>
+      <div class="nav-links">
+        <a href="index.html#home">Home</a>
+        <div class="dropdown">
+          <a href="index.html#apps" class="nav-link" id="appsLink">Apps</a>
+          <button class="caret" id="appsCaret" aria-label="Toggle apps menu" aria-haspopup="true" aria-expanded="false" aria-controls="appsMenu"></button>
+          <div class="menu glass" id="appsMenu" role="menu">
+            <a role="menuitem" href="submia.html">Submia</a>
+            <a role="menuitem" href="coffzeoapp.html">CoffZeo</a>
+          </div>
+        </div>
+        <a href="index.html#about">About</a>
+        <a href="mailto:info@codezeo.com">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="page">
+    <div class="container">
+      <div class="content">
+        <h1>Terms of Service</h1>
+        <p class="lead">By using CoffZeo, you agree to the Terms below. If you do not agree, please do not use the app.</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="content">
+      <section>
+        <p>Welcome to CoffZeo! These Terms of Service (“Terms”) govern your use of the CoffZeo mobile application (“App”).</p>
+      </section>
+
+      <section>
+        <h2>Medical Disclaimer</h2>
+        <ul>
+          <li>CoffZeo is designed for informational purposes only (caffeine tracking and half-life estimation) and does not provide medical advice.</li>
+          <li>The information provided by the App is not a substitute for professional medical advice, diagnosis, or treatment.</li>
+          <li>Do not rely on the App to make decisions about your health. Always consult a physician regarding caffeine sensitivity or sleep disorders.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Use of the App</h2>
+        <ul>
+          <li>You must be at least 13 years old to use CoffZeo.</li>
+          <li>Use the App for personal, non-commercial health and productivity tracking purposes only.</li>
+          <li>You are responsible for keeping your device and health data secure.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Subscriptions and Purchases</h2>
+        <ul>
+          <li>CoffZeo Pro and other in-app purchases are billed through your Apple account and are subject to Apple’s terms.</li>
+          <li>All payments are handled by the App Store. We do not access or store your payment details. Your subscription auto-renews. To cancel it, go Settings -> Manage CoffZeo Pro.</li>
+          <li>You may manage or cancel subscriptions through your Apple ID settings.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Data Storage &amp; Privacy</h2>
+        <ul>
+          <li>Your data is stored locally on your device. If you enable Apple Health sync, data is shared securely with the Health app on your device.</li>
+          <li>We do not store your caffeine logs on our servers.</li>
+          <li>See our <a href="coffzeoprivacy.html" style="text-decoration:underline">Privacy Policy</a> for full details.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Acceptable Use</h2>
+        <ul>
+          <li>Do not use CoffZeo for any unlawful or harmful purpose.</li>
+          <li>Do not reverse engineer, decompile, or tamper with the App.</li>
+          <li>Do not infringe the intellectual property rights of CoffZeo or CodeZeo Ltd.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Intellectual Property</h2>
+        <ul>
+          <li>All content, design, algorithms, and code are owned by CodeZeo Ltd and protected by IP laws.</li>
+          <li>You may not reproduce, distribute, or create derivative works without written permission.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Limitation of Liability</h2>
+        <ul>
+          <li>The App is provided “as is” with no warranties regarding functionality or accuracy of caffeine calculations.</li>
+          <li>To the fullest extent permitted by law, CodeZeo Ltd is not liable for any damages resulting from use of the App.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Changes to the Terms</h2>
+        <ul>
+          <li>We may update these Terms from time to time. Changes will be posted in-app and/or on our website.</li>
+          <li>Continued use of the App after changes means you accept the new Terms.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Termination</h2>
+        <ul>
+          <li>We reserve the right to terminate or suspend access to the App at any time, for any reason, without notice.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Contact</h2>
+        <p>If you have questions or concerns about these Terms, contact us via the Settings section in the app or email <a href="mailto:info@codezeo.com" style="text-decoration:underline">info@codezeo.com</a>.</p>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container row">
+      <div class="legal">© <span id="year"></span> CodeZeo Ltd • All rights reserved</div>
+      <div class="footer-links">
+        <a href="coffzeoterms.html">Terms of Service</a>
+        <a href="coffzeoprivacy.html">Privacy Policy</a>
+        <a href="coffzeorestore.html">Restore Purchases</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Dropdown kontrolü
+    const appsCaret = document.getElementById('appsCaret');
+    const appsMenu  = document.getElementById('appsMenu');
+    const appsLink  = document.getElementById('appsLink');
+    function closeAppsMenu(){ appsMenu.classList.remove('open'); appsCaret.setAttribute('aria-expanded','false'); }
+    if (appsCaret && appsMenu){
+      appsCaret.addEventListener('click', (e)=>{ e.stopPropagation(); const open = appsMenu.classList.toggle('open'); appsCaret.setAttribute('aria-expanded', open ? 'true':'false'); });
+      appsLink && appsLink.addEventListener('click', closeAppsMenu);
+      document.addEventListener('click', (e)=>{ if(!appsMenu.contains(e.target) && !appsCaret.contains(e.target)) closeAppsMenu(); });
+      appsCaret.addEventListener('keydown', (e)=>{ if(e.key==='Enter' || e.key===' '){ e.preventDefault(); appsCaret.click(); } if(e.key==='Escape'){ closeAppsMenu(); }});
+    }
+  </script>
+</body>
+</html>
