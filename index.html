@@ -34,7 +34,6 @@
     html,body{
       margin:0; color:var(--ink);
       font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-      /* Daha koyu: siyah → night blue */
       background: linear-gradient(180deg, #04070d 0%, #0a1a2f 100%);
       -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
       scroll-behavior:smooth;
@@ -46,7 +45,8 @@
     /* ===== Utility ===== */
     .glass{
       background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
-      border:1px solid var(--line); border-radius:var(--radius); backdrop-filter:blur(var(--blur)); -webkit-backdrop-filter:blur(var(--blur));
+      border:1px solid var(--line); border-radius:var(--radius);
+      backdrop-filter:blur(var(--blur)); -webkit-backdrop-filter:blur(var(--blur));
       box-shadow:var(--shadow);
     }
     .text-grad{
@@ -66,9 +66,9 @@
     .brand .badge{
       font-family:'Poppins', sans-serif;
       font-weight:600; font-size:1.4rem; letter-spacing:.5px;
-      color:var(--brand); /* #00C8D7 */
+      color:var(--brand);
     }
-    
+
     /* Linkler */
     .nav-links{ display:flex; gap:14px; align-items:center }
     .nav-links a{
@@ -78,24 +78,24 @@
     }
     .nav-links a:hover{ border-color:var(--line); background:rgba(255,255,255,.04) }
     .nav-links a.active{ border-color:var(--line); background:rgba(255,255,255,.06) }
-    
+
     /* Dropdown sarmalayıcı */
     .dropdown{ position:relative; display:flex; align-items:center }
-    
+
     /* Caret (dropdown arrow) */
     .caret{
       display:inline-flex; align-items:center; justify-content:center;
-      width:32px; height:32px;             /* sabit kutu */
-      margin-left:6px; padding:0;           /* link padding'ini alma */
+      width:32px; height:32px;
+      margin-left:6px; padding:0;
       border-radius:12px; border:1px solid transparent;
       background:transparent; cursor:pointer;
       transition:background .25s ease, border-color .25s ease;
-      -webkit-appearance: none; appearance: none; outline: none;
+      -webkit-appearance:none; appearance:none; outline:none;
     }
     .caret:hover{ background:rgba(255,255,255,.04); border-color:var(--line) }
     .caret::before{
       content:"";
-      width:18px; height:18px;             /* okun boyutu */
+      width:18px; height:18px;
       -webkit-mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'><path d='M7 10l5 5 5-5z'/></svg>") no-repeat center/contain;
               mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'><path d='M7 10l5 5 5-5z'/></svg>") no-repeat center/contain;
       background:var(--ink); opacity:.9;
@@ -115,7 +115,6 @@
     .menu.open{ display:block }
     .menu a{ display:block; padding:8px 10px; border-radius:10px }
     .menu a:hover{ background:rgba(255,255,255,.08) }
-
 
     /* ===== HERO ===== */
     header.hero{ padding:96px 0 64px; position:relative; overflow:hidden; }
@@ -180,29 +179,35 @@
     .card h3{ margin:10px 0 6px }
     .chip{ font-size:12px; color:var(--muted) }
 
-    /* ===== Apps Grid (2 kolon için) ===== */
+    /* ===== Apps Grid (2 kolon garantili) ===== */
     .apps-grid{
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      max-width: 760px;
-      margin: 0 auto;
-      justify-items: center;
-      gap: 24px;
+      grid-template-columns:repeat(2, minmax(0, 1fr));
+      max-width:760px;
+      margin:0 auto;
+      gap:24px;
+      align-items:stretch;
+    }
+    @media (max-width: 760px){
+      .apps-grid{ grid-template-columns:1fr; }
     }
 
     .app-card{
-      width:100%; max-width:340px; display:flex; flex-direction:column; gap:12px;
+      width:100%;
+      display:flex; flex-direction:column; gap:12px;
       padding:18px; border-radius:16px; border:1px solid var(--line);
       background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
-      box-shadow:var(--shadow); transition:transform .2s ease, box-shadow .2s ease;
-      height: 100%;
+      box-shadow:var(--shadow);
+      transition:transform .2s ease, box-shadow .2s ease;
+      height:100%;
+      cursor:pointer;
+      outline:none;
     }
     .app-card:hover{ transform:translateY(-4px); box-shadow:0 20px 40px rgba(0,0,0,.35) }
-    .shot{ border-radius: 20%; background-size:cover; background-position:center; aspect-ratio:1/1 }
+    .app-card:focus-visible{ outline:2px solid var(--line); outline-offset:3px; }
+
+    .shot{ border-radius:20%; background-size:cover; background-position:center; aspect-ratio:1/1 }
     .app-title{ font-size:18px; font-weight:800; line-height:1.2; margin:2px 0 0 }
     .app-meta{ display:flex; gap:8px; align-items:center; color:var(--muted); font-size:12px }
-
-    /* App kartını link yapınca stil bozulmasın */
-    .app-link{ display:block; color:inherit; text-decoration:none; width: 100%; max-width:340px; }
 
     /* ===== App Store button ===== */
     .store-btn{
@@ -212,7 +217,7 @@
       background:rgba(255,255,255,.06); font-weight:700;
       transition:transform .2s ease, box-shadow .2s ease, background .2s ease;
       will-change:transform;
-      margin-top: auto;
+      margin-top:auto;
     }
     .store-btn:hover{ transform:translateY(-2px); background:rgba(255,255,255,.09); box-shadow:0 10px 28px rgba(0,0,0,.25) }
     .store-left{ display:flex; align-items:center; gap:12px; min-width:0; }
@@ -247,7 +252,7 @@
       .hero-figure-code{ max-width:360px }
       .about{ grid-template-columns:1fr }
       .about .pillars{ grid-template-columns:1fr }
-      .dropdown-menu{ position:fixed; left:20px; right:auto } 
+      .dropdown-menu{ position:fixed; left:20px; right:auto }
     }
     @media (prefers-reduced-motion: reduce){
       *{ animation:none !important; transition:none !important }
@@ -275,7 +280,7 @@
 
           <div class="menu glass" id="appsMenu" role="menu">
             <a role="menuitem" href="submia.html">Submia</a>
-            <a role="menuitem" href="coffzeoapp.html">CoffZeo</a>
+            <a role="menuitem" href="coffzeo.html">CoffZeo</a>
           </div>
         </div>
 
@@ -334,78 +339,84 @@
       <p class="lead" style="margin-bottom:18px">We're just getting started.</p>
 
       <div class="grid apps-grid">
-        
-        <!-- SUBMIA CARD -->
-        <a class="app-link submia-card-link" href="https://apps.apple.com/us/app/submia-subscriptions-bills/id6752131883" target="_blank" rel="noopener" aria-label="Open Submia on the App Store">
-          <article class="app-card">
-            <div class="shot" style="background-image:
-              linear-gradient(135deg, rgba(121,230,255,.12), rgba(103,228,179,.10)),
-              url('SubmiaLogoRot.png');">
-            </div>
 
-            <h3 class="app-title">Submia — Smart Subscription Tracker &amp; Reminder</h3>
+        <!-- SUBMIA CARD (no nested anchors) -->
+        <article class="app-card"
+                 data-href="https://apps.apple.com/us/app/submia-subscriptions-bills/id6752131883"
+                 aria-label="Open Submia on the App Store">
+          <div class="shot" style="background-image:
+            linear-gradient(135deg, rgba(121,230,255,.12), rgba(103,228,179,.10)),
+            url('SubmiaLogoRot.png');">
+          </div>
 
-            <div class="app-meta">
-              <span class="chip">Finance • iOS</span>
-            </div>
+          <h3 class="app-title">Submia — Smart Subscription Tracker &amp; Reminder</h3>
 
-            <!-- Buton: direkt App Store linki -->
-            <a class="store-btn submia-store-btn" href="https://apps.apple.com/us/app/submia-subscriptions-bills/id6752131883" target="_blank" rel="noopener" aria-label="Download Submia on the App Store">
-              <span class="store-left">
-                <svg class="store-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" fill="white" aria-hidden="true">
-                  <path d="M318.7 268.7c.5 55.3 48.3 73.7 48.8 73.9c-.4 1.4-7.6 26.1-25.1 51.7c-15.1 22.2-30.9 44.3-55.8 44.7c-24.3.5-32.2-14.4-60-14.4c-27.8 0-36.4 14-59.4 14.9c-23.8.9-41.9-24-57-46.1c-31.1-45.1-55-127.6-23-183.4c15.9-27.7 44.3-45.3 75.1-45.8c23.5-.5 45.7 15.8 60 15.8c14.3 0 41.2-19.5 69.6-16.6c11.8.5 45.1 4.8 66.3 36.2c-1.7 1.1-39.7 23.3-39.5 69.1zM250.2 81.3c12.9-15.6 21.8-37.3 19.4-58.9c-18.8.8-41.2 12.5-54.6 28.1c-12 14.1-22.5 36.7-19.7 58c21.1 1.6 42.6-10.7 54.9-27.2z"/>
-                </svg>
-                <span class="store-text">
-                  <span class="store-small">Available on the</span>
-                  <span class="store-big">App Store</span>
-                </span>
+          <div class="app-meta">
+            <span class="chip">Finance • iOS</span>
+          </div>
+
+          <a class="store-btn submia-store-btn"
+             href="https://apps.apple.com/us/app/submia-subscriptions-bills/id6752131883"
+             target="_blank" rel="noopener"
+             aria-label="Download Submia on the App Store">
+            <span class="store-left">
+              <svg class="store-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" fill="white" aria-hidden="true">
+                <path d="M318.7 268.7c.5 55.3 48.3 73.7 48.8 73.9c-.4 1.4-7.6 26.1-25.1 51.7c-15.1 22.2-30.9 44.3-55.8 44.7c-24.3.5-32.2-14.4-60-14.4c-27.8 0-36.4 14-59.4 14.9c-23.8.9-41.9-24-57-46.1c-31.1-45.1-55-127.6-23-183.4c15.9-27.7 44.3-45.3 75.1-45.8c23.5-.5 45.7 15.8 60 15.8c14.3 0 41.2-19.5 69.6-16.6c11.8.5 45.1 4.8 66.3 36.2c-1.7 1.1-39.7 23.3-39.5 69.1zM250.2 81.3c12.9-15.6 21.8-37.3 19.4-58.9c-18.8.8-41.2 12.5-54.6 28.1c-12 14.1-22.5 36.7-19.7 58c21.1 1.6 42.6-10.7 54.9-27.2z"/>
+              </svg>
+              <span class="store-text">
+                <span class="store-small">Available on the</span>
+                <span class="store-big">App Store</span>
               </span>
-              <span class="store-stars" aria-label="5 star rating">
-                <svg viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                <svg viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                <svg viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                <svg viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                <svg viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            </span>
+
+            <span class="store-stars" aria-label="5 star rating">
+              <svg viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            </span>
+          </a>
+        </article>
+
+        <!-- COFFZEO CARD (no nested anchors) -->
+        <article class="app-card"
+                 data-href="https://apps.apple.com/tr/app/coffzeo-coffee-caffeine-log/id6756270429"
+                 aria-label="Open CoffZeo on the App Store">
+          <div class="shot" style="background-image:
+            linear-gradient(135deg, rgba(255,214,10,.12), rgba(200,140,23,.10)),
+            url('CoffZeoLogo.png');">
+          </div>
+
+          <h3 class="app-title">CoffZeo — Smart Caffeine Tracker &amp; Logger</h3>
+
+          <div class="app-meta">
+            <span class="chip">Food & Drinks • iOS</span>
+          </div>
+
+          <a class="store-btn coffzeo-store-btn"
+             href="https://apps.apple.com/tr/app/coffzeo-coffee-caffeine-log/id6756270429"
+             target="_blank" rel="noopener"
+             aria-label="Download CoffZeo on the App Store">
+            <span class="store-left">
+              <svg class="store-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" fill="white" aria-hidden="true">
+                <path d="M318.7 268.7c.5 55.3 48.3 73.7 48.8 73.9c-.4 1.4-7.6 26.1-25.1 51.7c-15.1 22.2-30.9 44.3-55.8 44.7c-24.3.5-32.2-14.4-60-14.4c-27.8 0-36.4 14-59.4 14.9c-23.8.9-41.9-24-57-46.1c-31.1-45.1-55-127.6-23-183.4c15.9-27.7 44.3-45.3 75.1-45.8c23.5-.5 45.7 15.8 60 15.8c14.3 0 41.2-19.5 69.6-16.6c11.8.5 45.1 4.8 66.3 36.2c-1.7 1.1-39.7 23.3-39.5 69.1zM250.2 81.3c12.9-15.6 21.8-37.3 19.4-58.9c-18.8.8-41.2 12.5-54.6 28.1c-12 14.1-22.5 36.7-19.7 58c21.1 1.6 42.6-10.7 54.9-27.2z"/>
+              </svg>
+              <span class="store-text">
+                <span class="store-small">Available on the</span>
+                <span class="store-big">App Store</span>
               </span>
-            </a>
-          </article>
-        </a>
+            </span>
 
-        <!-- COFFZEO CARD -->
-        <a class="app-link coffzeo-card-link" href="https://apps.apple.com/tr/app/coffzeo-coffee-caffeine-log/id6756270429" target="_blank" rel="noopener" aria-label="Open CoffZeo on the App Store">
-          <article class="app-card">
-            <div class="shot" style="background-image:
-              linear-gradient(135deg, rgba(255,214,10,.12), rgba(200,140,23,.10)),
-              url('CoffZeoLogo.png');">
-            </div>
-
-            <h3 class="app-title">CoffZeo — Smart Caffeine Tracker &amp; Logger</h3>
-
-            <div class="app-meta">
-              <span class="chip">Food & Drinks • iOS</span>
-            </div>
-
-            <!-- Buton: direkt App Store linki -->
-            <a class="store-btn coffzeo-store-btn" href="https://apps.apple.com/tr/app/coffzeo-coffee-caffeine-log/id6756270429" target="_blank" rel="noopener" aria-label="Download CoffZeo on the App Store">
-              <span class="store-left">
-                <svg class="store-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" fill="white" aria-hidden="true">
-                  <path d="M318.7 268.7c.5 55.3 48.3 73.7 48.8 73.9c-.4 1.4-7.6 26.1-25.1 51.7c-15.1 22.2-30.9 44.3-55.8 44.7c-24.3.5-32.2-14.4-60-14.4c-27.8 0-36.4 14-59.4 14.9c-23.8.9-41.9-24-57-46.1c-31.1-45.1-55-127.6-23-183.4c15.9-27.7 44.3-45.3 75.1-45.8c23.5-.5 45.7 15.8 60 15.8c14.3 0 41.2-19.5 69.6-16.6c11.8.5 45.1 4.8 66.3 36.2c-1.7 1.1-39.7 23.3-39.5 69.1zM250.2 81.3c12.9-15.6 21.8-37.3 19.4-58.9c-18.8.8-41.2 12.5-54.6 28.1c-12 14.1-22.5 36.7-19.7 58c21.1 1.6 42.6-10.7 54.9-27.2z"/>
-                </svg>
-                <span class="store-text">
-                  <span class="store-small">Available on the</span>
-                  <span class="store-big">App Store</span>
-                </span>
-              </span>
-              <span class="store-stars" aria-label="5 star rating">
-                <svg viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                <svg viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                <svg viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                <svg viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                <svg viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/></svg>
-              </span>
-            </a>
-          </article>
-        </a>
+            <span class="store-stars" aria-label="5 star rating">
+              <svg viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            </span>
+          </a>
+        </article>
 
       </div>
     </div>
@@ -483,7 +494,7 @@
   </footer>
 
   <script>
-    const yearEl = document.getElementById('year'); 
+    const yearEl = document.getElementById('year');
     if(yearEl){ yearEl.textContent = new Date().getFullYear(); }
 
     // nav active
@@ -501,34 +512,55 @@
     },{rootMargin:'-45% 0px -50% 0px', threshold:.01});
     sections.forEach(s=>navObserver.observe(s));
 
-    // Dropdown erişilebilirliği için aria-expanded güncelle
+    // Dropdown
     const appsCaret = document.getElementById('appsCaret');
     const appsMenu  = document.getElementById('appsMenu');
     const appsLink  = document.getElementById('appsLink');
-    
+
     function closeAppsMenu(){
       appsMenu.classList.remove('open');
       appsCaret.setAttribute('aria-expanded','false');
     }
-    
+
     if(appsCaret && appsMenu){
       appsCaret.addEventListener('click', (e)=>{
         e.stopPropagation();
         const open = appsMenu.classList.toggle('open');
         appsCaret.setAttribute('aria-expanded', open ? 'true' : 'false');
       });
-      
+
       appsLink.addEventListener('click', closeAppsMenu);
+
       document.addEventListener('click', (e)=>{
         if(!appsMenu.contains(e.target) && !appsCaret.contains(e.target)) closeAppsMenu();
       });
+
       appsCaret.addEventListener('keydown', (e)=>{
         if(e.key==='Enter' || e.key===' '){ e.preventDefault(); appsCaret.click(); }
         if(e.key==='Escape'){ closeAppsMenu(); }
       });
     }
 
-    // (İSTEĞİN GEREĞİ) Submia ve CoffZeo kartları + App Store butonları artık direkt link olduğu için ekstra JS gerekmez.
+    // App cards: entire card clickable (no nested <a> issues)
+    document.querySelectorAll('.app-card[data-href]').forEach(card => {
+      card.setAttribute('tabindex', '0');
+
+      card.addEventListener('click', (e) => {
+        const link = e.target.closest('a');
+        if (link) return;
+
+        const url = card.getAttribute('data-href');
+        if (url) window.open(url, '_blank', 'noopener');
+      });
+
+      card.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          const url = card.getAttribute('data-href');
+          if (url) window.open(url, '_blank', 'noopener');
+        }
+      });
+    });
   </script>
 </body>
 </html>
