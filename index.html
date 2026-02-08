@@ -42,6 +42,7 @@
     img{ display:block; max-width:100%; height:auto }
     .container{ max-width:1100px; margin:0 auto; padding:0 20px }
 
+    /* ===== Utility ===== */
     .glass{
       background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
       border:1px solid var(--line); border-radius:var(--radius);
@@ -53,7 +54,7 @@
       -webkit-background-clip:text; background-clip:text; color:transparent;
     }
 
-    /* NAV */
+    /* ===== NAV ===== */
     nav{
       position:sticky; top:0; z-index:50;
       border-bottom:1px solid var(--line);
@@ -62,21 +63,31 @@
       -webkit-backdrop-filter:blur(10px) saturate(130%);
     }
     .nav-inner{ display:flex; align-items:center; justify-content:space-between; height:66px }
-    .brand{ display:flex; align-items:center; gap:10px }
+    .brand{ display:flex; align-items:center; gap:10px; min-width:0; }
     .brand .badge{
       font-family:'Poppins', sans-serif;
       font-weight:600; font-size:1.4rem; letter-spacing:.5px;
       color:var(--brand);
+      white-space:nowrap;
     }
-    .nav-links{ display:flex; gap:14px; align-items:center }
+
+    .nav-links{
+      display:flex; gap:14px; align-items:center;
+      flex-wrap:nowrap;
+      white-space:nowrap;
+      min-width:0;
+    }
     .nav-links a{
       padding:8px 12px; border-radius:12px;
       border:1px solid transparent;
       transition:background .25s ease, border-color .25s ease;
+      white-space:nowrap;
     }
     .nav-links a:hover{ border-color:var(--line); background:rgba(255,255,255,.04) }
     .nav-links a.active{ border-color:var(--line); background:rgba(255,255,255,.06) }
+
     .dropdown{ position:relative; display:flex; align-items:center }
+
     .caret{
       display:inline-flex; align-items:center; justify-content:center;
       width:32px; height:32px;
@@ -85,6 +96,7 @@
       background:transparent; cursor:pointer;
       transition:background .25s ease, border-color .25s ease;
       -webkit-appearance:none; appearance:none; outline:none;
+      flex:0 0 auto;
     }
     .caret:hover{ background:rgba(255,255,255,.04); border-color:var(--line) }
     .caret::before{
@@ -94,21 +106,25 @@
               mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'><path d='M7 10l5 5 5-5z'/></svg>") no-repeat center/contain;
       background:var(--ink); opacity:.9;
     }
-    .caret:focus-visible{ outline:2px solid var(--line); outline-offset:2px; border-radius:12px; }
+    .caret:focus-visible{
+      outline:2px solid var(--line); outline-offset:2px; border-radius:12px;
+    }
 
     .menu{
       position:absolute; top:calc(100% + 8px); left:0; z-index:60;
-      min-width:160px; padding:8px; border-radius:12px;
+      min-width:180px; padding:8px; border-radius:12px;
       border:1px solid var(--line);
       background:rgba(8,11,18,.95);
       box-shadow:0 20px 40px rgba(0,0,0,.35);
       display:none;
+      overflow:hidden;
     }
     .menu.open{ display:block }
-    .menu a{ display:block; padding:8px 10px; border-radius:10px }
+    .menu a{ display:block; padding:8px 10px; border-radius:10px; white-space:nowrap; }
     .menu a:hover{ background:rgba(255,255,255,.08) }
+    .menu .divider{ height:1px; background:rgba(255,255,255,.08); margin:8px 6px; }
 
-    /* HERO */
+    /* ===== HERO ===== */
     header.hero{ padding:96px 0 64px; position:relative; overflow:hidden; }
     .hero::before{
       content:""; position:absolute; inset:-20% -10% auto -10%; height:70%;
@@ -122,16 +138,17 @@
       0%,100%{ transform:translateY(0) scale(1) }
       50%{ transform:translateY(-3%) scale(1.02) }
     }
+
     .hero-grid{ display:grid; grid-template-columns:1.2fr .8fr; gap:38px; align-items:center }
     .kicker{ color:var(--muted); letter-spacing:.14em; text-transform:uppercase; font-size:12px; font-weight:700 }
     h1{ font-size:52px; line-height:1.06; margin:.5rem 0 .6rem; font-weight:900 }
     .lead{ color:var(--muted); font-size:18px; max-width:52ch }
-    .buttons{ display:flex; gap:12px; margin-top:24px }
+    .buttons{ display:flex; gap:12px; margin-top:24px; flex-wrap:wrap }
     .btn{ padding:12px 16px; border-radius:12px; border:1px solid var(--line); background:rgba(255,255,255,.04); font-weight:700; transition:transform .2s ease, box-shadow .2s ease }
     .btn:hover{ transform:translateY(-2px); box-shadow:0 10px 30px rgba(0,0,0,.25) }
     .btn.primary{ background:linear-gradient(135deg, var(--brand), var(--accent)); color:#051017; border:none }
 
-    /* RIGHT FIGURE */
+    /* ===== RIGHT FIGURE ===== */
     .hero-figure-code{ position:relative; width:100%; max-width:420px; margin:0 auto; isolation:isolate; transition:transform .3s ease; }
     .code-canvas{ position:relative; width:100%; aspect-ratio:1/1; }
     .code-svg{ position:absolute; inset:0; display:block; filter:saturate(115%); }
@@ -146,11 +163,14 @@
     .t1{ transform:rotate(0deg) translateX(125px) rotate(0deg); animation:orbit1 12s linear infinite; }
     .t2{ transform:rotate(120deg) translateX(125px) rotate(-120deg); animation:orbit2 14s linear infinite reverse; }
     .t3{ transform:rotate(240deg) translateX(125px) rotate(-240deg); animation:orbit3 16s linear infinite; }
+
     .ring{ fill:none; stroke:url(#grad); stroke-opacity:.55; stroke-width:1; stroke-dasharray:2 6; animation:spin 28s linear infinite; }
     .ring.r2{ stroke-opacity:.38; animation-duration:36s }
     .ring.r3{ stroke-opacity:.26; animation-duration:44s }
+
     .flow{ fill:none; stroke:url(#grad); stroke-width:1.6; stroke-linecap:round; stroke-dasharray:10 14; opacity:.9; animation:dash 9s linear infinite; }
     .flow.softer{ stroke-opacity:.6; stroke-width:1.2; stroke-dasharray:6 12; animation-duration:11s; }
+
     @media (hover:hover){ .hero-figure-code:hover{ transform:perspective(900px) rotateX(3deg) rotateY(-5deg) } }
     @keyframes dash{ to{ stroke-dashoffset:-240 } }
     @keyframes spin{ to{ transform:rotate(360deg) } }
@@ -158,13 +178,13 @@
     @keyframes orbit2{ to{ transform:rotate(360deg) translateX(125px) rotate(-360deg) } }
     @keyframes orbit3{ to{ transform:rotate(360deg) translateX(125px) rotate(-360deg) } }
 
-    /* SECTIONS */
+    /* ===== SECTIONS ===== */
     section{ padding:72px 0; border-top:1px solid var(--line) }
     h2{ font-size:32px; margin:0 0 14px }
 
     .grid{ display:grid; grid-template-columns:repeat(3, 1fr); gap:18px }
 
-    /* APPS GRID */
+    /* ===== Apps Grid (desktop: 2 col) ===== */
     .apps-grid{
       grid-template-columns:repeat(2, minmax(0, 1fr));
       max-width:760px;
@@ -189,31 +209,73 @@
     .app-card:focus-visible{ outline:2px solid var(--line); outline-offset:3px; }
 
     .shot{ border-radius:20%; background-size:cover; background-position:center; aspect-ratio:1/1 }
+
     .app-title{ font-size:18px; font-weight:800; line-height:1.2; margin:2px 0 0 }
     .app-meta{ display:flex; gap:8px; align-items:center; color:var(--muted); font-size:12px }
     .chip{ font-size:12px; color:var(--muted) }
 
-    /* STORE BUTTON */
+    /* ===== App Store button (NO STAR SHIFT) ===== */
     .store-btn{
-      display:flex; align-items:center; justify-content:space-between;
-      gap:16px; width:100%;
-      padding:10px 14px; border-radius:12px; border:1px solid var(--line);
-      background:rgba(255,255,255,.06); font-weight:700;
+      display:flex; align-items:center;
+      gap:12px;
+      width:100%;
+      padding:10px 14px;
+      border-radius:12px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.06);
+      font-weight:700;
       transition:transform .2s ease, box-shadow .2s ease, background .2s ease;
       will-change:transform;
       margin-top:auto;
+
+      /* critical: prevent wrapping / misalignment */
+      flex-wrap:nowrap;
       min-width:0;
     }
     .store-btn:hover{ transform:translateY(-2px); background:rgba(255,255,255,.09); box-shadow:0 10px 28px rgba(0,0,0,.25) }
-    .store-left{ display:flex; align-items:center; gap:12px; min-width:0; }
-    .store-icon{ width:28px; height:28px; flex:0 0 28px; display:block }
-    .store-text{ line-height:1; display:flex; flex-direction:column; gap:4px; min-width:0; }
-    .store-small{ font-size:10px; letter-spacing:.08em; text-transform:uppercase; color:#666c7d; white-space:nowrap }
-    .store-big{ font-size:14px; font-weight:800; white-space:nowrap }
-    .store-stars{ display:inline-flex; gap:2px; margin-left:auto; }
-    .store-stars svg{ width:14px; height:14px; fill:var(--gold); }
 
-    /* ABOUT */
+    .store-left{
+      display:flex; align-items:center; gap:10px;
+      min-width:0;
+      flex:1 1 auto;
+    }
+    .store-icon{ width:24px; height:24px; flex:0 0 24px; display:block }
+
+    .store-text{
+      line-height:1.05;
+      display:flex;
+      flex-direction:column;
+      gap:3px;
+      min-width:0;
+    }
+    .store-small{
+      font-size:10px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      color:#666c7d;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+    .store-big{
+      font-size:14px;
+      font-weight:800;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+
+    .store-stars{
+      display:inline-flex;
+      gap:2px;
+      flex:0 0 auto;
+      margin-left:auto;
+      align-items:center;
+      white-space:nowrap;
+    }
+    .store-stars svg{ width:14px; height:14px; fill:var(--gold); flex:0 0 auto; }
+
+    /* About */
     .about{ display:grid; grid-template-columns:1.1fr .9fr; gap:22px }
     .about .pillars{ display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:10px }
     .about .pillars .p{ padding:14px; border:1px solid var(--line); border-radius:12px; background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02)) }
@@ -226,10 +288,10 @@
     .trow .txt{ color:var(--muted); font-size:14px }
 
     footer{ padding:28px 0; color:var(--muted) }
-    footer .row{ display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--line); padding-top:18px }
+    footer .row{ display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--line); padding-top:18px; gap:12px; flex-wrap:wrap }
     .legal{ font-size:13px }
 
-    /* RESPONSIVE */
+    /* ===== RESPONSIVE ===== */
     @media (max-width: 960px){
       .hero-grid{ grid-template-columns:1fr }
       h1{ font-size:40px }
@@ -238,69 +300,77 @@
       .about .pillars{ grid-template-columns:1fr }
     }
 
-    /* ✅ MOBILE COMPACT APPS: 2 columns + SHORT cards */
+    /* ✅ Mobile: keep 2 cards visible (smaller), stop navbar wrap, stop star shifting */
     @media (max-width: 760px){
-      /* less vertical spacing so both cards appear faster */
-      section{ padding:44px 0; }
-      h2{ font-size:26px; margin:0 0 10px; }
+      .nav-inner{ height:56px; }
+      .brand .badge{ font-size:1.2rem; }
 
+      /* Show only Apps in nav (others moved to dropdown) => no wrapping */
+      .nav-links > a[href="#home"],
+      .nav-links > a[href="#about"],
+      .nav-links > a[href^="mailto:"]{
+        display:none;
+      }
+      .nav-links a{ padding:6px 10px; font-size:14px; }
+
+      /* Dropdown menu align right so it doesn't overflow */
+      .dropdown .menu{ left:auto; right:0; }
+
+      /* Apps section: make it feel like "only apps" on first screen */
+      #apps{ padding-top:44px; padding-bottom:160px; }
+      #apps .lead{ display:none; }
+
+      /* ✅ Force 2 columns on mobile */
       .apps-grid{
         grid-template-columns:repeat(2, minmax(0, 1fr));
         gap:12px;
-        max-width:100%;
+        padding:0 2px;
       }
 
-      /* turn each card into compact grid */
+      /* ✅ Make cards smaller */
       .app-card{
         padding:12px;
         border-radius:14px;
-        gap:8px;
-        display:grid;
-        grid-template-columns:64px 1fr;
-        grid-template-areas:
-          "shot title"
-          "shot meta"
-          "btn  btn";
-        align-items:center;
-      }
-
-      .shot{
-        grid-area:shot;
-        width:64px;
-        height:64px;
-        aspect-ratio:auto;
-        border-radius:18%;
+        gap:10px;
       }
 
       .app-title{
-        grid-area:title;
         font-size:13px;
         line-height:1.15;
-        margin:0;
+        display:-webkit-box;
+        -webkit-line-clamp:3;
+        -webkit-box-orient:vertical;
+        overflow:hidden;
       }
+      .app-meta{ font-size:11px; }
 
-      .app-meta{
-        grid-area:meta;
-        font-size:11px;
-      }
+      .shot{ border-radius:18%; }
 
+      /* ✅ Compact App Store button so both cards fit */
       .store-btn{
-        grid-area:btn;
-        margin-top:6px;
         padding:8px 10px;
         border-radius:12px;
-        gap:10px;
+        gap:8px;
       }
       .store-icon{ width:20px; height:20px; flex:0 0 20px; }
-      .store-small{ font-size:9px; }
-      .store-big{ font-size:12px; }
+      .store-small{ font-size:8.5px; }
+      .store-big{ font-size:11.5px; }
+
+      /* ✅ Keep stars from wrapping / shifting */
+      .store-stars{ gap:1px; }
       .store-stars svg{ width:11px; height:11px; }
+
+      /* hide hero figure on small screens (optional, reduces scroll noise) */
+      .hero-figure-code{ display:none; }
+      header.hero{ padding:72px 0 40px; }
     }
 
-    /* ✅ EXTRA SMALL: hide stars to prevent overflow */
+    /* ultra-small phones (SE etc.) */
     @media (max-width: 380px){
-      .store-stars{ display:none; }
-      .store-btn{ justify-content:flex-start; }
+      .apps-grid{ gap:10px; }
+      .app-card{ padding:10px; }
+      .store-big{ font-size:10.8px; }
+      .store-stars svg{ width:10px; height:10px; }
     }
 
     @media (prefers-reduced-motion: reduce){
@@ -309,7 +379,6 @@
     }
   </style>
 </head>
-
 <body>
   <nav>
     <div class="container nav-inner">
@@ -331,6 +400,9 @@
           <div class="menu glass" id="appsMenu" role="menu">
             <a role="menuitem" href="submia.html">Submia</a>
             <a role="menuitem" href="coffzeo.html">CoffZeo</a>
+            <div class="divider" aria-hidden="true"></div>
+            <a role="menuitem" href="#about">About Us</a>
+            <a role="menuitem" href="mailto:info@codezeo.com">Contact</a>
           </div>
         </div>
 
@@ -390,6 +462,7 @@
 
       <div class="grid apps-grid">
 
+        <!-- SUBMIA CARD -->
         <article class="app-card"
                  data-href="https://apps.apple.com/us/app/submia-subscriptions-bills/id6752131883"
                  aria-label="Open Submia on the App Store">
@@ -406,7 +479,7 @@
 
           <a class="store-btn submia-store-btn"
              href="https://apps.apple.com/us/app/submia-subscriptions-bills/id6752131883"
-             target="_blank" rel="noopener noreferrer"
+             target="_blank" rel="noopener"
              aria-label="Download Submia on the App Store">
             <span class="store-left">
               <svg class="store-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" fill="white" aria-hidden="true">
@@ -419,15 +492,16 @@
             </span>
 
             <span class="store-stars" aria-label="5 star rating">
-              <svg viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/></svg>
-              <svg viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/></svg>
-              <svg viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/></svg>
-              <svg viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/></svg>
-              <svg viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/></svg>
             </span>
           </a>
         </article>
 
+        <!-- COFFZEO CARD -->
         <article class="app-card"
                  data-href="https://apps.apple.com/tr/app/coffzeo-coffee-caffeine-log/id6756270429"
                  aria-label="Open CoffZeo on the App Store">
@@ -444,11 +518,11 @@
 
           <a class="store-btn coffzeo-store-btn"
              href="https://apps.apple.com/tr/app/coffzeo-coffee-caffeine-log/id6756270429"
-             target="_blank" rel="noopener noreferrer"
+             target="_blank" rel="noopener"
              aria-label="Download CoffZeo on the App Store">
             <span class="store-left">
               <svg class="store-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" fill="white" aria-hidden="true">
-                <path d="M318.7 268.7c.5 55.3 48.3 73.7 48.8 73.9c-.4 1.4-7.6 26.1-25.1 51.7c-15.1 22.2-30.9 44.3-55.8 44.7c-24.3.5-32.2-14.4-60-14.4c-27.8 0-36.4 14-59.4 14.9c-23.8.9-41.9-24-57-46.1c-31.1-45.1-55-127.6-23-183.4c15.9-27.7 44.3-45.3 75.1-45.8c23.5-.5 45.7 15.8 60 15.8c14.3 0 41.2-19.5 69.6-16.6c11.8.5 45.1 4.8 66.3 36.2c-1.7 1.1-39.7 23.3-39.5 69.1zM250.2 81.3c12.9-15.6 21.8-37.3 19.4-58.9c-18.8.8-41.2 12.5-54.6 28.1c-12 14.1-22.5 36.7-19.7 58c21.1 1.6 42.6-10.7 54.9-27.2z"/>
+                <path d="M318.7 268.7c.5 55.3 48.3 73.7 48.8 73.9c-.4 1.4-7.6 26.1-25.1 51.7c-15.1 22.2-30.9 44.3-55.8 44.7c-24.3.5-32.2-14.4-60-14.4c-27.8 0-36.4 14-59.4 14.9c-23.8 .9-41.9-24-57-46.1c-31.1-45.1-55-127.6-23-183.4c15.9-27.7 44.3-45.3 75.1-45.8c23.5-.5 45.7 15.8 60 15.8c14.3 0 41.2-19.5 69.6-16.6c11.8.5 45.1 4.8 66.3 36.2c-1.7 1.1-39.7 23.3-39.5 69.1zM250.2 81.3c12.9-15.6 21.8-37.3 19.4-58.9c-18.8.8-41.2 12.5-54.6 28.1c-12 14.1-22.5 36.7-19.7 58c21.1 1.6 42.6-10.7 54.9-27.2z"/>
               </svg>
               <span class="store-text">
                 <span class="store-small">Available on the</span>
@@ -457,11 +531,11 @@
             </span>
 
             <span class="store-stars" aria-label="5 star rating">
-              <svg viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/></svg>
-              <svg viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/></svg>
-              <svg viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/></svg>
-              <svg viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/></svg>
-              <svg viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/></svg>
             </span>
           </a>
         </article>
@@ -545,6 +619,7 @@
     const yearEl = document.getElementById('year');
     if(yearEl){ yearEl.textContent = new Date().getFullYear(); }
 
+    // nav active
     const links = document.querySelectorAll('.nav-links a');
     const sections = [...document.querySelectorAll('header, section')];
     const navObserver = new IntersectionObserver((entries)=>{
@@ -559,6 +634,7 @@
     },{rootMargin:'-45% 0px -50% 0px', threshold:.01});
     sections.forEach(s=>navObserver.observe(s));
 
+    // Dropdown
     const appsCaret = document.getElementById('appsCaret');
     const appsMenu  = document.getElementById('appsMenu');
     const appsLink  = document.getElementById('appsLink');
@@ -587,6 +663,7 @@
       });
     }
 
+    // App cards: entire card clickable (no nested <a> issues)
     document.querySelectorAll('.app-card[data-href]').forEach(card => {
       card.setAttribute('tabindex', '0');
 
