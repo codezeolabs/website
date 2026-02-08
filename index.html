@@ -336,7 +336,7 @@
       <div class="grid apps-grid">
         
         <!-- SUBMIA CARD -->
-        <a class="app-link" href="submia.html" aria-label="Open Submia page">
+        <a class="app-link submia-card-link" href="https://apps.apple.com/us/app/submia-subscriptions-bills/id6752131883" target="_blank" rel="noopener" aria-label="Open Submia on the App Store">
           <article class="app-card">
             <div class="shot" style="background-image:
               linear-gradient(135deg, rgba(121,230,255,.12), rgba(103,228,179,.10)),
@@ -349,8 +349,8 @@
               <span class="chip">Finance • iOS</span>
             </div>
 
-            <!-- Buton: JS ile App Store'a gidecek -->
-            <span class="store-btn submia-store-btn" role="button" tabindex="0">
+            <!-- Buton: direkt App Store linki -->
+            <a class="store-btn submia-store-btn" href="https://apps.apple.com/us/app/submia-subscriptions-bills/id6752131883" target="_blank" rel="noopener" aria-label="Download Submia on the App Store">
               <span class="store-left">
                 <svg class="store-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" fill="white" aria-hidden="true">
                   <path d="M318.7 268.7c.5 55.3 48.3 73.7 48.8 73.9c-.4 1.4-7.6 26.1-25.1 51.7c-15.1 22.2-30.9 44.3-55.8 44.7c-24.3.5-32.2-14.4-60-14.4c-27.8 0-36.4 14-59.4 14.9c-23.8.9-41.9-24-57-46.1c-31.1-45.1-55-127.6-23-183.4c15.9-27.7 44.3-45.3 75.1-45.8c23.5-.5 45.7 15.8 60 15.8c14.3 0 41.2-19.5 69.6-16.6c11.8.5 45.1 4.8 66.3 36.2c-1.7 1.1-39.7 23.3-39.5 69.1zM250.2 81.3c12.9-15.6 21.8-37.3 19.4-58.9c-18.8.8-41.2 12.5-54.6 28.1c-12 14.1-22.5 36.7-19.7 58c21.1 1.6 42.6-10.7 54.9-27.2z"/>
@@ -367,12 +367,12 @@
                 <svg viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/></svg>
                 <svg viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/></svg>
               </span>
-            </span>
+            </a>
           </article>
         </a>
 
         <!-- COFFZEO CARD -->
-        <a class="app-link" href="coffzeoapp.html" aria-label="Open CoffZeo page">
+        <a class="app-link coffzeo-card-link" href="https://apps.apple.com/tr/app/coffzeo-coffee-caffeine-log/id6756270429" target="_blank" rel="noopener" aria-label="Open CoffZeo on the App Store">
           <article class="app-card">
             <div class="shot" style="background-image:
               linear-gradient(135deg, rgba(255,214,10,.12), rgba(200,140,23,.10)),
@@ -385,7 +385,8 @@
               <span class="chip">Food & Drinks • iOS</span>
             </div>
 
-            <span class="store-btn" role="button" tabindex="0">
+            <!-- Buton: direkt App Store linki -->
+            <a class="store-btn coffzeo-store-btn" href="https://apps.apple.com/tr/app/coffzeo-coffee-caffeine-log/id6756270429" target="_blank" rel="noopener" aria-label="Download CoffZeo on the App Store">
               <span class="store-left">
                 <svg class="store-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" fill="white" aria-hidden="true">
                   <path d="M318.7 268.7c.5 55.3 48.3 73.7 48.8 73.9c-.4 1.4-7.6 26.1-25.1 51.7c-15.1 22.2-30.9 44.3-55.8 44.7c-24.3.5-32.2-14.4-60-14.4c-27.8 0-36.4 14-59.4 14.9c-23.8.9-41.9-24-57-46.1c-31.1-45.1-55-127.6-23-183.4c15.9-27.7 44.3-45.3 75.1-45.8c23.5-.5 45.7 15.8 60 15.8c14.3 0 41.2-19.5 69.6-16.6c11.8.5 45.1 4.8 66.3 36.2c-1.7 1.1-39.7 23.3-39.5 69.1zM250.2 81.3c12.9-15.6 21.8-37.3 19.4-58.9c-18.8.8-41.2 12.5-54.6 28.1c-12 14.1-22.5 36.7-19.7 58c21.1 1.6 42.6-10.7 54.9-27.2z"/>
@@ -402,7 +403,7 @@
                 <svg viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/></svg>
                 <svg viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/></svg>
               </span>
-            </span>
+            </a>
           </article>
         </a>
 
@@ -527,24 +528,7 @@
       });
     }
 
-    // Submia App Store butonu: direkt App Store linki aç
-    const submiaStoreBtn = document.querySelector('.submia-store-btn');
-    if (submiaStoreBtn) {
-      const submiaStoreUrl = 'https://apps.apple.com/us/app/submia-subscriptions-bills/id6752131883';
-
-      const openSubmiaStore = (e) => {
-        e.stopPropagation();  // Kart linkini tetikleme
-        e.preventDefault();
-        window.open(submiaStoreUrl, '_blank', 'noopener');
-      };
-
-      submiaStoreBtn.addEventListener('click', openSubmiaStore);
-      submiaStoreBtn.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          openSubmiaStore(e);
-        }
-      });
-    }
+    // (İSTEĞİN GEREĞİ) Submia ve CoffZeo kartları + App Store butonları artık direkt link olduğu için ekstra JS gerekmez.
   </script>
 </body>
 </html>
