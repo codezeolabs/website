@@ -42,7 +42,6 @@
     img{ display:block; max-width:100%; height:auto }
     .container{ max-width:1100px; margin:0 auto; padding:0 20px }
 
-    /* ===== Utility ===== */
     .glass{
       background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
       border:1px solid var(--line); border-radius:var(--radius);
@@ -54,7 +53,7 @@
       -webkit-background-clip:text; background-clip:text; color:transparent;
     }
 
-    /* ===== NAV ===== */
+    /* NAV */
     nav{
       position:sticky; top:0; z-index:50;
       border-bottom:1px solid var(--line);
@@ -69,7 +68,6 @@
       font-weight:600; font-size:1.4rem; letter-spacing:.5px;
       color:var(--brand);
     }
-
     .nav-links{ display:flex; gap:14px; align-items:center }
     .nav-links a{
       padding:8px 12px; border-radius:12px;
@@ -78,9 +76,7 @@
     }
     .nav-links a:hover{ border-color:var(--line); background:rgba(255,255,255,.04) }
     .nav-links a.active{ border-color:var(--line); background:rgba(255,255,255,.06) }
-
     .dropdown{ position:relative; display:flex; align-items:center }
-
     .caret{
       display:inline-flex; align-items:center; justify-content:center;
       width:32px; height:32px;
@@ -112,7 +108,7 @@
     .menu a{ display:block; padding:8px 10px; border-radius:10px }
     .menu a:hover{ background:rgba(255,255,255,.08) }
 
-    /* ===== HERO ===== */
+    /* HERO */
     header.hero{ padding:96px 0 64px; position:relative; overflow:hidden; }
     .hero::before{
       content:""; position:absolute; inset:-20% -10% auto -10%; height:70%;
@@ -126,7 +122,6 @@
       0%,100%{ transform:translateY(0) scale(1) }
       50%{ transform:translateY(-3%) scale(1.02) }
     }
-
     .hero-grid{ display:grid; grid-template-columns:1.2fr .8fr; gap:38px; align-items:center }
     .kicker{ color:var(--muted); letter-spacing:.14em; text-transform:uppercase; font-size:12px; font-weight:700 }
     h1{ font-size:52px; line-height:1.06; margin:.5rem 0 .6rem; font-weight:900 }
@@ -136,7 +131,7 @@
     .btn:hover{ transform:translateY(-2px); box-shadow:0 10px 30px rgba(0,0,0,.25) }
     .btn.primary{ background:linear-gradient(135deg, var(--brand), var(--accent)); color:#051017; border:none }
 
-    /* ===== RIGHT FIGURE ===== */
+    /* RIGHT FIGURE */
     .hero-figure-code{ position:relative; width:100%; max-width:420px; margin:0 auto; isolation:isolate; transition:transform .3s ease; }
     .code-canvas{ position:relative; width:100%; aspect-ratio:1/1; }
     .code-svg{ position:absolute; inset:0; display:block; filter:saturate(115%); }
@@ -146,19 +141,16 @@
       font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
       font-size:12px; font-weight:700; letter-spacing:.02em; color:var(--ink);
       padding:6px 10px; border-radius:999px; border:1px solid rgba(255,255,255,.28);
-      background:transparent; backdrop-filter:none; box-shadow:none; white-space:nowrap; opacity:.85;
+      background:transparent; white-space:nowrap; opacity:.85;
     }
     .t1{ transform:rotate(0deg) translateX(125px) rotate(0deg); animation:orbit1 12s linear infinite; }
     .t2{ transform:rotate(120deg) translateX(125px) rotate(-120deg); animation:orbit2 14s linear infinite reverse; }
     .t3{ transform:rotate(240deg) translateX(125px) rotate(-240deg); animation:orbit3 16s linear infinite; }
-
     .ring{ fill:none; stroke:url(#grad); stroke-opacity:.55; stroke-width:1; stroke-dasharray:2 6; animation:spin 28s linear infinite; }
     .ring.r2{ stroke-opacity:.38; animation-duration:36s }
     .ring.r3{ stroke-opacity:.26; animation-duration:44s }
-
     .flow{ fill:none; stroke:url(#grad); stroke-width:1.6; stroke-linecap:round; stroke-dasharray:10 14; opacity:.9; animation:dash 9s linear infinite; }
     .flow.softer{ stroke-opacity:.6; stroke-width:1.2; stroke-dasharray:6 12; animation-duration:11s; }
-
     @media (hover:hover){ .hero-figure-code:hover{ transform:perspective(900px) rotateX(3deg) rotateY(-5deg) } }
     @keyframes dash{ to{ stroke-dashoffset:-240 } }
     @keyframes spin{ to{ transform:rotate(360deg) } }
@@ -166,16 +158,13 @@
     @keyframes orbit2{ to{ transform:rotate(360deg) translateX(125px) rotate(-360deg) } }
     @keyframes orbit3{ to{ transform:rotate(360deg) translateX(125px) rotate(-360deg) } }
 
-    /* ===== SECTIONS ===== */
+    /* SECTIONS */
     section{ padding:72px 0; border-top:1px solid var(--line) }
     h2{ font-size:32px; margin:0 0 14px }
 
     .grid{ display:grid; grid-template-columns:repeat(3, 1fr); gap:18px }
-    .card{ padding:18px; border:1px solid var(--line); border-radius:14px; background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02)) }
-    .card h3{ margin:10px 0 6px }
-    .chip{ font-size:12px; color:var(--muted) }
 
-    /* ===== Apps Grid (DEFAULT: 2 columns) ===== */
+    /* APPS GRID */
     .apps-grid{
       grid-template-columns:repeat(2, minmax(0, 1fr));
       max-width:760px;
@@ -194,7 +183,7 @@
       height:100%;
       cursor:pointer;
       outline:none;
-      min-width:0; /* grid overflow fix */
+      min-width:0;
     }
     .app-card:hover{ transform:translateY(-4px); box-shadow:0 20px 40px rgba(0,0,0,.35) }
     .app-card:focus-visible{ outline:2px solid var(--line); outline-offset:3px; }
@@ -202,8 +191,9 @@
     .shot{ border-radius:20%; background-size:cover; background-position:center; aspect-ratio:1/1 }
     .app-title{ font-size:18px; font-weight:800; line-height:1.2; margin:2px 0 0 }
     .app-meta{ display:flex; gap:8px; align-items:center; color:var(--muted); font-size:12px }
+    .chip{ font-size:12px; color:var(--muted) }
 
-    /* ===== App Store button ===== */
+    /* STORE BUTTON */
     .store-btn{
       display:flex; align-items:center; justify-content:space-between;
       gap:16px; width:100%;
@@ -220,11 +210,10 @@
     .store-text{ line-height:1; display:flex; flex-direction:column; gap:4px; min-width:0; }
     .store-small{ font-size:10px; letter-spacing:.08em; text-transform:uppercase; color:#666c7d; white-space:nowrap }
     .store-big{ font-size:14px; font-weight:800; white-space:nowrap }
-
     .store-stars{ display:inline-flex; gap:2px; margin-left:auto; }
     .store-stars svg{ width:14px; height:14px; fill:var(--gold); }
 
-    /* About */
+    /* ABOUT */
     .about{ display:grid; grid-template-columns:1.1fr .9fr; gap:22px }
     .about .pillars{ display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:10px }
     .about .pillars .p{ padding:14px; border:1px solid var(--line); border-radius:12px; background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02)) }
@@ -240,56 +229,75 @@
     footer .row{ display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--line); padding-top:18px }
     .legal{ font-size:13px }
 
-    /* ===== Responsive ===== */
+    /* RESPONSIVE */
     @media (max-width: 960px){
       .hero-grid{ grid-template-columns:1fr }
       h1{ font-size:40px }
       .hero-figure-code{ max-width:360px }
       .about{ grid-template-columns:1fr }
       .about .pillars{ grid-template-columns:1fr }
-      .dropdown-menu{ position:fixed; left:20px; right:auto }
     }
 
-    /* ✅ MOBILE: still 2 columns + smaller UI */
+    /* ✅ MOBILE COMPACT APPS: 2 columns + SHORT cards */
     @media (max-width: 760px){
-      /* apps: keep 2 columns */
+      /* less vertical spacing so both cards appear faster */
+      section{ padding:44px 0; }
+      h2{ font-size:26px; margin:0 0 10px; }
+
       .apps-grid{
         grid-template-columns:repeat(2, minmax(0, 1fr));
         gap:12px;
         max-width:100%;
       }
 
-      /* smaller cards */
+      /* turn each card into compact grid */
       .app-card{
         padding:12px;
         border-radius:14px;
-        gap:10px;
+        gap:8px;
+        display:grid;
+        grid-template-columns:64px 1fr;
+        grid-template-areas:
+          "shot title"
+          "shot meta"
+          "btn  btn";
+        align-items:center;
       }
 
-      /* smaller logo tile */
       .shot{
+        grid-area:shot;
+        width:64px;
+        height:64px;
+        aspect-ratio:auto;
         border-radius:18%;
       }
 
-      /* smaller title/meta */
-      .app-title{ font-size:14px; }
-      .app-meta{ font-size:11px; }
+      .app-title{
+        grid-area:title;
+        font-size:13px;
+        line-height:1.15;
+        margin:0;
+      }
 
-      /* compact store button */
+      .app-meta{
+        grid-area:meta;
+        font-size:11px;
+      }
+
       .store-btn{
+        grid-area:btn;
+        margin-top:6px;
         padding:8px 10px;
         border-radius:12px;
         gap:10px;
       }
-      .store-icon{ width:22px; height:22px; flex:0 0 22px; }
+      .store-icon{ width:20px; height:20px; flex:0 0 20px; }
       .store-small{ font-size:9px; }
       .store-big{ font-size:12px; }
-
-      /* stars can wrap/overflow; hide on very small widths */
-      .store-stars svg{ width:12px; height:12px; }
+      .store-stars svg{ width:11px; height:11px; }
     }
 
-    /* ✅ EXTRA SMALL: if phone is tiny, drop stars to prevent overflow */
+    /* ✅ EXTRA SMALL: hide stars to prevent overflow */
     @media (max-width: 380px){
       .store-stars{ display:none; }
       .store-btn{ justify-content:flex-start; }
@@ -301,6 +309,7 @@
     }
   </style>
 </head>
+
 <body>
   <nav>
     <div class="container nav-inner">
@@ -536,7 +545,6 @@
     const yearEl = document.getElementById('year');
     if(yearEl){ yearEl.textContent = new Date().getFullYear(); }
 
-    // nav active
     const links = document.querySelectorAll('.nav-links a');
     const sections = [...document.querySelectorAll('header, section')];
     const navObserver = new IntersectionObserver((entries)=>{
@@ -551,7 +559,6 @@
     },{rootMargin:'-45% 0px -50% 0px', threshold:.01});
     sections.forEach(s=>navObserver.observe(s));
 
-    // Dropdown
     const appsCaret = document.getElementById('appsCaret');
     const appsMenu  = document.getElementById('appsMenu');
     const appsLink  = document.getElementById('appsLink');
@@ -580,7 +587,6 @@
       });
     }
 
-    // App cards clickable
     document.querySelectorAll('.app-card[data-href]').forEach(card => {
       card.setAttribute('tabindex', '0');
 
