@@ -17,10 +17,10 @@
       --ink:#eaf0f8;
       --muted:#9aa6bd;
       --line:rgba(255,255,255,.08);
-      --brand:#00C8D7;    /* CodeZeo mavi */
+      --brand:#00C8D7;
       --brand-2:#283C50;
       --accent:#79e6ff;
-      --gold:#FFD60A;     /* App Store altın tonu */
+      --gold:#FFD60A;
       --radius:16px;
       --shadow:0 10px 40px rgba(0,0,0,.35);
       --blur:14px;
@@ -54,12 +54,13 @@
       -webkit-background-clip:text; background-clip:text; color:transparent;
     }
 
-    /* ===== NAV (tutarlı) ===== */
+    /* ===== NAV ===== */
     nav{
       position:sticky; top:0; z-index:50;
       border-bottom:1px solid var(--line);
       background:rgba(10,13,20,.55);
       backdrop-filter:blur(10px) saturate(130%);
+      -webkit-backdrop-filter:blur(10px) saturate(130%);
     }
     .nav-inner{ display:flex; align-items:center; justify-content:space-between; height:66px }
     .brand{ display:flex; align-items:center; gap:10px }
@@ -69,7 +70,6 @@
       color:var(--brand);
     }
 
-    /* Linkler */
     .nav-links{ display:flex; gap:14px; align-items:center }
     .nav-links a{
       padding:8px 12px; border-radius:12px;
@@ -79,10 +79,8 @@
     .nav-links a:hover{ border-color:var(--line); background:rgba(255,255,255,.04) }
     .nav-links a.active{ border-color:var(--line); background:rgba(255,255,255,.06) }
 
-    /* Dropdown sarmalayıcı */
     .dropdown{ position:relative; display:flex; align-items:center }
 
-    /* Caret (dropdown arrow) */
     .caret{
       display:inline-flex; align-items:center; justify-content:center;
       width:32px; height:32px;
@@ -100,9 +98,7 @@
               mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'><path d='M7 10l5 5 5-5z'/></svg>") no-repeat center/contain;
       background:var(--ink); opacity:.9;
     }
-    .caret:focus-visible{
-      outline:2px solid var(--line); outline-offset:2px; border-radius:12px;
-    }
+    .caret:focus-visible{ outline:2px solid var(--line); outline-offset:2px; border-radius:12px; }
 
     .menu{
       position:absolute; top:calc(100% + 8px); left:0; z-index:60;
@@ -140,7 +136,7 @@
     .btn:hover{ transform:translateY(-2px); box-shadow:0 10px 30px rgba(0,0,0,.25) }
     .btn.primary{ background:linear-gradient(135deg, var(--brand), var(--accent)); color:#051017; border:none }
 
-    /* ===== BACKGROUNDLESS CODING FIGURE (RIGHT) ===== */
+    /* ===== RIGHT FIGURE ===== */
     .hero-figure-code{ position:relative; width:100%; max-width:420px; margin:0 auto; isolation:isolate; transition:transform .3s ease; }
     .code-canvas{ position:relative; width:100%; aspect-ratio:1/1; }
     .code-svg{ position:absolute; inset:0; display:block; filter:saturate(115%); }
@@ -179,16 +175,13 @@
     .card h3{ margin:10px 0 6px }
     .chip{ font-size:12px; color:var(--muted) }
 
-    /* ===== Apps Grid (2 kolon garantili) ===== */
+    /* ===== Apps Grid (DEFAULT: 2 columns) ===== */
     .apps-grid{
       grid-template-columns:repeat(2, minmax(0, 1fr));
       max-width:760px;
       margin:0 auto;
       gap:24px;
       align-items:stretch;
-    }
-    @media (max-width: 760px){
-      .apps-grid{ grid-template-columns:1fr; }
     }
 
     .app-card{
@@ -201,6 +194,7 @@
       height:100%;
       cursor:pointer;
       outline:none;
+      min-width:0; /* grid overflow fix */
     }
     .app-card:hover{ transform:translateY(-4px); box-shadow:0 20px 40px rgba(0,0,0,.35) }
     .app-card:focus-visible{ outline:2px solid var(--line); outline-offset:3px; }
@@ -218,11 +212,12 @@
       transition:transform .2s ease, box-shadow .2s ease, background .2s ease;
       will-change:transform;
       margin-top:auto;
+      min-width:0;
     }
     .store-btn:hover{ transform:translateY(-2px); background:rgba(255,255,255,.09); box-shadow:0 10px 28px rgba(0,0,0,.25) }
     .store-left{ display:flex; align-items:center; gap:12px; min-width:0; }
     .store-icon{ width:28px; height:28px; flex:0 0 28px; display:block }
-    .store-text{ line-height:1; display:flex; flex-direction:column; gap:4px }
+    .store-text{ line-height:1; display:flex; flex-direction:column; gap:4px; min-width:0; }
     .store-small{ font-size:10px; letter-spacing:.08em; text-transform:uppercase; color:#666c7d; white-space:nowrap }
     .store-big{ font-size:14px; font-weight:800; white-space:nowrap }
 
@@ -245,7 +240,7 @@
     footer .row{ display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--line); padding-top:18px }
     .legal{ font-size:13px }
 
-    /* Responsive */
+    /* ===== Responsive ===== */
     @media (max-width: 960px){
       .hero-grid{ grid-template-columns:1fr }
       h1{ font-size:40px }
@@ -254,6 +249,52 @@
       .about .pillars{ grid-template-columns:1fr }
       .dropdown-menu{ position:fixed; left:20px; right:auto }
     }
+
+    /* ✅ MOBILE: still 2 columns + smaller UI */
+    @media (max-width: 760px){
+      /* apps: keep 2 columns */
+      .apps-grid{
+        grid-template-columns:repeat(2, minmax(0, 1fr));
+        gap:12px;
+        max-width:100%;
+      }
+
+      /* smaller cards */
+      .app-card{
+        padding:12px;
+        border-radius:14px;
+        gap:10px;
+      }
+
+      /* smaller logo tile */
+      .shot{
+        border-radius:18%;
+      }
+
+      /* smaller title/meta */
+      .app-title{ font-size:14px; }
+      .app-meta{ font-size:11px; }
+
+      /* compact store button */
+      .store-btn{
+        padding:8px 10px;
+        border-radius:12px;
+        gap:10px;
+      }
+      .store-icon{ width:22px; height:22px; flex:0 0 22px; }
+      .store-small{ font-size:9px; }
+      .store-big{ font-size:12px; }
+
+      /* stars can wrap/overflow; hide on very small widths */
+      .store-stars svg{ width:12px; height:12px; }
+    }
+
+    /* ✅ EXTRA SMALL: if phone is tiny, drop stars to prevent overflow */
+    @media (max-width: 380px){
+      .store-stars{ display:none; }
+      .store-btn{ justify-content:flex-start; }
+    }
+
     @media (prefers-reduced-motion: reduce){
       *{ animation:none !important; transition:none !important }
       html{ scroll-behavior:auto }
@@ -340,7 +381,6 @@
 
       <div class="grid apps-grid">
 
-        <!-- SUBMIA CARD (no nested anchors) -->
         <article class="app-card"
                  data-href="https://apps.apple.com/us/app/submia-subscriptions-bills/id6752131883"
                  aria-label="Open Submia on the App Store">
@@ -357,7 +397,7 @@
 
           <a class="store-btn submia-store-btn"
              href="https://apps.apple.com/us/app/submia-subscriptions-bills/id6752131883"
-             target="_blank" rel="noopener"
+             target="_blank" rel="noopener noreferrer"
              aria-label="Download Submia on the App Store">
             <span class="store-left">
               <svg class="store-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" fill="white" aria-hidden="true">
@@ -379,7 +419,6 @@
           </a>
         </article>
 
-        <!-- COFFZEO CARD (no nested anchors) -->
         <article class="app-card"
                  data-href="https://apps.apple.com/tr/app/coffzeo-coffee-caffeine-log/id6756270429"
                  aria-label="Open CoffZeo on the App Store">
@@ -396,7 +435,7 @@
 
           <a class="store-btn coffzeo-store-btn"
              href="https://apps.apple.com/tr/app/coffzeo-coffee-caffeine-log/id6756270429"
-             target="_blank" rel="noopener"
+             target="_blank" rel="noopener noreferrer"
              aria-label="Download CoffZeo on the App Store">
             <span class="store-left">
               <svg class="store-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" fill="white" aria-hidden="true">
@@ -541,7 +580,7 @@
       });
     }
 
-    // App cards: entire card clickable (no nested <a> issues)
+    // App cards clickable
     document.querySelectorAll('.app-card[data-href]').forEach(card => {
       card.setAttribute('tabindex', '0');
 
