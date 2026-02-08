@@ -19,7 +19,7 @@
       }
       .app-logo{ width:140px; border-radius: 20%; display:block; }
       .logo-title h1{
-        font-size:32px;          /* küçültüldü */
+        font-size:32px;
         line-height:1.1;
         margin:0;
       }
@@ -30,9 +30,9 @@
       /* SwiftUI: .frame(width: 350, height: 410) */
       .hero-mockups{
         position:relative;
-        width:350px;             /* ZStack genişliği */
-        height:410px;            /* ZStack yüksekliği */
-        margin:0 auto;           /* ortala */
+        width:350px;
+        height:410px;
+        margin:0 auto;
       }
       
       /* Ortayı referans al, offset’leri center’a göre uygula */
@@ -53,21 +53,19 @@
       /* Responsive: tablet / mobilde küçültme */
       @media (max-width: 1100px){
         .logo-title h1{ font-size:30px }
-        .hero-mockups{ transform:scale(.92) }             /* oransal küçültme */
+        .hero-mockups{ transform:scale(.92) }
       }
       @media (max-width: 760px){
         .app-logo{ width:120px }
         .logo-title h1{ font-size:26px }
         .hero-art{ max-width:420px }
-        .hero-mockups{ transform:scale(.82) }             /* daha da küçült */
+        .hero-mockups{ transform:scale(.82) }
       }
-
 
     :root{
       --ink:#eaf0f8;
       --muted:#9aa6bd;
       --line:rgba(255,255,255,.08);
-      /* İstersen CoffZeo için rengi buradan değiştirebilirsin (örn: #C68E17) */
       --brand:#00C8D7; 
       --accent:#79e6ff;
       --gold:#FFD60A;
@@ -87,7 +85,11 @@
 
     .glass{
       background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
-      border:1px solid var(--line); border-radius:16px; backdrop-filter:blur(14px); box-shadow:var(--shadow)
+      border:1px solid var(--line);
+      border-radius:16px;
+      backdrop-filter:blur(14px);
+      -webkit-backdrop-filter:blur(14px);
+      box-shadow:var(--shadow);
     }
 
     /* ===== Brand ===== */
@@ -106,16 +108,15 @@
       border-bottom:1px solid var(--line);
       background:rgba(10,13,20,.55);
       backdrop-filter:blur(10px) saturate(130%);
+      -webkit-backdrop-filter:blur(10px) saturate(130%);
     }
     .nav-inner{ display:flex; align-items:center; justify-content:space-between; height:66px }
-    .brand{ display:flex; align-items:center; gap:10px }
     .brand .badge{
       font-family:'Poppins', sans-serif;
       font-weight:600; font-size:1.4rem; letter-spacing:.5px;
       color:var(--brand);
     }
     
-    /* Linkler */
     .nav-links{ display:flex; gap:14px; align-items:center }
     .nav-links a{
       padding:8px 12px; border-radius:12px;
@@ -125,14 +126,12 @@
     .nav-links a:hover{ border-color:var(--line); background:rgba(255,255,255,.04) }
     .nav-links a.active{ border-color:var(--line); background:rgba(255,255,255,.06) }
     
-    /* Dropdown sarmalayıcı */
     .dropdown{ position:relative; display:flex; align-items:center }
     
-    /* Caret (dropdown arrow) */
     .caret{
       display:inline-flex; align-items:center; justify-content:center;
-      width:32px; height:32px;             /* sabit kutu */
-      margin-left:6px; padding:0;            /* link padding'ini alma */
+      width:32px; height:32px;
+      margin-left:6px; padding:0;
       border-radius:12px; border:1px solid transparent;
       background:transparent; cursor:pointer;
       transition:background .25s ease, border-color .25s ease;
@@ -140,14 +139,12 @@
     .caret:hover{ background:rgba(255,255,255,.04); border-color:var(--line) }
     .caret::before{
       content:"";
-      width:18px; height:18px;             /* okun boyutu */
+      width:18px; height:18px;
       -webkit-mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'><path d='M7 10l5 5 5-5z'/></svg>") no-repeat center/contain;
               mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'><path d='M7 10l5 5 5-5z'/></svg>") no-repeat center/contain;
       background:var(--ink); opacity:.9;
     }
 
-
-    /* Dropdown menu */
     .menu{
       position:absolute; top:calc(100% + 8px); left:0; z-index:60;
       min-width:160px; padding:8px; border-radius:12px; border:1px solid var(--line);
@@ -167,7 +164,6 @@
     .buttons{ display:flex; gap:12px; margin-top:22px }
     .btn{ padding:12px 16px; border-radius:12px; border:1px solid var(--line); background:rgba(255,255,255,.04); font-weight:700; transition:transform .2s ease, box-shadow .2s ease }
     .btn:hover{ transform:translateY(-2px); box-shadow:0 10px 30px rgba(0,0,0,.25) }
-    .btn.primary{ background:linear-gradient(135deg, var(--brand), var(--accent)); color:#051017; border:none }
 
     /* ===== App Store Button ===== */
     .store-btn{
@@ -192,10 +188,10 @@
 
     .features{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px }
     .f{ padding:18px; border-radius:14px; border:1px solid var(--line); background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02)) }
-    .f h3{ margin:6px 0 6px }
 
-    .shots{ display:grid; grid-template-columns:repeat(3,1fr); gap:12px }
-    .shot{ aspect-ratio:9/16; border-radius:14px; border:1px solid var(--line); background:#0b1324 center/cover no-repeat }
+    /* ✅ FIX: list sınıfı ekli (HTML’de kullanılıyordu) */
+    .list{ padding-left:1rem; }
+    .list li{ margin:8px 0; color:var(--muted); }
 
     details{ border:1px solid var(--line); border-radius:12px; padding:14px 16px; background:rgba(255,255,255,.03) }
     details+details{ margin-top:10px }
@@ -205,36 +201,30 @@
     footer .row{ display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--line); padding-top:18px }
     .legal{ font-size:13px }
 
-    /* Responsive */
     @media (max-width: 960px){
       .hero-grid{ grid-template-columns:1fr }
       h1{ font-size:40px }
       .features{ grid-template-columns:1fr }
-      .shots{ grid-template-columns:1fr 1fr }
     }
     
     .footer-links a {
-      color: var(--muted);   /* gri */
+      color: var(--muted);
       text-decoration: underline;
       margin: 0 6px;
       font-size: 14px;
     }
-    .footer-links a:hover {
-      color: var(--ink);     /* hover’da beyazlaşsın */
-    }
+    .footer-links a:hover { color: var(--ink); }
 
-    /* ==== Screenshots: arkaplansız, yatay şerit ==== */
+    /* ==== Screenshots rail ==== */
     .shots-wrap{ position:relative; }
-    
     .shots-rail{
       display:flex; gap:16px; align-items:flex-start;
       overflow-x:auto; overscroll-behavior-x:contain;
-      -webkit-overflow-scrolling: touch;   /* iOS momentum */
+      -webkit-overflow-scrolling: touch;
       scroll-snap-type:x mandatory; scroll-behavior:smooth;
       padding:8px 48px 12px;
     }
     .shots-rail::-webkit-scrollbar{ display:none; }
-    
     .shots-rail img{
       flex:0 0 auto;
       height:clamp(420px, 60vh, 620px);
@@ -244,7 +234,6 @@
       scroll-snap-align:start;
       filter:drop-shadow(0 18px 36px rgba(0,0,0,.45));
     }
-    
     .shots-btn{
       position:absolute; top:50%; transform:translateY(-50%);
       width:42px; height:42px; border-radius:50%;
@@ -252,7 +241,7 @@
       background:rgba(0,0,0,.55); color:#fff; font-size:22px;
       display:grid; place-items:center; cursor:pointer;
       transition:background .25s;
-      z-index:2; /* butonlar üstte */
+      z-index:2;
     }
     .shots-btn:hover{ background:rgba(0,0,0,.8) }
     .shots-prev{ left:4px } .shots-next{ right:4px }
@@ -262,13 +251,8 @@
       .shots-rail img{ height:clamp(360px, 55vh, 520px) }
     }
 
-    /* App Store butonunu hero’da daha dolgun göster */
-    .hero .buttons .store-btn{
-      max-width:300px;
-      min-height:56px;
-    }
+    .hero .buttons .store-btn{ max-width:300px; min-height:56px; }
     
-    /* Marka mavisi ikincil buton – metin tam ortalı */
     .btn.btn-brand{
       background:linear-gradient(135deg, var(--brand), var(--accent));
       border:none;
@@ -277,7 +261,7 @@
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      min-width: 180px;   /* defaulttan daha geniş */
+      min-width: 180px;
       min-height:56px;
       padding:12px 20px;
     }
@@ -286,12 +270,10 @@
       box-shadow:0 10px 28px rgba(0,0,0,.25);
     }
 
-    /* Başlık + kicker hizası */
-    .logo-title{ align-items:flex-start; }  /* üstten hizala */
+    .logo-title{ align-items:flex-start; }
     .title-wrap{ display:flex; flex-direction:column; }
-    .logo-title h1{ margin:0 0 6px; }       /* başlık ile kicker arası küçük boşluk */
-    .kicker{ margin:0; }                    /* emin olmak için */
-
+    .logo-title h1{ margin:0 0 6px; }
+    .kicker{ margin:0; }
   </style>
 </head>
 <body>
@@ -337,23 +319,24 @@
       </div>
 
       <p class="lead">Log your coffee intake, visualize your caffeine intake, so that feel your energy, optimize your metabolism, and sleep better. Know exactly when to get caffeine and when to not.</p>
+
       <div class="buttons">
-        <!-- UPDATED: correct App Store link -->
+        <!-- ✅ UPDATED: correct App Store link -->
         <a id="download" class="store-btn"
            href="https://apps.apple.com/tr/app/coffzeo-coffee-caffeine-log/id6756270429"
-           target="_blank" rel="noopener"
+           target="_blank" rel="noopener noreferrer"
            aria-label="Download CoffZeo on the App Store">
           <span class="store-left">
             <svg class="store-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" fill="white" aria-hidden="true">
               <path d="M318.7 268.7c.5 55.3 48.3 73.7 48.8 73.9c-.4 1.4-7.6 26.1-25.1 51.7c-15.1 22.2-30.9 44.3-55.8 44.7c-24.3.5-32.2-14.4-60-14.4c-27.8 0-36.4 14-59.4 14.9c-23.8.9-41.9-24-57-46.1c-31.1-45.1-55-127.6-23-183.4c15.9-27.7 44.3-45.3 75.1-45.8c23.5-.5 45.7 15.8 60 15.8c14.3 0 41.2-19.5 69.6-16.6c11.8.5 45.1 4.8 66.3 36.2c-1.7 1.1-39.7 23.3-39.5 69.1zM250.2 81.3c12.9-15.6 21.8-37.3 19.4-58.9c-18.8.8-41.2 12.5-54.6 28.1c-12 14.1-22.5 36.7-19.7 58c21.1 1.6 42.6-10.7 54.9-27.2z"/>
             </svg>
-      
+
             <span class="store-text">
               <span class="store-small">Available on the</span>
               <span class="store-big">App Store</span>
             </span>
           </span>
-      
+
           <span class="store-stars" aria-label="5 star rating">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/></svg>
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/></svg>
@@ -362,10 +345,9 @@
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/></svg>
           </span>
         </a>
-      
+
         <a class="btn btn-brand" href="#features">See Features</a>
       </div>
-
     </div>
 
     <div class="hero-art">
@@ -379,48 +361,47 @@
   </div>
 </header>
 
-
-  <section id="features">
-    <div class="container">
-      <h2>Why CoffZeo</h2>
-      <div class="features">
-        <div class="f">
-          <strong>Smart Logging</strong>
-          <p class="chip">Log espresso, coffee, tea or energy drinks in seconds. Track and be aware of your caffeine intake.</p>
-        </div>
-        <div class="f">
-          <strong>Weekly Tracking</strong>
-          <p class="chip">Visualize your caffeine weekly to inform you when to drink caffeine while protecting your metabolism, sleep, energy and focus.</p>
-        </div>
-        <div class="f">
-          <strong>Smart Customization</strong>
-          <p class="chip">Log your preferred drinks, set your own limits and follow your own pace of coffee & caffeine life.</p>
-        </div>
+<section id="features">
+  <div class="container">
+    <h2>Why CoffZeo</h2>
+    <div class="features">
+      <div class="f">
+        <strong>Smart Logging</strong>
+        <p class="chip">Log espresso, coffee, tea or energy drinks in seconds. Track and be aware of your caffeine intake.</p>
+      </div>
+      <div class="f">
+        <strong>Weekly Tracking</strong>
+        <p class="chip">Visualize your caffeine weekly to inform you when to drink caffeine while protecting your metabolism, sleep, energy and focus.</p>
+      </div>
+      <div class="f">
+        <strong>Smart Customization</strong>
+        <p class="chip">Log your preferred drinks, set your own limits and follow your own pace of coffee & caffeine life.</p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section>
-    <div class="container">
-      <h2>Screenshots</h2>
-  
-      <div class="shots-wrap">
-        <button class="shots-btn shots-prev" type="button" aria-label="Scroll left">‹</button>
-  
-        <div class="shots-rail" id="shots">
-          <img src="CoffZeoShot1.png"      alt="Onboarding"           loading="lazy" decoding="async">
-          <img src="CoffZeoShot2.png"      alt="Dashboard Main"       loading="lazy" decoding="async">
-          <img src="CoffZeoShot3.png"      alt="Add Drink"            loading="lazy" decoding="async">
-          <img src="CoffZeoShot4.png"      alt="Charts"               loading="lazy" decoding="async">
-          <img src="CoffZeoShot5.png"      alt="Settings"             loading="lazy" decoding="async">
-        </div>
-  
-        <button class="shots-btn shots-next" type="button" aria-label="Scroll right">›</button>
+<section>
+  <div class="container">
+    <h2>Screenshots</h2>
+
+    <div class="shots-wrap">
+      <button class="shots-btn shots-prev" type="button" aria-label="Scroll left">‹</button>
+
+      <div class="shots-rail" id="shots">
+        <img src="CoffZeoShot1.png" alt="Onboarding" loading="lazy" decoding="async">
+        <img src="CoffZeoShot2.png" alt="Dashboard Main" loading="lazy" decoding="async">
+        <img src="CoffZeoShot3.png" alt="Add Drink" loading="lazy" decoding="async">
+        <img src="CoffZeoShot4.png" alt="Charts" loading="lazy" decoding="async">
+        <img src="CoffZeoShot5.png" alt="Settings" loading="lazy" decoding="async">
       </div>
-    </div>
-  </section>
 
-  <section id="about">
+      <button class="shots-btn shots-next" type="button" aria-label="Scroll right">›</button>
+    </div>
+  </div>
+</section>
+
+<section id="about">
   <div class="container">
     <h2>About App</h2>
     <p class="lead">
@@ -434,7 +415,6 @@
     </ul>
   </div>
 </section>
-
 
 <section id="faq">
   <div class="container">
@@ -484,78 +464,70 @@
       <summary>Can I change the measurement units?</summary>
       <p class="chip">Yes, you can toggle between mg (milligrams) and other units, or change liquid measurements between ml and oz in Settings.</p>
     </details>
-
   </div>
 </section>
 
+<footer>
+  <div class="container row">
+    <div class="legal">© <span id="year"></span> CodeZeo Ltd • All rights reserved</div>
 
-  <footer>
-    <div class="container row">
-      <div class="legal">© <span id="year"></span> CodeZeo Ltd • All rights reserved</div>
-  
-      <div class="footer-links">
-        <a href="coffzeoterms.html">Terms of Service</a>
-        <a href="coffzeoprivacy.html">Privacy Policy</a>
-        <a href="coffzeorestore.html">Restore Purchases</a>
-      </div>
+    <div class="footer-links">
+      <a href="coffzeoterms.html">Terms of Service</a>
+      <a href="coffzeoprivacy.html">Privacy Policy</a>
+      <a href="coffzeorestore.html">Restore Purchases</a>
     </div>
-  </footer>
+  </div>
+</footer>
 
+<script>
+  // footer yılı
+  document.getElementById('year').textContent = new Date().getFullYear();
 
+  // Dropdown kontrolü
+  const appsCaret = document.getElementById('appsCaret');
+  const appsMenu  = document.getElementById('appsMenu');
+  const appsLink  = document.getElementById('appsLink');
 
-  <script>
-    // footer yılı
-    document.getElementById('year').textContent = new Date().getFullYear();
+  function closeAppsMenu(){
+    appsMenu.classList.remove('open');
+    appsCaret.setAttribute('aria-expanded','false');
+  }
 
-    // Dropdown kontrolü
-    const appsCaret = document.getElementById('appsCaret');
-    const appsMenu  = document.getElementById('appsMenu');
-    const appsLink  = document.getElementById('appsLink');
+  if (appsCaret && appsMenu){
+    appsCaret.addEventListener('click', (e)=>{
+      e.stopPropagation();
+      const open = appsMenu.classList.toggle('open');
+      appsCaret.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
 
-    function closeAppsMenu(){
-      appsMenu.classList.remove('open');
-      appsCaret.setAttribute('aria-expanded','false');
-    }
+    appsLink && appsLink.addEventListener('click', closeAppsMenu);
 
-    if (appsCaret && appsMenu){
-      appsCaret.addEventListener('click', (e)=>{
-        e.stopPropagation();
-        const open = appsMenu.classList.toggle('open');
-        appsCaret.setAttribute('aria-expanded', open ? 'true' : 'false');
-      });
+    document.addEventListener('click', (e)=>{
+      if(!appsMenu.contains(e.target) && !appsCaret.contains(e.target)) closeAppsMenu();
+    });
 
-      // Apps linkine tıklanınca menüyü kapat
-      appsLink && appsLink.addEventListener('click', closeAppsMenu);
+    appsCaret.addEventListener('keydown', (e)=>{
+      if(e.key==='Enter' || e.key===' '){ e.preventDefault(); appsCaret.click(); }
+      if(e.key==='Escape'){ closeAppsMenu(); }
+    });
+  }
 
-      // Dışarı tıklanınca kapat
-      document.addEventListener('click', (e)=>{
-        if(!appsMenu.contains(e.target) && !appsCaret.contains(e.target)) closeAppsMenu();
-      });
+  // Screenshots okları
+  (function(){
+    const rail = document.getElementById('shots');
+    const prev = document.querySelector('.shots-prev');
+    const next = document.querySelector('.shots-next');
+    if(!rail || !prev || !next) return;
 
-      // Klavye desteği
-      appsCaret.addEventListener('keydown', (e)=>{
-        if(e.key==='Enter' || e.key===' '){ e.preventDefault(); appsCaret.click(); }
-        if(e.key==='Escape'){ closeAppsMenu(); }
-      });
-    }
+    const GAP = 16;
+    const step = () => {
+      const first = rail.querySelector('img');
+      return first ? Math.round(first.getBoundingClientRect().width + GAP) : 320;
+    };
 
-    // Screenshots okları: bir görsel genişliği kadar kaydır
-    (function(){
-      const rail = document.getElementById('shots');
-      const prev = document.querySelector('.shots-prev');
-      const next = document.querySelector('.shots-next');
-      if(!rail || !prev || !next) return;
-  
-      const GAP = 16; // CSS'teki gap ile aynı
-      const step = () => {
-        const first = rail.querySelector('img');
-        return first ? Math.round(first.getBoundingClientRect().width + GAP) : 320;
-      };
-  
-      prev.addEventListener('click', ()=> rail.scrollBy({ left: -step(), behavior:'smooth' }));
-      next.addEventListener('click', ()=> rail.scrollBy({ left:  step(), behavior:'smooth' }));
-    })();
-
-  </script>
+    prev.addEventListener('click', ()=> rail.scrollBy({ left: -step(), behavior:'smooth' }));
+    next.addEventListener('click', ()=> rail.scrollBy({ left:  step(), behavior:'smooth' }));
+  })();
+</script>
 </body>
 </html>
