@@ -299,7 +299,7 @@
       .about .pillars{ grid-template-columns:1fr }
     }
 
-    /* ✅ Mobile: 2 apps visible + compact cards + stars inline */
+    /* ✅ Mobile: 2 apps visible + compact cards + stars ABOVE button, text below */
     @media (max-width: 760px){
       .nav-inner{ height:56px; }
       .brand .badge{ font-size:1.2rem; }
@@ -315,11 +315,10 @@
       /* Dropdown menu align right so it doesn't overflow */
       .dropdown .menu{ left:auto; right:0; }
 
-      /* Apps section: feel like apps landing */
       #apps{ padding-top:44px; padding-bottom:140px; }
       #apps .lead{ display:none; }
 
-      /* ✅ 2 columns on mobile */
+      /* 2 columns */
       .apps-grid{
         grid-template-columns:repeat(2, minmax(0, 1fr));
         gap:12px;
@@ -328,14 +327,14 @@
         margin:0 auto;
       }
 
-      /* ✅ compact cards */
+      /* compact cards */
       .app-card{
         padding:12px;
         border-radius:14px;
         gap:10px;
       }
 
-      /* ✅ reduce image height so both cards fit */
+      /* shorter image area */
       .shot{
         border-radius:18%;
         aspect-ratio: 1.35 / 1;
@@ -343,7 +342,7 @@
         background-position:center;
       }
 
-      /* ✅ compact title, no overflow */
+      /* compact title */
       .app-title{
         font-size:13px;
         line-height:1.15;
@@ -354,28 +353,28 @@
       }
       .app-meta{ font-size:11px; }
 
-      /* ✅ Store button stays single-row; stars stay right */
+      /* ✅ Key change: make store button a small "text line",
+         and float stars ABOVE it for readability */
       .store-btn{
-        padding:8px 10px;
+        position:relative;
+        padding:22px 10px 10px; /* top padding creates space for stars */
         border-radius:12px;
         gap:8px;
 
         flex-direction:row;
-        align-items:center;
+        align-items:flex-end;
         flex-wrap:nowrap;
       }
-
-      .store-left{ min-width:0; }
 
       .store-icon{
         width:18px; height:18px;
         flex:0 0 18px;
       }
 
-      /* ✅ Hide small line on mobile to prevent squeeze */
+      /* hide the small line to keep it clean */
       .store-small{ display:none; }
 
-      .store-text{ min-width:0; gap:0; }
+      /* show "App Store" clearly */
       .store-big{
         font-size:12px;
         white-space:nowrap;
@@ -383,23 +382,26 @@
         text-overflow:ellipsis;
       }
 
+      /* ✅ stars positioned above the button text */
       .store-stars{
-        margin-left:auto;
-        gap:1px;
+        position:absolute;
+        top:7px;
+        left:10px;
+        margin-left:0;
+        gap:2px;
         white-space:nowrap;
+        pointer-events:none; /* keep button clickable */
       }
       .store-stars svg{ width:10px; height:10px; }
 
-      /* Optional: tap feel */
-      .app-card:active{ transform:scale(.99); }
-      .store-btn:active{ transform:translateY(0); }
+      /* remove squeeze risk */
+      .store-left{ min-width:0; }
 
       /* Reduce scroll noise */
       .hero-figure-code{ display:none; }
       header.hero{ padding:72px 0 40px; }
     }
 
-    /* ultra-small phones */
     @media (max-width: 380px){
       .apps-grid{ gap:10px; }
       .app-card{ padding:10px; }
