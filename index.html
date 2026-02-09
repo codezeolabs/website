@@ -208,7 +208,13 @@
     .app-card:hover{ transform:translateY(-4px); box-shadow:0 20px 40px rgba(0,0,0,.35) }
     .app-card:focus-visible{ outline:2px solid var(--line); outline-offset:3px; }
 
-    .shot{ border-radius:20%; background-size:cover; background-position:center; aspect-ratio:1/1 }
+    /* Default shot (desktop/tablet) */
+    .shot{
+      border-radius:20%;
+      background-size:cover;
+      background-position:center;
+      aspect-ratio:1/1;
+    }
 
     .app-title{ font-size:18px; font-weight:800; line-height:1.2; margin:2px 0 0 }
     .app-meta{ display:flex; gap:8px; align-items:center; color:var(--muted); font-size:12px }
@@ -247,11 +253,13 @@
       gap:3px;
       min-width:0;
     }
+
+    /* ✅ New label text */
     .store-small{
       font-size:10px;
-      letter-spacing:.08em;
+      letter-spacing:.14em;
       text-transform:uppercase;
-      color:#666c7d;
+      color:rgba(234,240,248,.45);
       white-space:nowrap;
       overflow:hidden;
       text-overflow:ellipsis;
@@ -299,26 +307,23 @@
       .about .pillars{ grid-template-columns:1fr }
     }
 
-    /* ✅ Mobile: 2 apps visible + compact cards + stars ABOVE button, text below */
+    /* ✅ Mobile: 2 apps visible + square icons + safe "Download on the" + stars above */
     @media (max-width: 760px){
       .nav-inner{ height:56px; }
       .brand .badge{ font-size:1.2rem; }
 
-      /* Show only Apps in nav (others moved to dropdown) => no wrapping */
+      /* show only Apps in nav */
       .nav-links > a[href="#home"],
       .nav-links > a[href="#about"],
       .nav-links > a[href^="mailto:"]{
         display:none;
       }
       .nav-links a{ padding:6px 10px; font-size:14px; }
-
-      /* Dropdown menu align right so it doesn't overflow */
       .dropdown .menu{ left:auto; right:0; }
 
       #apps{ padding-top:44px; padding-bottom:140px; }
       #apps .lead{ display:none; }
 
-      /* 2 columns */
       .apps-grid{
         grid-template-columns:repeat(2, minmax(0, 1fr));
         gap:12px;
@@ -327,22 +332,18 @@
         margin:0 auto;
       }
 
-      /* compact cards */
       .app-card{
         padding:12px;
         border-radius:14px;
         gap:10px;
       }
 
-      /* shorter image area */
+      /* ✅ square icons again (not squashed) */
       .shot{
         border-radius:18%;
-        aspect-ratio: 1.35 / 1;
-        background-size:cover;
-        background-position:center;
+        aspect-ratio:1/1; /* IMPORTANT */
       }
 
-      /* compact title */
       .app-title{
         font-size:13px;
         line-height:1.15;
@@ -353,36 +354,44 @@
       }
       .app-meta{ font-size:11px; }
 
-      /* ✅ Key change: make store button a small "text line",
-         and float stars ABOVE it for readability */
+      /* Button layout: stars above, text below, always readable */
       .store-btn{
         position:relative;
-        padding:22px 10px 10px; /* top padding creates space for stars */
+        padding:22px 10px 10px; /* space for stars on top */
         border-radius:12px;
         gap:8px;
-
         flex-direction:row;
         align-items:flex-end;
         flex-wrap:nowrap;
       }
 
+      .store-left{ min-width:0; }
       .store-icon{
         width:18px; height:18px;
         flex:0 0 18px;
       }
 
-      /* hide the small line to keep it clean */
-      .store-small{ display:none; }
-
-      /* show "App Store" clearly */
+      /* ✅ show "Download on the" on mobile, safely */
+      .store-text{ min-width:0; gap:2px; }
+      .store-small{
+        display:block;              /* IMPORTANT */
+        font-size:8.5px;
+        letter-spacing:.14em;
+        color:rgba(234,240,248,.42);
+        white-space:nowrap;
+        overflow:hidden;
+        text-overflow:ellipsis;
+        max-width:100%;
+      }
       .store-big{
         font-size:12px;
         white-space:nowrap;
         overflow:hidden;
         text-overflow:ellipsis;
+        max-width:100%;
       }
 
-      /* ✅ stars positioned above the button text */
+      /* stars pinned above so they never fight for width */
       .store-stars{
         position:absolute;
         top:7px;
@@ -390,14 +399,10 @@
         margin-left:0;
         gap:2px;
         white-space:nowrap;
-        pointer-events:none; /* keep button clickable */
+        pointer-events:none;
       }
       .store-stars svg{ width:10px; height:10px; }
 
-      /* remove squeeze risk */
-      .store-left{ min-width:0; }
-
-      /* Reduce scroll noise */
       .hero-figure-code{ display:none; }
       header.hero{ padding:72px 0 40px; }
     }
@@ -405,6 +410,7 @@
     @media (max-width: 380px){
       .apps-grid{ gap:10px; }
       .app-card{ padding:10px; }
+      .store-small{ font-size:8px; }
       .store-big{ font-size:11.5px; }
       .store-stars svg{ width:9px; height:9px; }
     }
@@ -522,7 +528,7 @@
                 <path d="M318.7 268.7c.5 55.3 48.3 73.7 48.8 73.9c-.4 1.4-7.6 26.1-25.1 51.7c-15.1 22.2-30.9 44.3-55.8 44.7c-24.3.5-32.2-14.4-60-14.4c-27.8 0-36.4 14-59.4 14.9c-23.8.9-41.9-24-57-46.1c-31.1-45.1-55-127.6-23-183.4c15.9-27.7 44.3-45.3 75.1-45.8c23.5-.5 45.7 15.8 60 15.8c14.3 0 41.2-19.5 69.6-16.6c11.8.5 45.1 4.8 66.3 36.2c-1.7 1.1-39.7 23.3-39.5 69.1zM250.2 81.3c12.9-15.6 21.8-37.3 19.4-58.9c-18.8.8-41.2 12.5-54.6 28.1c-12 14.1-22.5 36.7-19.7 58c21.1 1.6 42.6-10.7 54.9-27.2z"/>
               </svg>
               <span class="store-text">
-                <span class="store-small">Available on the</span>
+                <span class="store-small">Download on the</span>
                 <span class="store-big">App Store</span>
               </span>
             </span>
@@ -561,7 +567,7 @@
                 <path d="M318.7 268.7c.5 55.3 48.3 73.7 48.8 73.9c-.4 1.4-7.6 26.1-25.1 51.7c-15.1 22.2-30.9 44.3-55.8 44.7c-24.3.5-32.2-14.4-60-14.4c-27.8 0-36.4 14-59.4 14.9c-23.8 .9-41.9-24-57-46.1c-31.1-45.1-55-127.6-23-183.4c15.9-27.7 44.3-45.3 75.1-45.8c23.5-.5 45.7 15.8 60 15.8c14.3 0 41.2-19.5 69.6-16.6c11.8.5 45.1 4.8 66.3 36.2c-1.7 1.1-39.7 23.3-39.5 69.1zM250.2 81.3c12.9-15.6 21.8-37.3 19.4-58.9c-18.8.8-41.2 12.5-54.6 28.1c-12 14.1-22.5 36.7-19.7 58c21.1 1.6 42.6-10.7 54.9-27.2z"/>
               </svg>
               <span class="store-text">
-                <span class="store-small">Available on the</span>
+                <span class="store-small">Download on the</span>
                 <span class="store-big">App Store</span>
               </span>
             </span>
