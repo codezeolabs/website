@@ -243,6 +243,7 @@
       display:flex; align-items:center; gap:10px;
       min-width:0;
       flex:1 1 auto;
+      justify-content:flex-start; /* ✅ small premium alignment */
     }
     .store-icon{ width:24px; height:24px; flex:0 0 24px; display:block }
 
@@ -254,7 +255,6 @@
       min-width:0;
     }
 
-    /* ✅ New label text */
     .store-small{
       font-size:10px;
       letter-spacing:.14em;
@@ -307,7 +307,7 @@
       .about .pillars{ grid-template-columns:1fr }
     }
 
-    /* ✅ Mobile: 2 apps visible + square icons + safe "Download on the" + stars above */
+    /* ✅ Mobile: 2 apps visible + square icons + STARS RIGHT (top row) + TEXT BELOW (2nd row) */
     @media (max-width: 760px){
       .nav-inner{ height:56px; }
       .brand .badge{ font-size:1.2rem; }
@@ -316,7 +316,6 @@
         padding-left:16px;
         padding-right:16px;
       }
-
 
       /* show only Apps in nav */
       .nav-links > a[href="#home"],
@@ -333,11 +332,10 @@
       .apps-grid{
         grid-template-columns:repeat(2, minmax(0, 1fr));
         gap:12px;
-      
-        padding:0;               /* ✅ 2px padding kalktı */
+        padding:0;
         width:100%;
-        max-width:520px;         /* ✅ iki kart ortada dursun */
-        margin:0 auto;           /* ✅ center */
+        max-width:520px;
+        margin:0 auto;
         place-content:center;
       }
 
@@ -347,10 +345,9 @@
         gap:10px;
       }
 
-      /* ✅ square icons again (not squashed) */
       .shot{
         border-radius:18%;
-        aspect-ratio:1/1; /* IMPORTANT */
+        aspect-ratio:1/1;
       }
 
       .app-title{
@@ -363,34 +360,52 @@
       }
       .app-meta{ font-size:11px; }
 
-      /* Button layout: stars above, text below, always readable */
+      /* ✅ Mobile button: stacked (stars row + content row) */
       .store-btn{
-        position:relative;
-        padding:22px 10px 10px; /* space for stars on top */
+        display:flex;
+        flex-direction:column;      /* ✅ alt alta */
+        align-items:stretch;
+        gap:6px;
+        padding:10px 10px;
         border-radius:12px;
-        gap:8px;
-        flex-direction:row;
-        align-items:flex-end;
-        flex-wrap:nowrap;
       }
 
-      .store-left{ min-width:0; }
+      /* row 1: stars right */
+      .store-stars{
+        order:1;
+        display:flex;
+        justify-content:flex-end;   /* ✅ sağa dayalı */
+        align-items:center;
+        width:100%;
+        margin:0;
+        gap:2px;
+        white-space:nowrap;
+        pointer-events:none;
+      }
+      .store-stars svg{ width:10px; height:10px; }
+
+      /* row 2: icon + text left */
+      .store-left{
+        order:2;
+        display:flex;
+        align-items:center;
+        gap:8px;
+        min-width:0;
+        justify-content:flex-start;
+      }
       .store-icon{
         width:18px; height:18px;
         flex:0 0 18px;
       }
 
-      /* ✅ show "Download on the" on mobile, safely */
       .store-text{ min-width:0; gap:2px; }
       .store-small{
         display:block;
-        font-size:7px;            /* ✅ daha küçük */
-        letter-spacing:.08em;     /* ✅ daha çok sığar */
+        font-size:7px;
+        letter-spacing:.08em;
         color:rgba(234,240,248,.42);
         text-transform:uppercase;
         white-space:nowrap;
-      
-        /* ✅ kesilmesin */
         overflow:visible;
         text-overflow:clip;
         max-width:100%;
@@ -403,18 +418,6 @@
         max-width:100%;
       }
 
-      /* stars pinned above so they never fight for width */
-      .store-stars{
-        position:absolute;
-        top:7px;
-        left:10px;
-        margin-left:0;
-        gap:2px;
-        white-space:nowrap;
-        pointer-events:none;
-      }
-      .store-stars svg{ width:10px; height:10px; }
-
       .hero-figure-code{ display:none; }
       header.hero{ padding:72px 0 40px; }
     }
@@ -422,7 +425,7 @@
     @media (max-width: 380px){
       .apps-grid{ gap:10px; }
       .app-card{ padding:10px; }
-      .store-small{ font-size:8px; }
+      .store-small{ font-size:6.6px; }
       .store-big{ font-size:11.5px; }
       .store-stars svg{ width:9px; height:9px; }
     }
