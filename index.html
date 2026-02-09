@@ -228,7 +228,6 @@
       will-change:transform;
       margin-top:auto;
 
-      /* critical: prevent wrapping / misalignment */
       flex-wrap:nowrap;
       min-width:0;
     }
@@ -300,7 +299,7 @@
       .about .pillars{ grid-template-columns:1fr }
     }
 
-    /* ✅ Mobile: keep 2 cards visible (smaller), stop navbar wrap, stop star shifting */
+    /* ✅ Mobile: premium apps section + centered + no clipping */
     @media (max-width: 760px){
       .nav-inner{ height:56px; }
       .brand .badge{ font-size:1.2rem; }
@@ -320,45 +319,64 @@
       #apps{ padding-top:44px; padding-bottom:160px; }
       #apps .lead{ display:none; }
 
-      /* ✅ Force 2 columns on mobile */
+      /* ✅ Premium mobile layout: 1 column + centered + no overflow */
       .apps-grid{
-        grid-template-columns:repeat(2, minmax(0, 1fr));
-        gap:12px;
-        padding:0 2px;
+        grid-template-columns:1fr;     /* KEY: avoid squeezing */
+        gap:14px;
+        padding:0 4px;
+
+        max-width:520px;              /* keeps it premium */
+        margin:0 auto;                /* centered */
       }
 
-      /* ✅ Make cards smaller */
       .app-card{
-        padding:12px;
-        border-radius:14px;
-        gap:10px;
+        padding:14px;
+        border-radius:16px;
+        gap:12px;
       }
 
+      /* ✅ Let title wrap fully (no clamp) */
       .app-title{
-        font-size:13px;
-        line-height:1.15;
-        display:-webkit-box;
-        -webkit-line-clamp:3;
-        -webkit-box-orient:vertical;
-        overflow:hidden;
+        font-size:16px;
+        line-height:1.2;
+        display:block;
+        overflow:visible;
       }
-      .app-meta{ font-size:11px; }
+      .app-meta{ font-size:12px; }
 
       .shot{ border-radius:18%; }
 
-      /* ✅ Compact App Store button so both cards fit */
+      /* ✅ Store button stacks so nothing gets cut */
       .store-btn{
-        padding:8px 10px;
-        border-radius:12px;
-        gap:8px;
-      }
-      .store-icon{ width:20px; height:20px; flex:0 0 20px; }
-      .store-small{ font-size:8.5px; }
-      .store-big{ font-size:11.5px; }
+        padding:10px 12px;
+        border-radius:14px;
+        gap:10px;
 
-      /* ✅ Keep stars from wrapping / shifting */
-      .store-stars{ gap:1px; }
-      .store-stars svg{ width:11px; height:11px; }
+        flex-direction:column;        /* KEY */
+        align-items:flex-start;
+      }
+
+      .store-icon{ width:22px; height:22px; flex:0 0 22px; }
+
+      /* ✅ No ellipsis on mobile; show full text */
+      .store-small,
+      .store-big{
+        white-space:normal;
+        overflow:visible;
+        text-overflow:clip;
+      }
+      .store-small{ font-size:10px; color:#77809a; letter-spacing:.08em; }
+      .store-big{ font-size:14px; }
+
+      .store-stars{
+        margin-left:0;
+        gap:2px;
+      }
+      .store-stars svg{ width:12px; height:12px; }
+
+      /* Optional: nicer tap feel */
+      .app-card:active{ transform:scale(.99); }
+      .store-btn:active{ transform:translateY(0); }
 
       /* hide hero figure on small screens (optional, reduces scroll noise) */
       .hero-figure-code{ display:none; }
@@ -367,10 +385,11 @@
 
     /* ultra-small phones (SE etc.) */
     @media (max-width: 380px){
-      .apps-grid{ gap:10px; }
-      .app-card{ padding:10px; }
-      .store-big{ font-size:10.8px; }
-      .store-stars svg{ width:10px; height:10px; }
+      .apps-grid{ gap:12px; }
+      .app-card{ padding:12px; }
+      .app-title{ font-size:15px; }
+      .store-big{ font-size:13px; }
+      .store-stars svg{ width:11px; height:11px; }
     }
 
     @media (prefers-reduced-motion: reduce){
