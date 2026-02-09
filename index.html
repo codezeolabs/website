@@ -312,6 +312,12 @@
       .nav-inner{ height:56px; }
       .brand .badge{ font-size:1.2rem; }
 
+      #apps .container{
+        padding-left:16px;
+        padding-right:16px;
+      }
+
+
       /* show only Apps in nav */
       .nav-links > a[href="#home"],
       .nav-links > a[href="#about"],
@@ -327,9 +333,12 @@
       .apps-grid{
         grid-template-columns:repeat(2, minmax(0, 1fr));
         gap:12px;
-        padding:0 2px;
-        max-width:760px;
-        margin:0 auto;
+      
+        padding:0;               /* ✅ 2px padding kalktı */
+        width:100%;
+        max-width:520px;         /* ✅ iki kart ortada dursun */
+        margin:0 auto;           /* ✅ center */
+        place-content:center;
       }
 
       .app-card{
@@ -374,13 +383,16 @@
       /* ✅ show "Download on the" on mobile, safely */
       .store-text{ min-width:0; gap:2px; }
       .store-small{
-        display:block;              /* IMPORTANT */
-        font-size:8.5px;
-        letter-spacing:.14em;
+        display:block;
+        font-size:7px;            /* ✅ daha küçük */
+        letter-spacing:.08em;     /* ✅ daha çok sığar */
         color:rgba(234,240,248,.42);
+        text-transform:uppercase;
         white-space:nowrap;
-        overflow:hidden;
-        text-overflow:ellipsis;
+      
+        /* ✅ kesilmesin */
+        overflow:visible;
+        text-overflow:clip;
         max-width:100%;
       }
       .store-big{
