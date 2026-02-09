@@ -208,7 +208,6 @@
     .app-card:hover{ transform:translateY(-4px); box-shadow:0 20px 40px rgba(0,0,0,.35) }
     .app-card:focus-visible{ outline:2px solid var(--line); outline-offset:3px; }
 
-    /* Default shot (desktop/tablet) */
     .shot{
       border-radius:20%;
       background-size:cover;
@@ -243,7 +242,6 @@
       display:flex; align-items:center; gap:10px;
       min-width:0;
       flex:1 1 auto;
-      justify-content:flex-start; /* ✅ small premium alignment */
     }
     .store-icon{ width:24px; height:24px; flex:0 0 24px; display:block }
 
@@ -307,7 +305,7 @@
       .about .pillars{ grid-template-columns:1fr }
     }
 
-    /* ✅ Mobile: 2 apps visible + square icons + STARS RIGHT (top row) + TEXT BELOW (2nd row) */
+    /* ✅ MOBILE: apps ALT ALTA + stars TOP CENTER */
     @media (max-width: 760px){
       .nav-inner{ height:56px; }
       .brand .badge{ font-size:1.2rem; }
@@ -329,12 +327,12 @@
       #apps{ padding-top:44px; padding-bottom:140px; }
       #apps .lead{ display:none; }
 
+      /* ✅ cards alt alta */
       .apps-grid{
-        grid-template-columns:repeat(2, minmax(0, 1fr));
-        gap:12px;
-        padding:0;
+        grid-template-columns:1fr; /* ✅ 1 column */
+        gap:14px;
         width:100%;
-        max-width:520px;
+        max-width:420px;          /* ✅ nice centered column */
         margin:0 auto;
         place-content:center;
       }
@@ -347,11 +345,11 @@
 
       .shot{
         border-radius:18%;
-        aspect-ratio:1/1;
+        aspect-ratio:1/1; /* square */
       }
 
       .app-title{
-        font-size:13px;
+        font-size:14px;
         line-height:1.15;
         display:-webkit-box;
         -webkit-line-clamp:2;
@@ -360,38 +358,38 @@
       }
       .app-meta{ font-size:11px; }
 
-      /* ✅ Mobile button: stacked (stars row + content row) */
+      /* ✅ button: stars top center, content below */
       .store-btn{
+        position:relative;
         display:flex;
-        flex-direction:column;      /* ✅ alt alta */
-        align-items:stretch;
-        gap:6px;
-        padding:10px 10px;
+        flex-direction:column;
+        align-items:flex-start;
+        gap:8px;
+        padding:26px 12px 12px; /* top space for stars */
         border-radius:12px;
       }
 
-      /* row 1: stars right */
       .store-stars{
-        order:1;
+        position:absolute;
+        top:8px;
+        left:50%;
+        transform:translateX(-50%);
         display:flex;
-        justify-content:flex-end;   /* ✅ sağa dayalı */
-        align-items:center;
-        width:100%;
-        margin:0;
         gap:2px;
-        white-space:nowrap;
+        align-items:center;
+        justify-content:center;
+        width:auto;
+        margin:0;
         pointer-events:none;
+        white-space:nowrap;
       }
       .store-stars svg{ width:10px; height:10px; }
 
-      /* row 2: icon + text left */
       .store-left{
-        order:2;
         display:flex;
         align-items:center;
         gap:8px;
         min-width:0;
-        justify-content:flex-start;
       }
       .store-icon{
         width:18px; height:18px;
@@ -423,7 +421,7 @@
     }
 
     @media (max-width: 380px){
-      .apps-grid{ gap:10px; }
+      .apps-grid{ gap:12px; }
       .app-card{ padding:10px; }
       .store-small{ font-size:6.6px; }
       .store-big{ font-size:11.5px; }
