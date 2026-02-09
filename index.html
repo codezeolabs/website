@@ -329,24 +329,28 @@
 
       /* ✅ cards alt alta */
       .apps-grid{
-        grid-template-columns:1fr; /* ✅ 1 column */
-        gap:14px;
-        width:100%;
-        max-width:420px;          /* ✅ nice centered column */
-        margin:0 auto;
-        place-content:center;
-      }
+          grid-template-columns: 1fr;     /* alt alta */
+          gap: 12px;
+          width: 100%;
+          max-width: 330px;              /* ✅ kart kolonunu küçült */
+          margin: 0 auto;                /* ✅ ortala */
+          place-content: center;
+          justify-items: center;         /* ✅ kartlar gerçekten ortada dursun */
+        }
 
-      .app-card{
-        padding:12px;
-        border-radius:14px;
-        gap:10px;
-      }
-
-      .shot{
-        border-radius:18%;
-        aspect-ratio:1/1; /* square */
-      }
+        .app-card{
+          width: 100%;
+          max-width: 330px;              /* ✅ kart genişliği sabit ve küçük */
+          padding: 10px;                 /* ✅ biraz küçült */
+          border-radius: 14px;
+          gap: 10px;
+        }
+      
+        /* (opsiyonel) ikon biraz küçülsün ki iki kart daha rahat görünsün */
+        .shot{
+          border-radius: 18%;
+          aspect-ratio: 1/1;
+        }
 
       .app-title{
         font-size:14px;
