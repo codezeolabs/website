@@ -308,7 +308,7 @@
       .about .pillars{ grid-template-columns:1fr }
     }
 
-/* ✅ MOBILE: Optimized Compact Layout with Stars on Right */
+/* ✅ MOBILE: Optimized Compact Layout with Perfectly Balanced Stars */
     @media (max-width: 760px) {
       .nav-inner { height: 56px; }
       .brand .badge { font-size: 1.2rem; }
@@ -351,10 +351,10 @@
       .store-btn {
         flex-direction: row; 
         align-items: center;
-        justify-content: space-between; /* Yazıyı sola, yıldızları sağa yaslar */
+        justify-content: space-between; 
         padding: 6px 8px;
         gap: 4px;
-        height: 38px; /* Buton boyunu sabitledik */
+        height: 38px;
       }
       
       .store-left {
@@ -363,7 +363,7 @@
         align-items: center;
         gap: 6px;
         min-width: 0;
-        flex: 1; /* Yazı alanına öncelik verir */
+        flex: 1;
       }
       
       .store-icon {
@@ -387,29 +387,31 @@
       }
       
       .store-big {
-        font-size: 10.5px; /* Yazının sığması için ideal boyut */
+        font-size: 10.5px;
         font-weight: 800;
         line-height: 1.1;
         white-space: nowrap;
       }
       
-      /* ⭐ Stars: Far right, ultra compact */
+      /* ⭐ Stars: Fixed width and space-between for EQUAL spacing */
       .store-stars {
-        display: inline-flex;
-        gap: 0.5px;
-        flex-shrink: 0; /* Yıldızların daralmasını engeller */
+        display: flex;
+        justify-content: space-between;
+        width: 38px; /* Yıldızların yayılacağı toplam alanı sabitledik */
+        flex-shrink: 0;
         margin-left: auto;
       }
       
       .store-stars svg {
-        width: 7px;
-        height: 7px;
+        width: 6.5px; /* Yıldızları bir tık daha küçülterek aralarındaki boşluğu belirginleştirdik */
+        height: 6.5px;
+        flex-shrink: 0;
+        margin: 0; /* Tarayıcı bazlı boşlukları sıfırladık */
       }
       
       .hero-figure-code { display: none; }
       header.hero { padding: 72px 0 40px; }
     }
-
     @media (max-width: 380px){
       .apps-grid{ gap:10px; max-width: 480px; }
       .app-card{ padding:9px; }
