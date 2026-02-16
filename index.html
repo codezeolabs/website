@@ -309,106 +309,117 @@
     }
 
 /* ✅ MOBILE: Optimized Compact Layout with Stars on Right */
-    @media (max-width: 760px) {
-      .nav-inner { height: 56px; }
-      .brand .badge { font-size: 1.2rem; }
-      
-      #apps .container { padding-left: 12px; padding-right: 12px; }
-      
-      .apps-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 10px;
-        width: 100%;
-        max-width: 520px;
-        margin: 0 auto;
-        justify-items: stretch;
-      }
-      
-      .app-card {
-        padding: 10px;
-        border-radius: 14px;
-        gap: 8px;
-      }
-      
-      .shot {
-        aspect-ratio: 1 / 1;
-        border-radius: 20%;
-      }
-      
-      .app-title {
-        font-size: 11px;
-        line-height: 1.2;
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-        min-height: 2.4em;
-      }
-      
-      .app-meta { font-size: 9px; opacity: 0.8; }
-      
-      /* ===== Button: Compact Row with Stars on Far Right ===== */
-      .store-btn {
-        flex-direction: row; 
-        align-items: center;
-        justify-content: space-between; /* Yazıyı sola, yıldızları sağa yaslar */
-        padding: 6px 8px;
-        gap: 4px;
-        height: 38px; /* Buton boyunu sabitledik */
-      }
-      
-      .store-left {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        gap: 6px;
-        min-width: 0;
-        flex: 1; /* Yazı alanına öncelik verir */
-      }
-      
-      .store-icon {
-        width: 16px;
-        height: 16px;
-        flex-shrink: 0;
-      }
-      
-      .store-text {
-        display: flex;
-        flex-direction: column;
-        gap: 0;
-        min-width: 0;
-      }
-      
-      .store-small {
-        font-size: 6px;
-        line-height: 1;
-        white-space: nowrap;
-        opacity: 0.7;
-      }
-      
-      .store-big {
-        font-size: 10.5px; /* Yazının sığması için ideal boyut */
-        font-weight: 800;
-        line-height: 1.1;
-        white-space: nowrap;
-      }
-      
-      /* ⭐ Stars: Far right, ultra compact */
-      .store-stars {
-        display: inline-flex;
-        gap: 0.5px;
-        flex-shrink: 0; /* Yıldızların daralmasını engeller */
-        margin-left: auto;
-      }
-      
-      .store-stars svg {
-        width: 7px;
-        height: 7px;
-      }
-      
-      .hero-figure-code { display: none; }
-      header.hero { padding: 72px 0 40px; }
-    }
+@media (max-width: 760px) {
+  .nav-inner { height: 56px; }
+  .brand .badge { font-size: 1.2rem; }
+  
+  #apps .container { padding-left: 12px; padding-right: 12px; }
+  
+  .apps-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    width: 100%;
+    max-width: 520px;
+    margin: 0 auto;
+    justify-items: stretch;
+  }
+  
+  .app-card {
+    padding: 10px;
+    border-radius: 14px;
+    gap: 8px;
+  }
+  
+  .shot {
+    aspect-ratio: 1 / 1;
+    border-radius: 20%;
+  }
+  
+  .app-title {
+    font-size: 11px;
+    line-height: 1.2;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    min-height: 2.4em;
+  }
+  
+  .app-meta { font-size: 9px; opacity: 0.8; }
+  
+  /* ===== Button: Compact Row with Stars on Far Right ===== */
+  .store-btn {
+    display: flex; /* Flex tanımlandığından emin olalım */
+    flex-direction: row; 
+    align-items: center;
+    justify-content: space-between;
+    padding: 6px 8px;
+    gap: 6px; /* İçerik arası güvenli boşluk */
+    height: 38px;
+    box-sizing: border-box;
+  }
+  
+  .store-left {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 6px;
+    min-width: 0;
+    flex: 1;
+    overflow: hidden; /* Yazının taşmasını önler */
+  }
+  
+  .store-icon {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+  }
+  
+  .store-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Dikeyde merkeze alır */
+    gap: 0;
+    min-width: 0;
+    line-height: 1;
+  }
+  
+  .store-small {
+    font-size: 6.5px; /* Okunabilirlik için çok hafif artırıldı */
+    line-height: 1;
+    white-space: nowrap;
+    opacity: 0.7;
+    margin-bottom: 1px;
+  }
+  
+  .store-big {
+    font-size: 10.5px;
+    font-weight: 800;
+    line-height: 1;
+    white-space: nowrap;
+  }
+  
+  /* ⭐ Stars: Pixel-Perfect Alignment */
+  .store-stars {
+    display: flex; /* inline-flex yerine flex daha stabil hizalar */
+    align-items: center;
+    justify-content: center;
+    gap: 1.5px; /* 0.5px yerine 1.5px daha simetrik bir ayrım sağlar */
+    flex-shrink: 0;
+    margin-left: 4px; /* Yazıdan güvenli uzaklık */
+    height: 100%; /* Buton içinde dikey ortalama için */
+  }
+  
+  .store-stars svg {
+    width: 8px; /* 7px çok küçük kalıp asimetriyi artırabilir, 8px idealdir */
+    height: 8px;
+    display: block; /* Alt boşlukları (descender) temizler */
+    fill: currentColor;
+  }
+  
+  .hero-figure-code { display: none; }
+  header.hero { padding: 72px 0 40px; }
+}
     
     @media (max-width: 380px){
       .apps-grid{ gap:10px; max-width: 480px; }
