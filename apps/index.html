@@ -1,0 +1,754 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CodeZeo - Smart & Premium iOS Apps</title>
+  <meta name="description" content="CodeZeo builds premium, privacy-first iOS apps, the apps that bring real value to the daily lives of our customers." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --surface:#0f1220;
+      --ink:#eaf0f8;
+      --muted:#9aa6bd;
+      --line:rgba(255,255,255,.08);
+      --brand:#00C8D7;
+      --brand-2:#283C50;
+      --accent:#79e6ff;
+      --gold:#FFD60A;
+      --radius:16px;
+      --shadow:0 10px 40px rgba(0,0,0,.35);
+      --blur:14px;
+    }
+    @media (prefers-color-scheme: light){
+      :root{ --surface:#ffffff; --ink:#0b1324; --muted:#4b5a74; --line:rgba(0,0,0,.08) }
+      .glass{ background:rgba(255,255,255,.6)!important; }
+    }
+
+    *{ box-sizing:border-box }
+    html,body{
+      margin:0; color:var(--ink);
+      font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      background: linear-gradient(180deg, #04070d 0%, #0a1a2f 100%);
+      -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+      scroll-behavior:smooth;
+    }
+    a{ color:inherit; text-decoration:none }
+    img{ display:block; max-width:100%; height:auto }
+    .container{ max-width:1100px; margin:0 auto; padding:0 20px }
+
+    /* ===== Utility ===== */
+    .glass{
+      background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
+      border:1px solid var(--line); border-radius:var(--radius);
+      backdrop-filter:blur(var(--blur)); -webkit-backdrop-filter:blur(var(--blur));
+      box-shadow:var(--shadow);
+    }
+    .text-grad{
+      background:linear-gradient(135deg, var(--brand), var(--accent));
+      -webkit-background-clip:text; background-clip:text; color:transparent;
+    }
+
+    /* ===== NAV ===== */
+    nav{
+      position:sticky; top:0; z-index:50;
+      border-bottom:1px solid var(--line);
+      background:rgba(10,13,20,.55);
+      backdrop-filter:blur(10px) saturate(130%);
+      -webkit-backdrop-filter:blur(10px) saturate(130%);
+    }
+    .nav-inner { 
+      display: flex; 
+      align-items: center; 
+      justify-content: space-between; 
+      height: 66px; 
+      gap: 10px; 
+    }    
+    .brand{ display:flex; align-items:center; gap:10px; min-width:0; flex-shrink: 0; }
+    .brand .badge{
+      font-family:'Poppins', sans-serif;
+      font-weight:600; font-size:1.4rem; letter-spacing:.5px;
+      color:var(--brand);
+      white-space:nowrap;
+    }
+    .nav-links {
+      display: flex; 
+      gap: 12px; 
+      align-items: center;
+      justify-content: flex-end; /* Menüyü sağa yaslar */
+      flex: 1; /* Boş alanı kaplar */
+      min-width: 0;
+    }
+    .nav-links a{
+      padding:8px 12px; border-radius:12px;
+      border:1px solid transparent;
+      transition:background .25s ease, border-color .25s ease;
+      white-space:nowrap;
+    }
+    .nav-links a:hover{ border-color:var(--line); background:rgba(255,255,255,.04) }
+    .nav-links a.active{ border-color:var(--line); background:rgba(255,255,255,.06) }
+
+    .dropdown{ position:relative; display:flex; align-items:center }
+
+    .caret{
+      display:inline-flex; align-items:center; justify-content:center;
+      width:32px; height:32px;
+      margin-left:6px; padding:0;
+      border-radius:12px; border:1px solid transparent;
+      background:transparent; cursor:pointer;
+      transition:background .25s ease, border-color .25s ease;
+      -webkit-appearance:none; appearance:none; outline:none;
+      flex:0 0 auto;
+    }
+    .caret:hover{ background:rgba(255,255,255,.04); border-color:var(--line) }
+    .caret::before{
+      content:"";
+      width:18px; height:18px;
+      -webkit-mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'><path d='M7 10l5 5 5-5z'/></svg>") no-repeat center/contain;
+              mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'><path d='M7 10l5 5 5-5z'/></svg>") no-repeat center/contain;
+      background:var(--ink); opacity:.9;
+    }
+    .caret:focus-visible{
+      outline:2px solid var(--line); outline-offset:2px; border-radius:12px;
+    }
+
+    .menu{ 
+      position:absolute; 
+      top:calc(100% + 10px); 
+      right:0; /* Sola değil, sağa yaslı açılmalı ki ekrandan taşmasın */
+      z-index:110;
+      min-width:180px; padding:8px; border-radius:12px;
+      border:1px solid var(--line);
+      background:rgba(8,11,18,.95);
+      box-shadow:0 20px 40px rgba(0,0,0,.35);
+      display:none;
+      overflow:hidden;
+    }
+    .menu.open{ display:block }
+    .menu a{ display:block; padding:8px 10px; border-radius:10px; white-space:nowrap; }
+    .menu a:hover{ background:rgba(255,255,255,.08) }
+    .menu .divider{ height:1px; background:rgba(255,255,255,.08); margin:8px 6px; }
+
+    /* ===== HERO ===== */
+    header.hero{ padding:96px 0 64px; position:relative; overflow:hidden; }
+    .hero::before{
+      content:""; position:absolute; inset:-20% -10% auto -10%; height:70%;
+      background:
+        radial-gradient(60% 60% at 20% 30%, rgba(0,200,215,.05), transparent 60%),
+        radial-gradient(60% 60% at 80% 0%, rgba(40,60,80,.08), transparent 60%);
+      filter:blur(24px) saturate(115%); pointer-events:none;
+      animation:aurora 22s ease-in-out infinite;
+    }
+    @keyframes aurora{
+      0%,100%{ transform:translateY(0) scale(1) }
+      50%{ transform:translateY(-3%) scale(1.02) }
+    }
+
+    .hero-grid{ display:grid; grid-template-columns:1.2fr .8fr; gap:38px; align-items:center }
+    .kicker{ color:var(--muted); letter-spacing:.14em; text-transform:uppercase; font-size:12px; font-weight:700 }
+    h1{ font-size:52px; line-height:1.06; margin:.5rem 0 .6rem; font-weight:900 }
+    .lead{ color:var(--muted); font-size:18px; max-width:52ch }
+    .buttons{ display:flex; gap:12px; margin-top:24px; flex-wrap:wrap }
+    .btn{ padding:12px 16px; border-radius:12px; border:1px solid var(--line); background:rgba(255,255,255,.04); font-weight:700; transition:transform .2s ease, box-shadow .2s ease }
+    .btn:hover{ transform:translateY(-2px); box-shadow:0 10px 30px rgba(0,0,0,.25) }
+    .btn.primary{ background:linear-gradient(135deg, var(--brand), var(--accent)); color:#051017; border:none }
+
+    /* ===== RIGHT FIGURE ===== */
+    .hero-figure-code{ position:relative; width:100%; max-width:420px; margin:0 auto; isolation:isolate; transition:transform .3s ease; }
+    .code-canvas{ position:relative; width:100%; aspect-ratio:1/1; }
+    .code-svg{ position:absolute; inset:0; display:block; filter:saturate(115%); }
+    .tokens{ position:absolute; inset:0; pointer-events:none; }
+    .tok{
+      position:absolute; left:50%; top:50%; transform-origin:0 0;
+      font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      font-size:12px; font-weight:700; letter-spacing:.02em; color:var(--ink);
+      padding:6px 10px; border-radius:999px; border:1px solid rgba(255,255,255,.28);
+      background:transparent; white-space:nowrap; opacity:.85;
+    }
+    .t1{ transform:rotate(0deg) translateX(125px) rotate(0deg); animation:orbit1 12s linear infinite; }
+    .t2{ transform:rotate(120deg) translateX(125px) rotate(-120deg); animation:orbit2 14s linear infinite reverse; }
+    .t3{ transform:rotate(240deg) translateX(125px) rotate(-240deg); animation:orbit3 16s linear infinite; }
+
+    .ring{ fill:none; stroke:url(#grad); stroke-opacity:.55; stroke-width:1; stroke-dasharray:2 6; animation:spin 28s linear infinite; }
+    .ring.r2{ stroke-opacity:.38; animation-duration:36s }
+    .ring.r3{ stroke-opacity:.26; animation-duration:44s }
+
+    .flow{ fill:none; stroke:url(#grad); stroke-width:1.6; stroke-linecap:round; stroke-dasharray:10 14; opacity:.9; animation:dash 9s linear infinite; }
+    .flow.softer{ stroke-opacity:.6; stroke-width:1.2; stroke-dasharray:6 12; animation-duration:11s; }
+
+    @media (hover:hover){ .hero-figure-code:hover{ transform:perspective(900px) rotateX(3deg) rotateY(-5deg) } }
+    @keyframes dash{ to{ stroke-dashoffset:-240 } }
+    @keyframes spin{ to{ transform:rotate(360deg) } }
+    @keyframes orbit1{ to{ transform:rotate(360deg) translateX(125px) rotate(-360deg) } }
+    @keyframes orbit2{ to{ transform:rotate(360deg) translateX(125px) rotate(-360deg) } }
+    @keyframes orbit3{ to{ transform:rotate(360deg) translateX(125px) rotate(-360deg) } }
+
+    /* ===== SECTIONS ===== */
+    section{ padding:72px 0; border-top:1px solid var(--line) }
+    h2{ font-size:32px; margin:0 0 14px }
+
+    .grid{ display:grid; grid-template-columns:repeat(3, 1fr); gap:18px }
+
+    /* ===== Apps Grid (desktop: 2 col) ===== */
+    .apps-grid{
+      grid-template-columns:repeat(2, minmax(0, 1fr));
+      max-width:760px;
+      margin:0 auto;
+      gap:24px;
+      align-items:stretch;
+    }
+
+    .app-card{
+      width:100%;
+      display:flex; flex-direction:column; gap:12px;
+      padding:18px; border-radius:16px; border:1px solid var(--line);
+      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+      box-shadow:var(--shadow);
+      transition:transform .2s ease, box-shadow .2s ease;
+      height:100%;
+      cursor:pointer;
+      outline:none;
+      min-width:0;
+    }
+    .app-card:hover{ transform:translateY(-4px); box-shadow:0 20px 40px rgba(0,0,0,.35) }
+    .app-card:focus-visible{ outline:2px solid var(--line); outline-offset:3px; }
+
+    .shot{
+      border-radius:20%;
+      background-size:cover;
+      background-position:center;
+      aspect-ratio:1/1;
+    }
+
+    .app-title{ font-size:18px; font-weight:800; line-height:1.2; margin:2px 0 0 }
+    .app-meta{ display:flex; gap:8px; align-items:center; color:var(--muted); font-size:12px }
+    .chip{ font-size:12px; color:var(--muted) }
+
+    /* ===== App Store button (BASE) ===== */
+    .store-btn{
+      display:flex; align-items:center;
+      gap:12px;
+      width:100%;
+      padding:10px 14px;
+      border-radius:12px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.06);
+      font-weight:700;
+      transition:transform .2s ease, box-shadow .2s ease, background .2s ease;
+      will-change:transform;
+      margin-top:auto;
+      flex-wrap:nowrap;
+      min-width:0;
+    }
+    .store-btn:hover{
+      transform:translateY(-2px);
+      background:rgba(255,255,255,.09);
+      box-shadow:0 10px 28px rgba(0,0,0,.25);
+    }
+
+    .store-left{
+      display:flex; align-items:center; gap:10px;
+      min-width:0;
+      flex:1 1 auto;
+    }
+    .store-icon{ width:24px; height:24px; flex:0 0 24px; display:block }
+
+    .store-text{
+      line-height:1.05;
+      display:flex;
+      flex-direction:column;
+      gap:3px;
+      min-width:0;
+    }
+
+    .store-small{
+      font-size:10px;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      color:rgba(234,240,248,.45);
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+    .store-big{
+      font-size:14px;
+      font-weight:800;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+
+    .store-stars{
+      display:inline-flex;
+      gap:2px;
+      flex:0 0 auto;
+      margin-left:auto;
+      align-items:center;
+      white-space:nowrap;
+    }
+    .store-stars svg{ width:14px; height:14px; fill:var(--gold); flex:0 0 auto; }
+
+    /* About */
+    .about{ display:grid; grid-template-columns:1.1fr .9fr; gap:22px }
+    .about .pillars{ display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:10px }
+    .about .pillars .p{ padding:14px; border:1px solid var(--line); border-radius:12px; background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02)) }
+    .list{ padding-left:1rem; }
+    .list li{ margin:8px 0; color:var(--muted) }
+
+    .timeline{ margin-top:18px; display:grid; gap:10px }
+    .trow{ display:flex; gap:10px; align-items:flex-start }
+    .trow .dot{ width:10px; height:10px; border-radius:50%; background:linear-gradient(135deg, var(--brand), var(--accent)); box-shadow:0 0 16px rgba(121,230,255,.6); margin-top:6px }
+    .trow .txt{ color:var(--muted); font-size:14px }
+
+    footer{ padding:28px 0; color:var(--muted) }
+    footer .row{ display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--line); padding-top:18px; gap:12px; flex-wrap:wrap }
+    .legal{ font-size:13px }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 960px){
+      .hero-grid{ grid-template-columns:1fr }
+      h1{ font-size:40px }
+      .hero-figure-code{ max-width:360px }
+      .about{ grid-template-columns:1fr }
+      .about .pillars{ grid-template-columns:1fr }
+    }
+
+/* ✅ MOBILE: High-Readability Layout */
+    @media (max-width: 760px) {
+      .nav-inner { height: 56px; gap: 8px; }
+      .brand .badge { font-size: 1.15rem; }
+      
+      /* display: none olan satırı tamamen sil ve yerine şunları ekle */
+      .nav-inner { height: 60px; gap: 5px; }
+      .brand .badge { font-size: 1.1rem; }
+      .nav-links { gap: 4px; }
+      .nav-links a { 
+        display: inline-block !important; 
+        padding: 6px 8px; 
+        font-size: 11px; 
+      }
+      .caret { width: 28px; height: 28px; }
+      .menu { z-index: 110; } /* Menünün diğer her şeyin üstünde açılması için */
+
+      #apps .container { padding-left: 14px; padding-right: 14px; }
+      
+      .apps-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+        width: 100%;
+        max-width: 520px;
+        margin: 0 auto;
+        justify-items: stretch;
+      }
+      
+      .app-card {
+        padding: 10px;
+        border-radius: 14px;
+        gap: 8px;
+      }
+      
+      .shot {
+        aspect-ratio: 1 / 1;
+        border-radius: 20%;
+      }
+      
+      .app-title {
+        font-size: 11.5px;
+        line-height: 1.2;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        min-height: 2.4em;
+      }
+      
+      .app-meta { font-size: 10px; opacity: 0.8; }
+      
+      .store-btn {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 8px 10px;
+        gap: 4px;
+        position: static;
+        height: auto;
+      }
+      
+      .store-left {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 8px;
+        width: 100%;
+      }
+      
+      .store-icon {
+        width: 30px;
+        height: 30px;
+        flex-shrink: 0;
+      }
+      
+      .store-text {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        min-width: 0;
+      }
+      
+      .store-small {
+        font-size: 7px;
+        line-height: 1;
+        white-space: nowrap;
+      }
+      
+      .store-big {
+        font-size: 12.5px;
+        font-weight: 800;
+        line-height: 1.1;
+        white-space: nowrap;
+      }
+      
+      .store-stars {
+        display: flex;
+        margin-left: 26px;
+        gap: 1px;
+        position: static;
+        flex: 0 0 auto;
+        margin-top: -4px;
+      }
+      
+      .store-stars svg {
+        width: 10px;
+        height: 10px;
+      }
+      
+      .hero-figure-code { display: none; }
+      header.hero { padding: 72px 0 40px; }
+    }
+    
+    @media (max-width: 380px){
+      .apps-grid{ gap:10px; max-width: 480px; }
+      .app-card{ padding:9px; }
+      .store-small{ font-size:7.5px; letter-spacing:.08em; }
+      .store-big{ font-size:11.5px; }
+      .store-stars svg{ width:10px; height:10px; }
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      *{ animation:none !important; transition:none !important }
+      html{ scroll-behavior:auto }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="container nav-inner">
+      <div class="brand">
+        <span class="badge">CodeZeo</span>
+      </div>
+
+      <div class="nav-links">
+        <a class="active" href="#home">Home</a>
+
+        <div class="dropdown">
+          <a href="#apps" class="nav-link" id="appsLink">Apps</a>
+          <button type="button" class="caret" id="appsCaret"
+                  aria-label="Toggle apps menu"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  aria-controls="appsMenu"></button>
+
+          <div class="menu glass" id="appsMenu" role="menu">
+            <a role="menuitem" href="submia.html">Submia</a>
+            <a role="menuitem" href="coffzeo.html">CoffZeo</a>
+          </div>
+        </div>
+
+        <a href="#about">About Us</a>
+        <a href="mailto:info@codezeo.com">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <header id="home" class="hero">
+    <div class="container hero-grid">
+      <div>
+        <div class="kicker">We build awesome apps</div>
+        <h1>Premium iOS Apps to <span class="text-grad">Optimize Daily Lives</span></h1>
+        <p class="lead">Clarity, performance and privacy. No clutter, no dark patterns, just apps that respect your time.</p>
+        <div class="buttons">
+          <a class="btn primary" href="#apps">See Apps</a>
+          <a class="btn" href="#about">About CodeZeo</a>
+        </div>
+      </div>
+
+      <div class="hero-figure-code" aria-hidden="true">
+        <div class="code-canvas">
+          <svg class="code-svg" viewBox="0 0 600 600" preserveAspectRatio="xMidYMid meet">
+            <defs>
+              <linearGradient id="grad" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#00C8D7"/>
+                <stop offset="100%" stop-color="#79e6ff"/>
+              </linearGradient>
+            </defs>
+            <g transform="translate(300,300)">
+              <circle class="ring r1" r="180"></circle>
+              <circle class="ring r2" r="130"></circle>
+              <circle class="ring r3" r="85"></circle>
+            </g>
+            <path class="flow" d="M40,460 C140,420 220,360 300,300 S460,200 560,160"></path>
+            <path class="flow softer" d="M60,500 C180,440 260,380 340,320 S500,220 540,120"></path>
+            <path class="flow softer" d="M80,420 C160,380 260,330 320,280 S480,200 520,180"></path>
+            <circle r="3.5" fill="#79e6ff">
+              <animateMotion dur="7.5s" repeatCount="indefinite" path="M40,460 C140,420 220,360 300,300 S460,200 560,160"/>
+            </circle>
+          </svg>
+          <div class="tokens">
+            <span class="tok t1">&lt; /&gt;</span>
+            <span class="tok t2">{ }</span>
+            <span class="tok t3">fn()</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section id="apps">
+    <div class="container">
+      <h2>Apps</h2>
+      <p class="lead" style="margin-bottom:18px">We're just getting started.</p>
+
+      <div class="grid apps-grid">
+
+        <article class="app-card"
+                 data-href="https://apps.apple.com/us/app/submia-subscriptions-bills/id6752131883"
+                 aria-label="Open Submia on the App Store">
+          <div class="shot" style="background-image:
+            linear-gradient(135deg, rgba(121,230,255,.12), rgba(103,228,179,.10)),
+            url('../SubmiaLogoRot.png');">
+          </div>
+
+          <h3 class="app-title">Submia — Smart Subscription Tracker &amp; Reminder</h3>
+
+          <div class="app-meta">
+            <span class="chip">Finance • iOS</span>
+          </div>
+
+          <a class="store-btn submia-store-btn"
+             href="https://apps.apple.com/us/app/submia-subscriptions-bills/id6752131883"
+             target="_blank" rel="noopener"
+             aria-label="Download Submia on the App Store">
+            <span class="store-left">
+              <svg class="store-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" fill="white" aria-hidden="true">
+                <path d="M318.7 268.7c.5 55.3 48.3 73.7 48.8 73.9c-.4 1.4-7.6 26.1-25.1 51.7c-15.1 22.2-30.9 44.3-55.8 44.7c-24.3.5-32.2-14.4-60-14.4c-27.8 0-36.4 14-59.4 14.9c-23.8.9-41.9-24-57-46.1c-31.1-45.1-55-127.6-23-183.4c15.9-27.7 44.3-45.3 75.1-45.8c23.5-.5 45.7 15.8 60 15.8c14.3 0 41.2-19.5 69.6-16.6c11.8.5 45.1 4.8 66.3 36.2c-1.7 1.1-39.7 23.3-39.5 69.1zM250.2 81.3c12.9-15.6 21.8-37.3 19.4-58.9c-18.8.8-41.2 12.5-54.6 28.1c-12 14.1-22.5 36.7-19.7 58c21.1 1.6 42.6-10.7 54.9-27.2z"/>
+              </svg>
+              <span class="store-text">
+                <span class="store-small">Download on the</span>
+                <span class="store-big">App Store</span>
+              </span>
+            </span>
+
+            <span class="store-stars" aria-label="5 star rating">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            </span>
+          </a>
+        </article>
+
+        <article class="app-card"
+                 data-href="https://apps.apple.com/tr/app/coffzeo-coffee-caffeine-log/id6756270429"
+                 aria-label="Open CoffZeo on the App Store">
+          <div class="shot" style="background-image:
+            linear-gradient(135deg, rgba(255,214,10,.12), rgba(200,140,23,.10)),
+            url('../CoffZeoLogo.png');">
+          </div>
+
+          <h3 class="app-title">CoffZeo — Smart Caffeine Tracker &amp; Logger</h3>
+
+          <div class="app-meta">
+            <span class="chip">Food & Drinks • iOS</span>
+          </div>
+
+          <a class="store-btn coffzeo-store-btn"
+             href="https://apps.apple.com/tr/app/coffzeo-coffee-caffeine-log/id6756270429"
+             target="_blank" rel="noopener"
+             aria-label="Download CoffZeo on the App Store">
+            <span class="store-left">
+              <svg class="store-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" fill="white" aria-hidden="true">
+                <path d="M318.7 268.7c.5 55.3 48.3 73.7 48.8 73.9c-.4 1.4-7.6 26.1-25.1 51.7c-15.1 22.2-30.9 44.3-55.8 44.7c-24.3.5-32.2-14.4-60-14.4c-27.8 0-36.4 14-59.4 14.9c-23.8 .9-41.9-24-57-46.1c-31.1-45.1-55-127.6-23-183.4c15.9-27.7 44.3-45.3 75.1-45.8c23.5-.5 45.7 15.8 60 15.8c14.3 0 41.2-19.5 69.6-16.6c11.8.5 45.1 4.8 66.3 36.2c-1.7 1.1-39.7 23.3-39.5 69.1zM250.2 81.3c12.9-15.6 21.8-37.3 19.4-58.9c-18.8.8-41.2 12.5-54.6 28.1c-12 14.1-22.5 36.7-19.7 58c21.1 1.6 42.6-10.7 54.9-27.2z"/>
+              </svg>
+              <span class="store-text">
+                <span class="store-small">Download on the</span>
+                <span class="store-big">App Store</span>
+              </span>
+            </span>
+
+            <span class="store-stars" aria-label="5 star rating">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            </span>
+          </a>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="container about">
+      <div>
+        <h2>About Us</h2>
+        <p class="lead">
+          CodeZeo is a London-based studio crafting innovative, reliable, and privacy-first applications for a global audience.
+          Our mission is simple: build smart software that empowers people, gets out of the way, and respects their data.
+        </p>
+
+        <div class="pillars">
+          <div class="p">
+            <strong>Clarity</strong>
+            <p class="chip">Minimal UI, maximum signal.</p>
+          </div>
+          <div class="p">
+            <strong>Performance</strong>
+            <p class="chip">Swift-first, battery-light.</p>
+          </div>
+          <div class="p">
+            <strong>Privacy</strong>
+            <p class="chip">No dark patterns. No tracking creepiness.</p>
+          </div>
+        </div>
+
+        <ul class="list" style="margin-top:10px">
+          <li><strong>Revenue Model:</strong> Transparent monthly & yearly plans — no hidden fees.</li>
+          <li><strong>Infrastructure:</strong> App Store + RevenueCat for seamless subscriptions, privacy-friendly analytics.</li>
+          <li><strong>Data:</strong> We never sell your data. All analytics are anonymized and GDPR-compliant.</li>
+          <li><strong>Support:</strong> Reach us any time at <a href="mailto:info@codezeo.com">info@codezeo.com</a>.</li>
+        </ul>
+
+        <div class="timeline">
+          <div class="trow">
+            <span class="dot"></span>
+            <div class="txt"><strong>2025</strong> — Submia enters production with a premium, minimal UX.</div>
+          </div>
+          <div class="trow">
+            <span class="dot"></span>
+            <div class="txt"><strong>2025</strong> — CoffZeo launches as a health-focused, caffeine-tracking companion.</div>
+          </div>
+          <div class="trow">
+            <span class="dot"></span>
+            <div class="txt"><strong>Next</strong> — Two new apps in health & productivity, sharing the same privacy-first ethos.</div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h3 style="margin:4px 0 8px">Tech Stack</h3>
+        <ul class="list">
+          <li>XCode • Swift • SwiftUI • MVVM • StoreKit</li>
+          <li>AppStorage • Firebase • CloudKit • RevenueCat</li>
+          <li>Fastlane • GitHub Actions • AppStore Connect</li>
+        </ul>
+        <h3 style="margin:14px 0 8px">Trust & Compliance</h3>
+        <ul class="list">
+          <li>GDPR compliant, data minimization by design</li>
+          <li>Opt-in only analytics, no fingerprinting</li>
+          <li>Clear, human-readable policies</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container row">
+      <div class="legal">© <span id="year"></span> CodeZeo Ltd • All rights reserved</div>
+      <div class="nav-links"><a href="#home">Home</a><a href="#apps">Apps</a><a href="#about">About</a></div>
+    </div>
+  </footer>
+
+  <script>
+    const yearEl = document.getElementById('year');
+    if(yearEl){ yearEl.textContent = new Date().getFullYear(); }
+
+    // nav active
+    const links = document.querySelectorAll('.nav-links a');
+    const sections = [...document.querySelectorAll('header, section')];
+    const navObserver = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          links.forEach(l=>l.classList.remove('active'));
+          const id = e.target.getAttribute('id') || 'home';
+          const current = [...links].find(a=>a.getAttribute('href') === `#${id}`);
+          current && current.classList.add('active');
+        }
+      })
+    },{rootMargin:'-45% 0px -50% 0px', threshold:.01});
+    sections.forEach(s=>navObserver.observe(s));
+
+    // Dropdown
+    const appsCaret = document.getElementById('appsCaret');
+    const appsMenu  = document.getElementById('appsMenu');
+    const appsLink  = document.getElementById('appsLink');
+
+    function closeAppsMenu(){
+      appsMenu.classList.remove('open');
+      appsCaret.setAttribute('aria-expanded','false');
+    }
+
+    if(appsCaret && appsMenu){
+      appsCaret.addEventListener('click', (e)=>{
+        e.stopPropagation();
+        const open = appsMenu.classList.toggle('open');
+        appsCaret.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+
+      appsLink.addEventListener('click', closeAppsMenu);
+
+      document.addEventListener('click', (e)=>{
+        if(!appsMenu.contains(e.target) && !appsCaret.contains(e.target)) closeAppsMenu();
+      });
+
+      appsCaret.addEventListener('keydown', (e)=>{
+        if(e.key==='Enter' || e.key===' '){ e.preventDefault(); appsCaret.click(); }
+        if(e.key==='Escape'){ closeAppsMenu(); }
+      });
+    }
+
+    // App cards: entire card clickable
+    document.querySelectorAll('.app-card[data-href]').forEach(card => {
+      card.setAttribute('tabindex', '0');
+
+      card.addEventListener('click', (e) => {
+        const link = e.target.closest('a');
+        if (link) return;
+
+        const url = card.getAttribute('data-href');
+        if (url) window.open(url, '_blank', 'noopener');
+      });
+
+      card.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          const url = card.getAttribute('data-href');
+          if (url) window.open(url, '_blank', 'noopener');
+        }
+      });
+    });
+    window.addEventListener('load', () => {
+      const appsSection = document.getElementById('apps');
+      if (appsSection) {
+        appsSection.scrollIntoView({ behavior: 'instant' });
+      }
+    });
+  </script>
+</body>
+</html>
