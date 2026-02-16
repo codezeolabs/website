@@ -62,8 +62,8 @@
       backdrop-filter:blur(10px) saturate(130%);
       -webkit-backdrop-filter:blur(10px) saturate(130%);
     }
-    .nav-inner{ display:flex; align-items:center; justify-content:space-between; height:66px }
-    .brand{ display:flex; align-items:center; gap:10px; min-width:0; }
+    .nav-inner{ display:flex; align-items:center; justify-content:space-between; height:66px; gap: 12px; }
+    .brand{ display:flex; align-items:center; gap:10px; min-width:0; flex-shrink: 0; }
     .brand .badge{
       font-family:'Poppins', sans-serif;
       font-weight:600; font-size:1.4rem; letter-spacing:.5px;
@@ -76,6 +76,8 @@
       flex-wrap:nowrap;
       white-space:nowrap;
       min-width:0;
+      justify-content: flex-end;
+      flex: 1;
     }
     .nav-links a{
       padding:8px 12px; border-radius:12px;
@@ -111,7 +113,7 @@
     }
 
     .menu{
-      position:absolute; top:calc(100% + 8px); left:0; z-index:60;
+      position:absolute; top:calc(100% + 8px); right:0; z-index:60; /* Mobilde taşmaması için sağa hizalandı */
       min-width:180px; padding:8px; border-radius:12px;
       border:1px solid var(--line);
       background:rgba(8,11,18,.95);
@@ -308,11 +310,17 @@
       .about .pillars{ grid-template-columns:1fr }
     }
 
-/* ✅ MOBILE: High-Readability Layout (No Truncation) */
+/* ✅ MOBILE: High-Readability Layout */
     @media (max-width: 760px) {
-      .nav-inner { height: 56px; }
-      .brand .badge { font-size: 1.2rem; }
+      .nav-inner { height: 56px; gap: 8px; }
+      .brand .badge { font-size: 1.15rem; }
       
+      /* Overlay problem fix: Hide non-essential links in mobile nav */
+      .nav-links a:not(.active):not(#appsLink) {
+        display: none;
+      }
+      .nav-links { gap: 4px; }
+
       #apps .container { padding-left: 14px; padding-right: 14px; }
       
       .apps-grid {
@@ -342,24 +350,23 @@
         -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
         overflow: hidden;
-        min-height: 2.4em; /* Kartların boyunu eşitler */
+        min-height: 2.4em;
       }
       
       .app-meta { font-size: 10px; opacity: 0.8; }
       
-      /* ===== Button: Compact with Stars Below Text ===== */
       .store-btn {
-        flex-direction: column; /* Yıldızları alta almak için column yapıyoruz */
+        flex-direction: column;
         align-items: flex-start;
         padding: 8px 10px;
-        gap: 4px; /* Satırlar arası çok dar boşluk */
+        gap: 4px;
         position: static;
         height: auto;
       }
       
       .store-left {
         display: flex;
-        flex-direction: row; /* Logo ve Yazı yine yan yana */
+        flex-direction: row;
         align-items: center;
         gap: 8px;
         width: 100%;
@@ -385,20 +392,19 @@
       }
       
       .store-big {
-        font-size: 12.5px; /* Yazı artık kesilmeyeceği için okunaklı kalabilir */
+        font-size: 12.5px;
         font-weight: 800;
         line-height: 1.1;
         white-space: nowrap;
       }
       
-      /* ⭐ Stars: Altta, App Store yazısının hemen altında */
       .store-stars {
         display: flex;
-        margin-left: 26px; /* Apple logosunun genişliği + gap kadar boşluk (hizalama için) */
+        margin-left: 26px;
         gap: 1px;
         position: static;
         flex: 0 0 auto;
-        margin-top: -4px; /* Yazıya biraz daha yaklaştır */
+        margin-top: -4px;
       }
       
       .store-stars svg {
@@ -507,7 +513,6 @@
 
       <div class="grid apps-grid">
 
-        <!-- SUBMIA CARD -->
         <article class="app-card"
                  data-href="https://apps.apple.com/us/app/submia-subscriptions-bills/id6752131883"
                  aria-label="Open Submia on the App Store">
@@ -546,7 +551,6 @@
           </a>
         </article>
 
-        <!-- COFFZEO CARD -->
         <article class="app-card"
                  data-href="https://apps.apple.com/tr/app/coffzeo-coffee-caffeine-log/id6756270429"
                  aria-label="Open CoffZeo on the App Store">
@@ -708,7 +712,7 @@
       });
     }
 
-    // App cards: entire card clickable (no nested <a> issues)
+    // App cards: entire card clickable
     document.querySelectorAll('.app-card[data-href]').forEach(card => {
       card.setAttribute('tabindex', '0');
 
