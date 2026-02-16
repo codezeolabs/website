@@ -347,39 +347,56 @@
       .app-meta{ font-size: 10px; }
     
       /* ===== Button: compact + stars on the right (no overlay) ===== */
-      .store-btn{
-        position: static;          /* ✅ absolute/relative overlay yok */
-        padding: 10px 10px;        /* ✅ eski gibi kısa/doğal */
-        gap: 8px;
+      .store-btn {
+        flex-direction: column; /* Yıldızları üste, içeriği alta almak için */
+        align-items: flex-start;
+        padding: 10px;
+        gap: 6px;
+        height: auto; /* İçeriğe göre şekillenir ama kart içindeki yeri sabittir */
+      }
+    
+      .store-stars {
+        order: -1; /* Yıldızları en tepeye zorlar */
+        margin-left: 0;
+        margin-bottom: 2px;
+        display: flex;
+        gap: 2px;
+      }
+    
+      .store-stars svg {
+        width: 10px;
+        height: 10px;
+      }
+    
+      .store-left {
+        display: flex;
+        flex-direction: row; /* Logo ve Yazı yan yana */
         align-items: center;
-      }
-    
-      .store-left{
-        margin-top: 0;             /* ✅ aşağı itme yok */
         gap: 8px;
-        min-width: 0;
-        flex: 1 1 auto;
+        width: 100%;
       }
     
-      .store-icon{ width:18px; height:18px; flex:0 0 18px; }
+      .store-icon {
+        width: 20px;
+        height: 20px;
+        flex-shrink: 0;
+      }
     
-      .store-text{ min-width:0; }
+      .store-text {
+        display: flex;
+        flex-direction: column; /* "Download on" ve "App Store" alt alta */
+        gap: 0;
+        line-height: 1.2;
+      }
     
-      /* Text readable but compact */
-      .store-small{
+      .store-small {
         font-size: 7px;
-        letter-spacing: .08em;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        max-width: 18ch;           /* ✅ taşarsa kırp */
+        margin-bottom: -2px;
       }
     
-      .store-big{
-        font-size: 12px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+      .store-big {
+        font-size: 13px;
+        font-weight: 800;
       }
     
       /* ⭐ stars right side, smaller + tighter */
