@@ -62,7 +62,13 @@
       backdrop-filter:blur(10px) saturate(130%);
       -webkit-backdrop-filter:blur(10px) saturate(130%);
     }
-    .nav-inner{ display:flex; align-items:center; justify-content:space-between; height:66px; gap: 12px; }
+    .nav-inner { 
+      display: flex; 
+      align-items: center; 
+      justify-content: space-between; 
+      height: 66px; 
+      gap: 10px; 
+    }    
     .brand{ display:flex; align-items:center; gap:10px; min-width:0; flex-shrink: 0; }
     .brand .badge{
       font-family:'Poppins', sans-serif;
@@ -70,14 +76,13 @@
       color:var(--brand);
       white-space:nowrap;
     }
-
-    .nav-links{
-      display:flex; gap:14px; align-items:center;
-      flex-wrap:nowrap;
-      white-space:nowrap;
-      min-width:0;
-      justify-content: flex-end;
-      flex: 1;
+    .nav-links {
+      display: flex; 
+      gap: 12px; 
+      align-items: center;
+      justify-content: flex-end; /* Menüyü sağa yaslar */
+      flex: 1; /* Boş alanı kaplar */
+      min-width: 0;
     }
     .nav-links a{
       padding:8px 12px; border-radius:12px;
@@ -315,11 +320,17 @@
       .nav-inner { height: 56px; gap: 8px; }
       .brand .badge { font-size: 1.15rem; }
       
-      /* Overlay problem fix: Hide non-essential links in mobile nav */
-      .nav-links a:not(.active):not(#appsLink) {
-        display: none;
-      }
+      /* display: none olan satırı tamamen sil ve yerine şunları ekle */
+      .nav-inner { height: 60px; gap: 5px; }
+      .brand .badge { font-size: 1.1rem; }
       .nav-links { gap: 4px; }
+      .nav-links a { 
+        display: inline-block !important; 
+        padding: 6px 8px; 
+        font-size: 11px; 
+      }
+      .caret { width: 28px; height: 28px; }
+      .menu { z-index: 110; } /* Menünün diğer her şeyin üstünde açılması için */
 
       #apps .container { padding-left: 14px; padding-right: 14px; }
       
