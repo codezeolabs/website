@@ -308,12 +308,12 @@
       .about .pillars{ grid-template-columns:1fr }
     }
 
-    /* ✅ MOBILE: Compact layout with stars next to App Store text */
+    /* ✅ MOBILE: High-Readability Layout (No Truncation) */
     @media (max-width: 760px) {
       .nav-inner { height: 56px; }
       .brand .badge { font-size: 1.2rem; }
       
-      #apps .container { padding-left: 16px; padding-right: 16px; }
+      #apps .container { padding-left: 14px; padding-right: 14px; }
       
       .apps-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -327,7 +327,7 @@
       .app-card {
         padding: 10px;
         border-radius: 14px;
-        gap: 10px;
+        gap: 8px;
       }
       
       .shot {
@@ -336,33 +336,33 @@
       }
       
       .app-title {
-        font-size: 12px;
-        line-height: 1.15;
+        font-size: 11.5px;
+        line-height: 1.2;
         display: -webkit-box;
         -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
         overflow: hidden;
+        min-height: 2.4em; /* Kartların boyunu eşitler */
       }
       
-      .app-meta { font-size: 10px; }
+      .app-meta { font-size: 10px; opacity: 0.8; }
       
-      /* ===== Button: Ultra Compact & Stars on Right ===== */
+      /* ===== Button: Compact with Stars Below Text ===== */
       .store-btn {
-        flex-direction: row; /* Yan yana dizilim */
-        align-items: center;
-        justify-content: flex-start;
+        flex-direction: column; /* Yıldızları alta almak için column yapıyoruz */
+        align-items: flex-start;
         padding: 8px 10px;
-        gap: 8px;
+        gap: 4px; /* Satırlar arası çok dar boşluk */
         position: static;
+        height: auto;
       }
       
       .store-left {
         display: flex;
-        flex-direction: row;
+        flex-direction: row; /* Logo ve Yazı yine yan yana */
         align-items: center;
         gap: 8px;
-        min-width: 0;
-        flex: 0 1 auto; /* Gereksiz büyümez */
+        width: 100%;
       }
       
       .store-icon {
@@ -380,31 +380,30 @@
       
       .store-small {
         font-size: 7px;
-        letter-spacing: .02em;
         line-height: 1;
+        white-space: nowrap;
       }
       
       .store-big {
-        font-size: 12px;
+        font-size: 12.5px; /* Yazı artık kesilmeyeceği için okunaklı kalabilir */
         font-weight: 800;
         line-height: 1.1;
         white-space: nowrap;
       }
       
-      /* ⭐ stars next to text, tiny and clean */
+      /* ⭐ Stars: Altta, App Store yazısının hemen altında */
       .store-stars {
-        display: inline-flex;
-        position: static;
-        margin-left: 4px;
+        display: flex;
+        margin-left: 26px; /* Apple logosunun genişliği + gap kadar boşluk (hizalama için) */
         gap: 1px;
-        align-self: flex-end; /* App Store yazısının yanına hizalar */
-        padding-bottom: 1px;
+        position: static;
         flex: 0 0 auto;
+        margin-top: -2px; /* Yazıya biraz daha yaklaştır */
       }
       
       .store-stars svg {
-        width: 7px;
-        height: 7px;
+        width: 8px;
+        height: 8px;
       }
       
       .hero-figure-code { display: none; }
