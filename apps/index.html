@@ -465,6 +465,9 @@
           <div class="menu glass" id="appsMenu" role="menu">
             <a role="menuitem" href="submia.html">Submia</a>
             <a role="menuitem" href="coffzeo.html">CoffZeo</a>
+            <div class="divider" aria-hidden="true"></div>
+            <a role="menuitem" href="#about">About Us</a>
+            <a role="menuitem" href="mailto:info@codezeo.com">Contact</a>
           </div>
         </div>
 
@@ -529,10 +532,10 @@
                  aria-label="Open Submia on the App Store">
           <div class="shot" style="background-image:
             linear-gradient(135deg, rgba(121,230,255,.12), rgba(103,228,179,.10)),
-            url('../SubmiaLogoRot.png');">
+            url('SubmiaAurora.png');">
           </div>
 
-          <h3 class="app-title">Submia — Smart Subscription Tracker &amp; Reminder</h3>
+          <h3 class="app-title">Submia - Subscription Tracker &amp; Reminder</h3>
 
           <div class="app-meta">
             <span class="chip">Finance • iOS</span>
@@ -567,13 +570,13 @@
                  aria-label="Open CoffZeo on the App Store">
           <div class="shot" style="background-image:
             linear-gradient(135deg, rgba(255,214,10,.12), rgba(200,140,23,.10)),
-            url('../CoffZeoLogo.png');">
+            url('CoffZeoLogoContrast.png');">
           </div>
 
-          <h3 class="app-title">CoffZeo — Smart Caffeine Tracker &amp; Logger</h3>
+          <h3 class="app-title">CoffZeo - Coffee & Caffeine Tracker</h3>
 
           <div class="app-meta">
-            <span class="chip">Food & Drinks • iOS</span>
+            <span class="chip">Health & Fitness • iOS</span>
           </div>
 
           <a class="store-btn coffzeo-store-btn"
@@ -742,12 +745,6 @@
           if (url) window.open(url, '_blank', 'noopener');
         }
       });
-    });
-    window.addEventListener('load', () => {
-      const appsSection = document.getElementById('apps');
-      if (appsSection) {
-        appsSection.scrollIntoView({ behavior: 'instant' });
-      }
     });
   </script>
 </body>
