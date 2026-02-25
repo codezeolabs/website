@@ -289,7 +289,7 @@
     /* Başlık + kicker hizası */
     .logo-title{ align-items:flex-start; }  /* üstten hizala */
     .title-wrap{ display:flex; flex-direction:column; }
-    .logo-title h1{ margin:0 0 6px; }        /* başlık ile kicker arası küçük boşluk */
+    .logo-title h1{ margin:0 0 6px; }       /* başlık ile kicker arası küçük boşluk */
     .kicker{ margin:0; }                    /* emin olmak için */
 
   </style>
@@ -392,6 +392,26 @@
           <strong>Apple Health Sync</strong>
           <p class="chip">Seamlessly syncs caffeine data with Apple Health. Privacy-first, on-device storage.</p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <h2>Screenshots</h2>
+  
+      <div class="shots-wrap">
+        <button class="shots-btn shots-prev" type="button" aria-label="Scroll left">‹</button>
+  
+        <div class="shots-rail" id="shots">
+          <img src="CoffZeoShot1.png"      alt="Onboarding"           loading="lazy" decoding="async">
+          <img src="CoffZeoShot2.png"      alt="Dashboard Main"       loading="lazy" decoding="async">
+          <img src="CoffZeoShot3.png"      alt="Add Drink"            loading="lazy" decoding="async">
+          <img src="CoffZeoShot4.png"      alt="Charts"               loading="lazy" decoding="async">
+          <img src="CoffZeoShot5.png"      alt="Settings"             loading="lazy" decoding="async">
+        </div>
+  
+        <button class="shots-btn shots-next" type="button" aria-label="Scroll right">›</button>
       </div>
     </div>
   </section>
@@ -519,6 +539,24 @@
         if(e.key==='Escape'){ closeAppsMenu(); }
       });
     }
+
+    // Screenshots okları: bir görsel genişliği kadar kaydır
+    (function(){
+      const rail = document.getElementById('shots');
+      const prev = document.querySelector('.shots-prev');
+      const next = document.querySelector('.shots-next');
+      if(!rail || !prev || !next) return;
+  
+      const GAP = 16; // CSS'teki gap ile aynı
+      const step = () => {
+        const first = rail.querySelector('img');
+        return first ? Math.round(first.getBoundingClientRect().width + GAP) : 320;
+      };
+  
+      prev.addEventListener('click', ()=> rail.scrollBy({ left: -step(), behavior:'smooth' }));
+      next.addEventListener('click', ()=> rail.scrollBy({ left:  step(), behavior:'smooth' }));
+    })();
+
   </script>
 </body>
 </html>
