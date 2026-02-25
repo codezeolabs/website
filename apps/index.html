@@ -690,7 +690,9 @@
         if(e.isIntersecting){
           links.forEach(l=>l.classList.remove('active'));
           const id = e.target.getAttribute('id') || 'home';
-          const current = [...links].find(a=>a.getAttribute('href') === `#${id}`);
+          // URL yapısını korumak için id 'apps' ise /apps/ linkini aktif et
+          const hrefValue = id === 'apps' ? '/apps/' : `#${id}`;
+          const current = [...links].find(a=>a.getAttribute('href') === hrefValue);
           current && current.classList.add('active');
         }
       })
