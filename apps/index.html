@@ -323,7 +323,6 @@
       .nav-inner { height: 56px; gap: 8px; }
       .brand .badge { font-size: 1.15rem; }
       
-      /* display: none olan satırı tamamen sil ve yerine şunları ekle */
       .nav-inner { height: 60px; gap: 5px; }
       .brand .badge { font-size: 1.1rem; }
       .nav-links { gap: 4px; }
@@ -333,7 +332,7 @@
         font-size: 11px; 
       }
       .caret { width: 28px; height: 28px; }
-      .menu { z-index: 110; } /* Menünün diğer her şeyin üstünde açılması için */
+      .menu { z-index: 110; }
 
       #apps .container { padding-left: 14px; padding-right: 14px; }
       
@@ -452,10 +451,10 @@
       </div>
 
       <div class="nav-links">
-        <a class="active" href="#home">Home</a>
+        <a href="../index.html">Home</a>
 
         <div class="dropdown">
-          <a href="/apps/" class="nav-link" id="appsLink">Apps</a>
+          <a href="/apps/" class="nav-link active" id="appsLink">Apps</a>
           <button type="button" class="caret" id="appsCaret"
                   aria-label="Toggle apps menu"
                   aria-haspopup="true"
@@ -484,7 +483,7 @@
         <h1>Premium iOS Apps to <span class="text-grad">Optimize Daily Lives</span></h1>
         <p class="lead">Clarity, performance and privacy. No clutter, no dark patterns, just apps that respect your time.</p>
         <div class="buttons">
-          <a class="btn primary" href="/apps/">See Apps</a>
+          <a class="btn primary" href="#apps">See Apps</a>
           <a class="btn" href="#about">About CodeZeo</a>
         </div>
       </div>
@@ -674,7 +673,7 @@
   <footer>
     <div class="container row">
       <div class="legal">© <span id="year"></span> CodeZeo Ltd • All rights reserved</div>
-      <div class="nav-links"><a href="#home">Home</a><a href="/apps/">Apps</a><a href="#about">About</a></div>
+      <div class="nav-links"><a href="../index.html">Home</a><a href="/apps/">Apps</a><a href="#about">About</a></div>
     </div>
   </footer>
 
@@ -682,24 +681,32 @@
     const yearEl = document.getElementById('year');
     if(yearEl){ yearEl.textContent = new Date().getFullYear(); }
 
-    // nav active
+    // --- ÖNEMLİ: URL'de #apps olmadan doğrudan Apps bölümüne gitme ---
+    window.addEventListener('load', () => {
+      const appsSection = document.getElementById('apps');
+      if (appsSection) {
+        appsSection.scrollIntoView({ behavior: 'instant' });
+      }
+    });
+
+    // nav active logic
     const links = document.querySelectorAll('.nav-links a');
     const sections = [...document.querySelectorAll('header, section')];
     const navObserver = new IntersectionObserver((entries)=>{
       entries.forEach(e=>{
         if(e.isIntersecting){
           links.forEach(l=>l.classList.remove('active'));
-          const id = e.target.getAttribute('id') || 'home';
-          // URL yapısını korumak için id 'apps' ise /apps/ linkini aktif et
-          const hrefValue = id === 'apps' ? '/apps/' : `#${id}`;
-          const current = [...links].find(a=>a.getAttribute('href') === hrefValue);
+          const id = e.target.getAttribute('id');
+          // Eğer apps id'si aktifse /apps/ linkini işaretle
+          const targetHref = (id === 'apps') ? '/apps/' : (id === 'home' ? '../index.html' : `#${id}`);
+          const current = [...links].find(a=>a.getAttribute('href') === targetHref);
           current && current.classList.add('active');
         }
       })
     },{rootMargin:'-45% 0px -50% 0px', threshold:.01});
     sections.forEach(s=>navObserver.observe(s));
 
-    // Dropdown
+    // Dropdown toggle
     const appsCaret = document.getElementById('appsCaret');
     const appsMenu  = document.getElementById('appsMenu');
     const appsLink  = document.getElementById('appsLink');
@@ -715,37 +722,17 @@
         const open = appsMenu.classList.toggle('open');
         appsCaret.setAttribute('aria-expanded', open ? 'true' : 'false');
       });
-
-      appsLink.addEventListener('click', closeAppsMenu);
-
       document.addEventListener('click', (e)=>{
         if(!appsMenu.contains(e.target) && !appsCaret.contains(e.target)) closeAppsMenu();
       });
-
-      appsCaret.addEventListener('keydown', (e)=>{
-        if(e.key==='Enter' || e.key===' '){ e.preventDefault(); appsCaret.click(); }
-        if(e.key==='Escape'){ closeAppsMenu(); }
-      });
     }
 
-    // App cards: entire card clickable
+    // App card click
     document.querySelectorAll('.app-card[data-href]').forEach(card => {
-      card.setAttribute('tabindex', '0');
-
       card.addEventListener('click', (e) => {
-        const link = e.target.closest('a');
-        if (link) return;
-
+        if (e.target.closest('a')) return;
         const url = card.getAttribute('data-href');
         if (url) window.open(url, '_blank', 'noopener');
-      });
-
-      card.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          const url = card.getAttribute('data-href');
-          if (url) window.open(url, '_blank', 'noopener');
-        }
       });
     });
   </script>
