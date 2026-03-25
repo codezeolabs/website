@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Privacy Policy - CodeZeo</title>
+  <meta name="description" content="Privacy Policy for CodeZeo website and apps." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --surface:#0f1220;
+      --ink:#eaf0f8;
+      --muted:#9aa6bd;
+      --line:rgba(255,255,255,.08);
+      --brand:#00C8D7;
+      --accent:#79e6ff;
+      --radius:16px;
+      --shadow:0 10px 40px rgba(0,0,0,.35);
+      --blur:14px;
+    }
+    *{ box-sizing:border-box }
+    html,body{
+      margin:0;
+      color:var(--ink);
+      font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      background: linear-gradient(180deg, #04070d 0%, #0a1a2f 100%);
+      -webkit-font-smoothing:antialiased;
+      text-rendering:optimizeLegibility;
+    }
+    a{ color:inherit; text-decoration:none }
+    .container{ max-width:960px; margin:0 auto; padding:0 20px }
+
+    .glass{
+      background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      backdrop-filter:blur(var(--blur));
+      -webkit-backdrop-filter:blur(var(--blur));
+      box-shadow:var(--shadow);
+    }
+
+    nav{
+      position:sticky; top:0; z-index:50;
+      border-bottom:1px solid var(--line);
+      background:rgba(10,13,20,.55);
+      backdrop-filter:blur(10px) saturate(130%);
+      -webkit-backdrop-filter:blur(10px) saturate(130%);
+    }
+    .nav-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      height:66px;
+      gap:12px;
+    }
+    .brand{
+      font-size:1.35rem;
+      font-weight:800;
+      color:var(--brand);
+      white-space:nowrap;
+    }
+    .nav-links{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+    .nav-links a{
+      padding:8px 12px;
+      border-radius:12px;
+      border:1px solid transparent;
+      transition:background .25s ease, border-color .25s ease;
+    }
+    .nav-links a:hover{
+      border-color:var(--line);
+      background:rgba(255,255,255,.04);
+    }
+
+    header{
+      padding:72px 0 28px;
+    }
+    .eyebrow{
+      color:var(--muted);
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      font-size:12px;
+      font-weight:700;
+    }
+    h1{
+      font-size:44px;
+      line-height:1.08;
+      margin:.5rem 0 .75rem;
+      font-weight:900;
+    }
+    .lead{
+      color:var(--muted);
+      font-size:18px;
+      max-width:60ch;
+    }
+
+    main{
+      padding:0 0 60px;
+    }
+    .card{
+      padding:26px;
+    }
+    h2{
+      font-size:24px;
+      margin:0 0 10px;
+    }
+    h3{
+      font-size:18px;
+      margin:24px 0 8px;
+    }
+    p, li{
+      color:var(--muted);
+      line-height:1.7;
+      font-size:15px;
+    }
+    ul{
+      padding-left:18px;
+      margin:8px 0 0;
+    }
+    .meta{
+      margin-top:16px;
+      padding:14px 16px;
+      border:1px solid var(--line);
+      border-radius:12px;
+      background:rgba(255,255,255,.03);
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    footer{
+      padding:28px 0;
+      color:var(--muted);
+    }
+    footer .row{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      border-top:1px solid var(--line);
+      padding-top:18px;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    @media (max-width: 760px){
+      .nav-inner{ height:auto; padding:12px 0; align-items:flex-start; flex-direction:column; }
+      .nav-links{ justify-content:flex-start; }
+      h1{ font-size:34px; }
+      .card{ padding:18px; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="container nav-inner">
+      <a class="brand" href="/">CodeZeo</a>
+      <div class="nav-links">
+        <a href="/#home">Home</a>
+        <a href="/#apps">Apps</a>
+        <a href="/#about">About</a>
+        <a href="/terms.html">Terms</a>
+        <a href="/privacy.html">Privacy</a>
+        <a href="mailto:info@codezeo.com">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <header>
+    <div class="container">
+      <div class="eyebrow">Legal</div>
+      <h1>Privacy Policy</h1>
+      <p class="lead">
+        This Privacy Policy explains how CodeZeo collects, uses, stores, and protects information when you use our website, apps, and related services.
+      </p>
+      <div class="meta">
+        Effective date: March 24, 2026
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <section class="glass card">
+        <h2>1. Introduction</h2>
+        <p>
+          At CodeZeo, privacy is an important part of how we build products. We aim to collect only the information that is reasonably necessary to provide and improve our website, apps, and services.
+        </p>
+
+        <h3>2. Scope</h3>
+        <p>
+          This Privacy Policy applies to:
+        </p>
+        <ul>
+          <li>the CodeZeo website;</li>
+          <li>CodeZeo mobile applications, including current and future apps;</li>
+          <li>related support communications, product inquiries, and service interactions.</li>
+        </ul>
+
+        <h3>3. Information We May Collect</h3>
+        <p>
+          Depending on how you interact with our website or apps, we may collect the following categories of information:
+        </p>
+        <ul>
+          <li><strong>Contact information</strong>, such as your email address when you contact us for support or inquiries;</li>
+          <li><strong>Usage information</strong>, such as app interactions, feature usage, or technical diagnostics;</li>
+          <li><strong>Device and technical information</strong>, such as device type, operating system version, app version, language, or crash data;</li>
+          <li><strong>Subscription and purchase status</strong>, when relevant for premium features or subscription access;</li>
+          <li><strong>Information you choose to provide</strong> directly through emails, support messages, or feedback.</li>
+        </ul>
+
+        <h3>4. How We Use Information</h3>
+        <p>
+          We may use collected information to:
+        </p>
+        <ul>
+          <li>operate, maintain, and improve our website, apps, and services;</li>
+          <li>provide customer support and respond to inquiries;</li>
+          <li>analyze app performance, diagnose bugs, and improve reliability;</li>
+          <li>manage subscriptions, premium access, and service functionality;</li>
+          <li>protect against abuse, fraud, security issues, or misuse;</li>
+          <li>comply with legal obligations.</li>
+        </ul>
+
+        <h3>5. Analytics and Privacy-Friendly Measurement</h3>
+        <p>
+          We may use limited analytics or diagnostic tools to understand performance, crashes, and product usage trends. Where possible, we aim to use privacy-conscious and data-minimized approaches. We do not sell personal data.
+        </p>
+
+        <h3>6. App Store, Payments, and Third Parties</h3>
+        <p>
+          Some app functionality, subscriptions, purchases, and downloads may be handled through third-party platforms such as Apple App Store, RevenueCat, or similar service providers. Those providers may process information under their own privacy policies and terms.
+        </p>
+        <p>
+          We may also use service providers for hosting, analytics, diagnostics, customer support, or infrastructure, but only where reasonably necessary for operating our services.
+        </p>
+
+        <h3>7. Data Sharing</h3>
+        <p>
+          We do not sell your personal information. We may share limited information only in the following situations:
+        </p>
+        <ul>
+          <li>with service providers that help us operate the website, apps, or infrastructure;</li>
+          <li>when required by law, regulation, legal process, or valid governmental request;</li>
+          <li>to protect the rights, safety, integrity, or security of CodeZeo, our users, or others;</li>
+          <li>in connection with a business transfer, merger, acquisition, or reorganization, subject to appropriate safeguards.</li>
+        </ul>
+
+        <h3>8. Data Retention</h3>
+        <p>
+          We retain information only for as long as reasonably necessary for the purposes described in this Privacy Policy, including providing services, resolving disputes, enforcing agreements, meeting legal obligations, and maintaining security.
+        </p>
+
+        <h3>9. Data Security</h3>
+        <p>
+          We take reasonable technical and organizational measures to protect information against unauthorized access, loss, misuse, or disclosure. However, no system or transmission method can be guaranteed to be completely secure.
+        </p>
+
+        <h3>10. International Users</h3>
+        <p>
+          Our website and services may be accessed from different countries. By using our website or apps, you understand that your information may be processed in jurisdictions other than your own, subject to applicable legal safeguards where required.
+        </p>
+
+        <h3>11. Your Rights</h3>
+        <p>
+          Depending on your location and applicable law, you may have rights relating to your personal data, such as the right to request access, correction, deletion, restriction, objection, or data portability. To make a privacy-related request, contact us using the details below.
+        </p>
+
+        <h3>12. Children’s Privacy</h3>
+        <p>
+          Our website and services are not directed to children under the age required by applicable law to provide valid consent. We do not knowingly collect personal information from children in violation of applicable law.
+        </p>
+
+        <h3>13. Changes to This Privacy Policy</h3>
+        <p>
+          We may update this Privacy Policy from time to time. When we do, we will post the updated version on this page and revise the effective date above. Continued use of our website or services after the updated policy becomes effective constitutes acceptance of the revised policy.
+        </p>
+
+        <h3>14. Contact Us</h3>
+        <p>
+          If you have any questions about this Privacy Policy or want to make a privacy request, contact us at:
+          <br><br>
+          <strong>Email:</strong> <a href="mailto:info@codezeo.com">info@codezeo.com</a>
+        </p>
+
+        <h3>15. GDPR and Data Minimization</h3>
+        <p>
+          CodeZeo aims to follow data minimization, transparency, and privacy-by-design principles. Where applicable, we seek to handle personal data in a manner consistent with GDPR-related expectations and similar privacy standards.
+        </p>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container row">
+      <div>© <span id="year"></span> CodeZeo Ltd • All rights reserved</div>
+      <div class="nav-links">
+        <a href="/#home">Home</a>
+        <a href="/#apps">Apps</a>
+        <a href="/terms.html">Terms</a>
+        <a href="/privacy.html">Privacy</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const yearEl = document.getElementById('year');
+    if (yearEl) yearEl.textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
